@@ -16,7 +16,7 @@ def main(targets):
             import folium
             import rasterio
             from matplotlib import pyplot
-            from osgeo import gdal
+            #from osgeo import gdal
             print("All Imports Work!")
 
         except:
