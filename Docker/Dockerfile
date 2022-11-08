@@ -31,6 +31,11 @@ RUN pip install --no-cache-dir pandas geopandas earthengine-api geemap datetime 
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
+# clone yolov5
+RUN git clone https://github.com/ultralytics/yolov5
+
+# clone yolov7
+RUN git clone https://github.com/WongKinYiu/yolov7
 
 # Override command to disable running jupyter notebook at launch
 CMD ["/bin/bash"]
