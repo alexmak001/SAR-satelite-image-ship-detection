@@ -1,16 +1,16 @@
 import ee 
-import geemap
+from ee_plugin import Map
 
 imgVV = ee.ImageCollection('COPERNICUS/S1_GRD') \
         .filter(ee.Filter.listContains('transmitterReceiverPolarisation', 'VV')) \
         .filter(ee.Filter.eq('instrumentMode', 'IW')) \
         .select('VV')
 
-def func_bwd(image):
+def func_dbv(image):
           edge = image.lt(-30.0)
           maskedImage = image.mask().And(edge.Not())
           return image.updateMask(maskedImage) \
-        .map(func_bwd)
+        .map(func_dbv)
 
 
 
@@ -34,7 +34,6 @@ ascChange = ee.Image.cat(
         asc.filter(lateSpring).mean(),
         asc.filter(summer).mean())
 
-Map = geemap.Map()
 Map.setCenter(5.2013, 47.3277, 12)
 Map.addLayer(ascChange, {'min': -25, 'max': 5}, 'Multi-T Mean ASC', True)
 Map.addLayer(descChange, {'min': -25, 'max': 5}, 'Multi-T Mean DESC', True)
