@@ -1,0 +1,6 @@
+train: /home/alex/yolov5/sar_ship_dataset/images/train/
+val: /home/alex/yolov5/sar_ship_dataset/images/test_offshore/
+test: /home/alex/yolov5/sar_ship_dataset/images/test_inshore/
+
+nc: 1
+names: ["ship"]
