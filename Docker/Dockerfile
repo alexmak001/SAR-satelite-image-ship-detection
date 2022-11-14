@@ -27,7 +27,7 @@ USER jovyan
 
 # RUN conda install -y scikit-learn
 
-RUN pip install --no-cache-dir pandas geopandas earthengine-api geemap datetime numpy rasterio matplotlib folium gdown
+RUN pip install --no-cache-dir pandas geopandas earthengine-api geemap datetime numpy rasterio matplotlib folium gdown wandb torchvision pandas Pillow
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
