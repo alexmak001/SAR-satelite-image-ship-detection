@@ -27,15 +27,16 @@ USER jovyan
 
 # RUN conda install -y scikit-learn
 
-RUN pip install --no-cache-dir pandas geopandas earthengine-api geemap datetime numpy rasterio matplotlib folium gdown wandb torchvision pandas Pillow
+RUN pip install --no-cache-dir pandas geopandas earthengine-api geemap datetime numpy rasterio matplotlib folium gdown wandb torchvision Pillow 
+# pandas 
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # clone yolov5
-RUN git clone https://github.com/ultralytics/yolov5
+# RUN git clone https://github.com/ultralytics/yolov5
 
 # clone yolov7
-RUN git clone https://github.com/WongKinYiu/yolov7
+# RUN git clone https://github.com/WongKinYiu/yolov7
 
 # Override command to disable running jupyter notebook at launch
 CMD ["/bin/bash"]
