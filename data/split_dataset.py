@@ -52,3 +52,24 @@ os.rename("val/JPEGImages_sub","val/images")
 
 os.rename("test/Annotations_sub_yolo","test/labels")
 os.rename("test/JPEGImages_sub","test/images")
+
+# os.mkdir("images")
+# os.mkdir("labels")
+
+# shutil.move("train/Annotations_sub_yolo/", "labels/")
+# os.rename("labels/Annotations_sub_yolo/","labels/train/")
+
+# shutil.move("train/JPEGImages_sub", "images/")
+# os.rename("images/JPEGImages_sub","train")
+
+# shutil.move("test/Annotations_sub_yolo", "labels/")
+# os.rename("labels/Annotations_sub_yolo","test")
+
+# shutil.move("test/JPEGImages_sub", "images/")
+# os.rename("images/JPEGImages_sub","test")
+
+# shutil.move("val/Annotations_sub_yolo", "labels/")
+# os.rename("labels/Annotations_sub_yolo","val")
+
+# shutil.move("val/JPEGImages_sub", "images/")
+# os.rename("images/JPEGImages_sub","val")

@@ -35,6 +35,7 @@ os.mkdir(output_dir)
 
 # identify all the xml files in the annotations folder (input directory)
 files = glob.glob(os.path.join(input_dir, '*.xml'))
+#print(files)
 # loop through each 
 for fil in files:
     basename = os.path.basename(fil)
