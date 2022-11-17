@@ -6,9 +6,9 @@ import shutil
 
 # move xml script inside and run it to create 
 
-shutil.copy("datahelper/xmltoyolo.py","data/")
+#shutil.copy("datahelper/xmltoyolo.py","data/")
 
-os.system("python3 data/xmltoyolo.py")
+#os.system("python3 data/xmltoyolo.py")
 
 # split data into test and train accordingly
 
@@ -46,7 +46,7 @@ with open("data/Main/train.txt") as f:
         line = line.replace("\n","")
         filename = line + ".xml"
 
-        original = "data/annotations/" + filename
+        original = "data/annotations_yolo/" + filename
         
         target = "data/train/labels" + filename
 
@@ -95,7 +95,7 @@ with open("data/Main/test.txt") as f:
         line = line.replace("\n","")
         filename = line + ".xml"
 
-        original = "data/annotations/" + filename
+        original = "data/annotations_yolo/" + filename
         
         target = "data/test/labels" + filename
 
