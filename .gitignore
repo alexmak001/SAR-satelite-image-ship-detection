@@ -2,3 +2,7 @@
 /alex_notebooks/raw_data/
 /alex_notebooks/images/
 /alex_notebooks/annotations/
+/alex_notebooks/annotations_yolo/
+
+/yolov7
+/data

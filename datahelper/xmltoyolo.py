@@ -25,9 +25,9 @@ def yolo_to_xml_bbox(bbox, w, h):
 
 # for TRAIN 
 classes = []
-input_dir = "Annotations_sub/"
-output_dir = "Annotations_sub_yolo/"
-image_dir = "JPEGImages_sub/"
+input_dir = "annotations/"
+output_dir = "annotations_yolo/"
+image_dir = "image/"
 
 
 # create the labels folder (output directory)
