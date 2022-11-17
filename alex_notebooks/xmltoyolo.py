@@ -27,7 +27,7 @@ def yolo_to_xml_bbox(bbox, w, h):
 classes = []
 input_dir = "annotations/"
 output_dir = "annotations_yolo/"
-image_dir = "image/"
+image_dir = "images/"
 
 
 # create the labels folder (output directory)
@@ -69,6 +69,9 @@ for fil in files:
         # generate a YOLO format text file for each xml file
         with open(os.path.join(output_dir, f"{filename}.txt"), "w", encoding="utf-8") as f:
             f.write("\n".join(result))
+    else: # if emtpy create an emtpy file
+        with open(os.path.join(output_dir, f"{filename}.txt"), "w", encoding="utf-8") as f:
+            pass
 
 # generate the classes file as reference
 with open('classes.txt', 'w', encoding='utf8') as f:
