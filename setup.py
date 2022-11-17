@@ -40,15 +40,15 @@ os.mkdir("data/train/labels")
 
 # move all training sub images to one folder
 
-with open("data/main/train.txt") as f:
+with open("data/main/train1.txt") as f:
     while True:
         line =  f.readline()
         line = line.replace("\n","")
         filename = line + ".jpg"
 
-        original = "data/images" + filename
+        original = "data/images/" + filename
         
-        target = "data/train/images" + filename
+        target = "data/train/images/" + filename
 
         try:
             shutil.move(original, target)
@@ -61,15 +61,15 @@ with open("data/main/train.txt") as f:
 
 # move all training sub annotations to one folder
 
-with open("data/main/train.txt") as f:
+with open("data/main/train1.txt") as f:
     while True:
         line =  f.readline()
         line = line.replace("\n","")
-        filename = line + ".xml"
+        filename = line + ".txt"
 
         original = "data/annotations_yolo/" + filename
         
-        target = "data/train/labels" + filename
+        target = "data/train/labels/" + filename
 
         try:
             shutil.move(original, target)
@@ -89,7 +89,7 @@ os.mkdir("data/test/labels")
 
 # move all test sub images to one folder
 
-with open("data/main/test.txt") as f:
+with open("data/main/test1.txt") as f:
     while True:
         line =  f.readline()
         line = line.replace("\n","")
@@ -110,11 +110,11 @@ with open("data/main/test.txt") as f:
 
 # move all test sub annotations to one folder
 
-with open("data/main/test.txt") as f:
+with open("data/main/test1.txt") as f:
     while True:
         line =  f.readline()
         line = line.replace("\n","")
-        filename = line + ".xml"
+        filename = line + ".txt"
 
         original = "data/annotations_yolo/" + filename
         
@@ -136,7 +136,7 @@ os.system("git clone https://github.com/WongKinYiu/yolov7")
 os.system("rm yolov7/utils/loss.py")
 shutil.copy("datahelper/loss.py", "yolov7/utils/")
 
-shutil.copy("data/train","yolov7/")
-shutil.copy("data/test","yolov7/")
+os.system("cp -r data/train/ yolov7/train")
+os.system("cp -r data/test/ yolov7/test")
 
 shutil.copy("datahelper/sar_ship_dataset.yaml","yolov7/")
