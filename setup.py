@@ -40,7 +40,7 @@ os.mkdir("data/train/labels")
 
 # move all training sub images to one folder
 
-with open("data/main/train.txt") as f:
+with open("data/main/train1.txt") as f:
     while True:
         line =  f.readline()
         line = line.replace("\n","")
@@ -61,7 +61,7 @@ with open("data/main/train.txt") as f:
 
 # move all training sub annotations to one folder
 
-with open("data/main/train.txt") as f:
+with open("data/main/train1.txt") as f:
     while True:
         line =  f.readline()
         line = line.replace("\n","")
@@ -89,7 +89,7 @@ os.mkdir("data/test/labels")
 
 # move all test sub images to one folder
 
-with open("data/main/test.txt") as f:
+with open("data/main/test1.txt") as f:
     while True:
         line =  f.readline()
         line = line.replace("\n","")
@@ -110,7 +110,7 @@ with open("data/main/test.txt") as f:
 
 # move all test sub annotations to one folder
 
-with open("data/main/test.txt") as f:
+with open("data/main/test1.txt") as f:
     while True:
         line =  f.readline()
         line = line.replace("\n","")
@@ -138,5 +138,7 @@ shutil.copy("datahelper/loss.py", "yolov7/utils/")
 
 os.system("cp -r data/train/ yolov7/train")
 os.system("cp -r data/test/ yolov7/test")
+
+os.system("cp -r yolov7/test yolov7/val")
 
 shutil.copy("datahelper/sar_ship_dataset.yaml","yolov7/")
