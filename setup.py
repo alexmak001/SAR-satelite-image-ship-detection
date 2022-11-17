@@ -40,7 +40,7 @@ os.mkdir("data/train/labels")
 
 # move all training sub images to one folder
 
-with open("data/Main/train.txt") as f:
+with open("data/main/train.txt") as f:
     while True:
         line =  f.readline()
         line = line.replace("\n","")
@@ -61,7 +61,7 @@ with open("data/Main/train.txt") as f:
 
 # move all training sub annotations to one folder
 
-with open("data/Main/train.txt") as f:
+with open("data/main/train.txt") as f:
     while True:
         line =  f.readline()
         line = line.replace("\n","")
@@ -89,15 +89,15 @@ os.mkdir("data/test/labels")
 
 # move all test sub images to one folder
 
-with open("data/Main/test.txt") as f:
+with open("data/main/test.txt") as f:
     while True:
         line =  f.readline()
         line = line.replace("\n","")
         filename = line + ".jpg"
 
-        original = "data/images" + filename
+        original = "data/images/" + filename
         
-        target = "data/test/images" + filename
+        target = "data/test/images/" + filename
 
         try:
             shutil.move(original, target)
@@ -110,7 +110,7 @@ with open("data/Main/test.txt") as f:
 
 # move all test sub annotations to one folder
 
-with open("data/Main/test.txt") as f:
+with open("data/main/test.txt") as f:
     while True:
         line =  f.readline()
         line = line.replace("\n","")
@@ -118,7 +118,7 @@ with open("data/Main/test.txt") as f:
 
         original = "data/annotations_yolo/" + filename
         
-        target = "data/test/labels" + filename
+        target = "data/test/labels/" + filename
 
         try:
             shutil.move(original, target)
@@ -134,7 +134,9 @@ with open("data/Main/test.txt") as f:
 os.system("git clone https://github.com/WongKinYiu/yolov7")
 
 os.system("rm yolov7/utils/loss.py")
-shutil.move("datahelper/loss.py", "yolov7/utils/")
+shutil.copy("datahelper/loss.py", "yolov7/utils/")
 
 shutil.copy("data/train","yolov7/")
 shutil.copy("data/test","yolov7/")
+
+shutil.copy("datahelper/sar_ship_dataset.yaml","yolov7/")
