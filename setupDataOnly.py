@@ -129,14 +129,3 @@ with open("data/main/test.txt") as f:
             break
         
 
-# download yolov7, copy data and yaml, edit utils/loss.py
-
-os.system("git clone https://github.com/WongKinYiu/yolov7")
-
-os.system("rm yolov7/utils/loss.py")
-shutil.copy("datahelper/loss.py", "yolov7/utils/")
-
-os.system("cp -r data/train/ yolov7/train")
-os.system("cp -r data/test/ yolov7/test")
-
-shutil.copy("datahelper/sar_ship_dataset.yaml","yolov7/")
