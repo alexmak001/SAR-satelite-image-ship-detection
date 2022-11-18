@@ -69,9 +69,9 @@ for fil in files:
         # generate a YOLO format text file for each xml file
         with open(os.path.join(output_dir, f"{filename}.txt"), "w", encoding="utf-8") as f:
             f.write("\n".join(result))
-    else: # if emtpy create an emtpy file
-        with open(os.path.join(output_dir, f"{filename}.txt"), "w", encoding="utf-8") as f:
-            pass
+    #else: # if emtpy create an emtpy file
+     #   with open(os.path.join(output_dir, f"{filename}.txt"), "w", encoding="utf-8") as f:
+    #        pass
 
 # generate the classes file as reference
 with open('classes.txt', 'w', encoding='utf8') as f:
