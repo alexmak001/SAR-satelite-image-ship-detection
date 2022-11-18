@@ -7,7 +7,7 @@ import shutil
 # down load data, create new directory called data
 
 # need to change this when make new data zip
-url = 'https://drive.google.com/uc?id=1kGNvc-oKpU1s6ISSObQ5wIq7Tj4g8oLC'
+url = 'https://drive.google.com/uc?id=1l5o0N59Ut4-ahZxYdFZa6vT_xytjuEjY'
 output = 'data_download.zip'
 
 gdown.download(url, output, quiet=False)
