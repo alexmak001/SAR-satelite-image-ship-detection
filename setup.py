@@ -42,7 +42,7 @@ os.mkdir("data/train/labels")
 
 # move all training sub images to one folder
 
-with open("data/main/train1.txt") as f:
+with open("data/main/train.txt") as f:
     while True:
         line =  f.readline()
         line = line.replace("\n","")
@@ -63,7 +63,7 @@ with open("data/main/train1.txt") as f:
 
 # move all training sub annotations to one folder
 
-with open("data/main/train1.txt") as f:
+with open("data/main/train.txt") as f:
     while True:
         line =  f.readline()
         line = line.replace("\n","")
@@ -91,7 +91,7 @@ os.mkdir("data/test/labels")
 
 # move all test sub images to one folder
 
-with open("data/main/test1.txt") as f:
+with open("data/main/test.txt") as f:
     while True:
         line =  f.readline()
         line = line.replace("\n","")
@@ -112,7 +112,7 @@ with open("data/main/test1.txt") as f:
 
 # move all test sub annotations to one folder
 
-with open("data/main/test1.txt") as f:
+with open("data/main/test.txt") as f:
     while True:
         line =  f.readline()
         line = line.replace("\n","")
