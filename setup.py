@@ -143,4 +143,4 @@ os.system("cp -r data/test/ yolov7/test")
 
 os.system("cp -r yolov7/test yolov7/val")
 
-shutil.copy("datahelper/sar_ship_dataset.yaml","yolov7/")
+shutil.copy("datahelper/sar_dataset.yaml","yolov7/")

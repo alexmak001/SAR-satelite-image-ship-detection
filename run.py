@@ -39,7 +39,7 @@ def main(targets):
         os.system("cp -r test/test_data/images/ yolov7/val/images")
         os.system("cp -r test/test_data/annotations_yolo/ yolov7/val/annotations")
 
-        shutil.copy("datahelper/sar_ship_dataset.yaml","yolov7/")
+        shutil.copy("datahelper/sar_dataset.yaml","yolov7/")
 
         # we run our YOLO training tiny model for 1 epoch
         print("Data downloaded and moved successfully!")
