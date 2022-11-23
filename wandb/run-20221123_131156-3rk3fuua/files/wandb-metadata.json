@@ -1,0 +1,258 @@
+{
+    "os": "Linux-3.10.0-1160.76.1.el7.x86_64-x86_64-with-glibc2.31",
+    "python": "3.9.5",
+    "heartbeatAt": "2022-11-23T21:11:56.800243",
+    "startedAt": "2022-11-23T21:11:56.226059",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--img",
+        "640",
+        "--batch",
+        "5",
+        "--epochs",
+        "1",
+        "--data",
+        "yolov7/sar_ship_dataset.yaml",
+        "--weights",
+        "yolov7-w6.pt",
+        "--project",
+        "sar-ship-detection"
+    ],
+    "state": "running",
+    "program": "/home/snng/SAR-satelite-image-ship-detection/yolov7/train.py",
+    "codePath": "yolov7/train.py",
+    "git": {
+        "remote": "https://github.com/alexmak001/SAR-satelite-image-ship-detection.git",
+        "commit": "8b66cfdedff1dd0ea01744e2d6f438816dc5e4cf"
+    },
+    "email": "n.seanng@gmail.com",
+    "root": "/home/snng/SAR-satelite-image-ship-detection",
+    "host": "snng-15824",
+    "username": "snng",
+    "executable": "/opt/conda/bin/python",
+    "cpu_count": 20,
+    "cpu_count_logical": 40,
+    "cpu_freq": {
+        "current": 1464.24025,
+        "min": 1200.0,
+        "max": 3100.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 1264.892,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1389.636,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1200.036,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1250.659,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1204.467,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1288.793,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 2200.0,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1466.442,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1372.314,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3015.063,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1200.573,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1382.116,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1201.647,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1199.902,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1199.902,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1899.89,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1276.977,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1283.691,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1673.364,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1250.122,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1239.514,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1490.881,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1264.355,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1292.15,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1211.718,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1218.701,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 2190.332,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1493.835,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1261.535,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 2828.82,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1496.118,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1607.971,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1200.036,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1293.09,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1300.744,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1492.895,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1202.722,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1268.518,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1282.617,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1897.607,
+            "min": 1200.0,
+            "max": 3100.0
+        }
+    ],
+    "disk": {
+        "total": 784.2262649536133,
+        "used": 278.3058204650879
+    },
+    "gpu": "GeForce GTX 1080 Ti",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "GeForce GTX 1080 Ti",
+            "memory_total": 11721506816
+        }
+    ],
+    "memory": {
+        "total": 377.61977767944336
+    }
+}

@@ -1,0 +1,168 @@
+2022-11-23 13:12:32,107 INFO    StreamThr :1292 [internal.py:wandb_internal():88] W&B internal server running at pid: 1292, started at: 2022-11-23 13:12:32.106199
+2022-11-23 13:12:32,110 DEBUG   HandlerThread:1292 [handler.py:handle_request():139] handle_request: status
+2022-11-23 13:12:32,113 DEBUG   SenderThread:1292 [sender.py:send_request():317] send_request: status
+2022-11-23 13:12:32,116 DEBUG   SenderThread:1292 [sender.py:send():303] send: header
+2022-11-23 13:12:32,116 INFO    WriterThread:1292 [datastore.py:open_for_write():75] open: /home/snng/SAR-satelite-image-ship-detection/wandb/run-20221123_131232-2b9zb0im/run-2b9zb0im.wandb
+2022-11-23 13:12:32,138 DEBUG   SenderThread:1292 [sender.py:send():303] send: run
+2022-11-23 13:12:32,160 INFO    SenderThread:1292 [sender.py:_maybe_setup_resume():593] checking resume status for None/sar-ship-detection/2b9zb0im
+2022-11-23 13:12:32,503 DEBUG   HandlerThread:1292 [handler.py:handle_request():139] handle_request: check_version
+2022-11-23 13:12:32,512 INFO    SenderThread:1292 [dir_watcher.py:__init__():216] watching files in: /home/snng/SAR-satelite-image-ship-detection/wandb/run-20221123_131232-2b9zb0im/files
+2022-11-23 13:12:32,512 INFO    SenderThread:1292 [sender.py:_start_run_threads():928] run started: 2b9zb0im with start time 1669237952.101362
+2022-11-23 13:12:32,512 DEBUG   SenderThread:1292 [sender.py:send():303] send: summary
+2022-11-23 13:12:32,513 INFO    SenderThread:1292 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2022-11-23 13:12:32,514 DEBUG   SenderThread:1292 [sender.py:send_request():317] send_request: check_version
+2022-11-23 13:12:32,588 DEBUG   HandlerThread:1292 [handler.py:handle_request():139] handle_request: run_start
+2022-11-23 13:12:32,595 DEBUG   HandlerThread:1292 [system_info.py:__init__():31] System info init
+2022-11-23 13:12:32,595 DEBUG   HandlerThread:1292 [system_info.py:__init__():46] System info init done
+2022-11-23 13:12:32,595 INFO    HandlerThread:1292 [system_monitor.py:start():150] Starting system monitor
+2022-11-23 13:12:32,595 INFO    SystemMonitor:1292 [system_monitor.py:_start():116] Starting system asset monitoring threads
+2022-11-23 13:12:32,596 INFO    HandlerThread:1292 [system_monitor.py:probe():168] Collecting system info
+2022-11-23 13:12:32,596 INFO    SystemMonitor:1292 [interfaces.py:start():168] Started cpu
+2022-11-23 13:12:32,597 INFO    SystemMonitor:1292 [interfaces.py:start():168] Started disk
+2022-11-23 13:12:32,597 INFO    SystemMonitor:1292 [interfaces.py:start():168] Started gpu
+2022-11-23 13:12:32,598 INFO    SystemMonitor:1292 [interfaces.py:start():168] Started memory
+2022-11-23 13:12:32,599 INFO    SystemMonitor:1292 [interfaces.py:start():168] Started network
+2022-11-23 13:12:32,626 DEBUG   HandlerThread:1292 [system_info.py:probe():195] Probing system
+2022-11-23 13:12:32,635 DEBUG   HandlerThread:1292 [system_info.py:_probe_git():180] Probing git
+2022-11-23 13:12:32,657 DEBUG   HandlerThread:1292 [system_info.py:_probe_git():188] Probing git done
+2022-11-23 13:12:32,657 DEBUG   HandlerThread:1292 [system_info.py:probe():241] Probing system done
+2022-11-23 13:12:32,657 DEBUG   HandlerThread:1292 [system_monitor.py:probe():177] {'os': 'Linux-3.10.0-1160.76.1.el7.x86_64-x86_64-with-glibc2.31', 'python': '3.9.5', 'heartbeatAt': '2022-11-23T21:12:32.626257', 'startedAt': '2022-11-23T21:12:32.082607', 'docker': None, 'cuda': None, 'args': ('--img', '640', '--batch', '5', '--epochs', '1', '--data', 'yolov7/sar_ship_dataset.yaml', '--weights', 'yolov7-w6.pt', '--project', 'sar-ship-detection', '--bbox_interval', '1', '--save_period', '1'), 'state': 'running', 'program': '/home/snng/SAR-satelite-image-ship-detection/yolov7/train.py', 'codePath': 'yolov7/train.py', 'git': {'remote': 'https://github.com/alexmak001/SAR-satelite-image-ship-detection.git', 'commit': '8b66cfdedff1dd0ea01744e2d6f438816dc5e4cf'}, 'email': 'n.seanng@gmail.com', 'root': '/home/snng/SAR-satelite-image-ship-detection', 'host': 'snng-15824', 'username': 'snng', 'executable': '/opt/conda/bin/python', 'cpu_count': 20, 'cpu_count_logical': 40, 'cpu_freq': {'current': 1417.5722250000003, 'min': 1200.0, 'max': 3100.0}, 'cpu_freq_per_core': [{'current': 1343.31, 'min': 1200.0, 'max': 3100.0}, {'current': 2199.194, 'min': 1200.0, 'max': 3100.0}, {'current': 1268.92, 'min': 1200.0, 'max': 3100.0}, {'current': 1369.763, 'min': 1200.0, 'max': 3100.0}, {'current': 1292.822, 'min': 1200.0, 'max': 3100.0}, {'current': 1395.544, 'min': 1200.0, 'max': 3100.0}, {'current': 1238.574, 'min': 1200.0, 'max': 3100.0}, {'current': 1200.439, 'min': 1200.0, 'max': 3100.0}, {'current': 1488.061, 'min': 1200.0, 'max': 3100.0}, {'current': 2978.271, 'min': 1200.0, 'max': 3100.0}, {'current': 2200.0, 'min': 1200.0, 'max': 3100.0}, {'current': 1300.61, 'min': 1200.0, 'max': 3100.0}, {'current': 1249.182, 'min': 1200.0, 'max': 3100.0}, {'current': 1265.698, 'min': 1200.0, 'max': 3100.0}, {'current': 1200.305, 'min': 1200.0, 'max': 3100.0}, {'current': 1302.893, 'min': 1200.0, 'max': 3100.0}, {'current': 1224.072, 'min': 1200.0, 'max': 3100.0}, {'current': 1866.589, 'min': 1200.0, 'max': 3100.0}, {'current': 1245.288, 'min': 1200.0, 'max': 3100.0}, {'current': 1332.299, 'min': 1200.0, 'max': 3100.0}, {'current': 1301.953, 'min': 1200.0, 'max': 3100.0}, {'current': 2196.24, 'min': 1200.0, 'max': 3100.0}, {'current': 1396.484, 'min': 1200.0, 'max': 3100.0}, {'current': 1296.582, 'min': 1200.0, 'max': 3100.0}, {'current': 1331.762, 'min': 1200.0, 'max': 3100.0}, {'current': 1271.203, 'min': 1200.0, 'max': 3100.0}, {'current': 1200.036, 'min': 1200.0, 'max': 3100.0}, {'current': 1213.061, 'min': 1200.0, 'max': 3100.0}, {'current': 1321.289, 'min': 1200.0, 'max': 3100.0}, {'current': 1432.604, 'min': 1200.0, 'max': 3100.0}, {'current': 1252.673, 'min': 1200.0, 'max': 3100.0}, {'current': 1203.393, 'min': 1200.0, 'max': 3100.0}, {'current': 1232.8, 'min': 1200.0, 'max': 3100.0}, {'current': 1246.093, 'min': 1200.0, 'max': 3100.0}, {'current': 1219.909, 'min': 1200.0, 'max': 3100.0}, {'current': 1257.238, 'min': 1200.0, 'max': 3100.0}, {'current': 1209.57, 'min': 1200.0, 'max': 3100.0}, {'current': 1274.829, 'min': 1200.0, 'max': 3100.0}, {'current': 1725.061, 'min': 1200.0, 'max': 3100.0}, {'current': 1238.171, 'min': 1200.0, 'max': 3100.0}], 'disk': {'total': 784.2262649536133, 'used': 278.3058204650879}, 'gpu': 'GeForce GTX 1080 Ti', 'gpu_count': 1, 'gpu_devices': [{'name': 'GeForce GTX 1080 Ti', 'memory_total': 11721506816}], 'memory': {'total': 377.61977767944336}}
+2022-11-23 13:12:32,658 INFO    HandlerThread:1292 [system_monitor.py:probe():178] Finished collecting system info
+2022-11-23 13:12:32,658 INFO    HandlerThread:1292 [system_monitor.py:probe():181] Publishing system info
+2022-11-23 13:12:32,658 DEBUG   HandlerThread:1292 [system_info.py:_save_pip():51] Saving list of pip packages installed into the current environment
+2022-11-23 13:12:32,659 DEBUG   HandlerThread:1292 [system_info.py:_save_pip():67] Saving pip packages done
+2022-11-23 13:12:32,659 DEBUG   HandlerThread:1292 [system_info.py:_save_conda():74] Saving list of conda packages installed into the current environment
+2022-11-23 13:12:33,516 INFO    Thread-13 :1292 [dir_watcher.py:_on_file_created():275] file/dir created: /home/snng/SAR-satelite-image-ship-detection/wandb/run-20221123_131232-2b9zb0im/files/wandb-summary.json
+2022-11-23 13:12:33,517 INFO    Thread-13 :1292 [dir_watcher.py:_on_file_created():275] file/dir created: /home/snng/SAR-satelite-image-ship-detection/wandb/run-20221123_131232-2b9zb0im/files/requirements.txt
+2022-11-23 13:12:33,517 INFO    Thread-13 :1292 [dir_watcher.py:_on_file_created():275] file/dir created: /home/snng/SAR-satelite-image-ship-detection/wandb/run-20221123_131232-2b9zb0im/files/conda-environment.yaml
+2022-11-23 13:12:33,559 DEBUG   HandlerThread:1292 [system_info.py:_save_conda():86] Saving conda packages done
+2022-11-23 13:12:33,562 INFO    HandlerThread:1292 [system_monitor.py:probe():183] Finished publishing system info
+2022-11-23 13:12:33,697 DEBUG   SenderThread:1292 [sender.py:send():303] send: files
+2022-11-23 13:12:33,697 INFO    SenderThread:1292 [sender.py:_save_file():1171] saving file wandb-metadata.json with policy now
+2022-11-23 13:12:33,709 DEBUG   HandlerThread:1292 [handler.py:handle_request():139] handle_request: stop_status
+2022-11-23 13:12:33,710 DEBUG   SenderThread:1292 [sender.py:send_request():317] send_request: stop_status
+2022-11-23 13:12:33,803 DEBUG   SenderThread:1292 [sender.py:send():303] send: telemetry
+2022-11-23 13:12:33,804 DEBUG   SenderThread:1292 [sender.py:send():303] send: telemetry
+2022-11-23 13:12:33,804 DEBUG   SenderThread:1292 [sender.py:send():303] send: config
+2022-11-23 13:12:33,804 DEBUG   SenderThread:1292 [sender.py:send():303] send: config
+2022-11-23 13:12:34,037 DEBUG   SenderThread:1292 [sender.py:send():303] send: exit
+2022-11-23 13:12:34,037 INFO    SenderThread:1292 [sender.py:send_exit():442] handling exit code: 1
+2022-11-23 13:12:34,037 INFO    SenderThread:1292 [sender.py:send_exit():444] handling runtime: 1
+2022-11-23 13:12:34,038 INFO    SenderThread:1292 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2022-11-23 13:12:34,039 INFO    SenderThread:1292 [sender.py:send_exit():450] send defer
+2022-11-23 13:12:34,039 DEBUG   HandlerThread:1292 [handler.py:handle_request():139] handle_request: defer
+2022-11-23 13:12:34,039 INFO    HandlerThread:1292 [handler.py:handle_request_defer():162] handle defer: 0
+2022-11-23 13:12:34,039 DEBUG   SenderThread:1292 [sender.py:send_request():317] send_request: defer
+2022-11-23 13:12:34,040 INFO    SenderThread:1292 [sender.py:send_request_defer():459] handle sender defer: 0
+2022-11-23 13:12:34,040 INFO    SenderThread:1292 [sender.py:transition_state():463] send defer: 1
+2022-11-23 13:12:34,040 DEBUG   HandlerThread:1292 [handler.py:handle_request():139] handle_request: defer
+2022-11-23 13:12:34,040 INFO    HandlerThread:1292 [handler.py:handle_request_defer():162] handle defer: 1
+2022-11-23 13:12:34,040 INFO    HandlerThread:1292 [system_monitor.py:finish():160] Stopping system monitor
+2022-11-23 13:12:34,042 INFO    HandlerThread:1292 [interfaces.py:finish():173] Joined cpu
+2022-11-23 13:12:34,042 INFO    HandlerThread:1292 [interfaces.py:finish():173] Joined disk
+2022-11-23 13:12:34,042 DEBUG   SystemMonitor:1292 [system_monitor.py:_start():130] Starting system metrics aggregation loop
+2022-11-23 13:12:34,043 DEBUG   SystemMonitor:1292 [system_monitor.py:_start():137] Finished system metrics aggregation loop
+2022-11-23 13:12:34,043 DEBUG   SystemMonitor:1292 [system_monitor.py:_start():141] Publishing last batch of metrics
+2022-11-23 13:12:34,057 INFO    HandlerThread:1292 [interfaces.py:finish():173] Joined gpu
+2022-11-23 13:12:34,057 INFO    HandlerThread:1292 [interfaces.py:finish():173] Joined memory
+2022-11-23 13:12:34,057 INFO    HandlerThread:1292 [interfaces.py:finish():173] Joined network
+2022-11-23 13:12:34,058 DEBUG   SenderThread:1292 [sender.py:send_request():317] send_request: defer
+2022-11-23 13:12:34,058 INFO    SenderThread:1292 [sender.py:send_request_defer():459] handle sender defer: 1
+2022-11-23 13:12:34,058 INFO    SenderThread:1292 [sender.py:transition_state():463] send defer: 2
+2022-11-23 13:12:34,058 DEBUG   SenderThread:1292 [sender.py:send():303] send: stats
+2022-11-23 13:12:34,059 DEBUG   HandlerThread:1292 [handler.py:handle_request():139] handle_request: defer
+2022-11-23 13:12:34,059 INFO    HandlerThread:1292 [handler.py:handle_request_defer():162] handle defer: 2
+2022-11-23 13:12:34,059 DEBUG   SenderThread:1292 [sender.py:send_request():317] send_request: defer
+2022-11-23 13:12:34,059 INFO    SenderThread:1292 [sender.py:send_request_defer():459] handle sender defer: 2
+2022-11-23 13:12:34,059 INFO    SenderThread:1292 [sender.py:transition_state():463] send defer: 3
+2022-11-23 13:12:34,060 DEBUG   HandlerThread:1292 [handler.py:handle_request():139] handle_request: defer
+2022-11-23 13:12:34,060 INFO    HandlerThread:1292 [handler.py:handle_request_defer():162] handle defer: 3
+2022-11-23 13:12:34,060 DEBUG   SenderThread:1292 [sender.py:send_request():317] send_request: defer
+2022-11-23 13:12:34,060 INFO    SenderThread:1292 [sender.py:send_request_defer():459] handle sender defer: 3
+2022-11-23 13:12:34,060 INFO    SenderThread:1292 [sender.py:transition_state():463] send defer: 4
+2022-11-23 13:12:34,061 DEBUG   HandlerThread:1292 [handler.py:handle_request():139] handle_request: defer
+2022-11-23 13:12:34,061 INFO    HandlerThread:1292 [handler.py:handle_request_defer():162] handle defer: 4
+2022-11-23 13:12:34,061 DEBUG   SenderThread:1292 [sender.py:send():303] send: summary
+2022-11-23 13:12:34,062 INFO    SenderThread:1292 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2022-11-23 13:12:34,062 DEBUG   SenderThread:1292 [sender.py:send_request():317] send_request: defer
+2022-11-23 13:12:34,063 INFO    SenderThread:1292 [sender.py:send_request_defer():459] handle sender defer: 4
+2022-11-23 13:12:34,063 INFO    SenderThread:1292 [sender.py:transition_state():463] send defer: 5
+2022-11-23 13:12:34,063 DEBUG   HandlerThread:1292 [handler.py:handle_request():139] handle_request: defer
+2022-11-23 13:12:34,063 INFO    HandlerThread:1292 [handler.py:handle_request_defer():162] handle defer: 5
+2022-11-23 13:12:34,063 DEBUG   SenderThread:1292 [sender.py:send_request():317] send_request: defer
+2022-11-23 13:12:34,063 INFO    SenderThread:1292 [sender.py:send_request_defer():459] handle sender defer: 5
+2022-11-23 13:12:34,125 INFO    Thread-16 :1292 [upload_job.py:push():143] Uploaded file /tmp/tmpv4betfzuwandb/36n5bucb-wandb-metadata.json
+2022-11-23 13:12:34,214 INFO    SenderThread:1292 [sender.py:transition_state():463] send defer: 6
+2022-11-23 13:12:34,215 DEBUG   HandlerThread:1292 [handler.py:handle_request():139] handle_request: defer
+2022-11-23 13:12:34,215 INFO    HandlerThread:1292 [handler.py:handle_request_defer():162] handle defer: 6
+2022-11-23 13:12:34,215 DEBUG   SenderThread:1292 [sender.py:send_request():317] send_request: defer
+2022-11-23 13:12:34,215 INFO    SenderThread:1292 [sender.py:send_request_defer():459] handle sender defer: 6
+2022-11-23 13:12:34,514 INFO    Thread-13 :1292 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/snng/SAR-satelite-image-ship-detection/wandb/run-20221123_131232-2b9zb0im/files/wandb-summary.json
+2022-11-23 13:12:34,514 INFO    Thread-13 :1292 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/snng/SAR-satelite-image-ship-detection/wandb/run-20221123_131232-2b9zb0im/files/config.yaml
+2022-11-23 13:12:34,515 INFO    Thread-13 :1292 [dir_watcher.py:_on_file_created():275] file/dir created: /home/snng/SAR-satelite-image-ship-detection/wandb/run-20221123_131232-2b9zb0im/files/wandb-metadata.json
+2022-11-23 13:12:34,515 INFO    Thread-13 :1292 [dir_watcher.py:_on_file_created():275] file/dir created: /home/snng/SAR-satelite-image-ship-detection/wandb/run-20221123_131232-2b9zb0im/files/output.log
+2022-11-23 13:12:35,038 DEBUG   HandlerThread:1292 [handler.py:handle_request():139] handle_request: poll_exit
+2022-11-23 13:12:36,045 INFO    SenderThread:1292 [sender.py:transition_state():463] send defer: 7
+2022-11-23 13:12:36,046 DEBUG   SenderThread:1292 [sender.py:send_request():317] send_request: poll_exit
+2022-11-23 13:12:36,047 DEBUG   HandlerThread:1292 [handler.py:handle_request():139] handle_request: defer
+2022-11-23 13:12:36,047 INFO    HandlerThread:1292 [handler.py:handle_request_defer():162] handle defer: 7
+2022-11-23 13:12:36,048 DEBUG   SenderThread:1292 [sender.py:send_request():317] send_request: defer
+2022-11-23 13:12:36,048 INFO    SenderThread:1292 [sender.py:send_request_defer():459] handle sender defer: 7
+2022-11-23 13:12:36,048 INFO    SenderThread:1292 [dir_watcher.py:finish():362] shutting down directory watcher
+2022-11-23 13:12:36,516 INFO    Thread-13 :1292 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/snng/SAR-satelite-image-ship-detection/wandb/run-20221123_131232-2b9zb0im/files/output.log
+2022-11-23 13:12:36,517 INFO    SenderThread:1292 [dir_watcher.py:finish():392] scan: /home/snng/SAR-satelite-image-ship-detection/wandb/run-20221123_131232-2b9zb0im/files
+2022-11-23 13:12:36,517 INFO    SenderThread:1292 [dir_watcher.py:finish():406] scan save: /home/snng/SAR-satelite-image-ship-detection/wandb/run-20221123_131232-2b9zb0im/files/config.yaml config.yaml
+2022-11-23 13:12:36,518 INFO    SenderThread:1292 [dir_watcher.py:finish():406] scan save: /home/snng/SAR-satelite-image-ship-detection/wandb/run-20221123_131232-2b9zb0im/files/conda-environment.yaml conda-environment.yaml
+2022-11-23 13:12:36,524 INFO    SenderThread:1292 [dir_watcher.py:finish():406] scan save: /home/snng/SAR-satelite-image-ship-detection/wandb/run-20221123_131232-2b9zb0im/files/output.log output.log
+2022-11-23 13:12:36,526 INFO    SenderThread:1292 [dir_watcher.py:finish():406] scan save: /home/snng/SAR-satelite-image-ship-detection/wandb/run-20221123_131232-2b9zb0im/files/wandb-metadata.json wandb-metadata.json
+2022-11-23 13:12:36,526 INFO    SenderThread:1292 [dir_watcher.py:finish():406] scan save: /home/snng/SAR-satelite-image-ship-detection/wandb/run-20221123_131232-2b9zb0im/files/requirements.txt requirements.txt
+2022-11-23 13:12:36,533 INFO    SenderThread:1292 [dir_watcher.py:finish():406] scan save: /home/snng/SAR-satelite-image-ship-detection/wandb/run-20221123_131232-2b9zb0im/files/wandb-summary.json wandb-summary.json
+2022-11-23 13:12:36,533 INFO    SenderThread:1292 [sender.py:transition_state():463] send defer: 8
+2022-11-23 13:12:36,541 DEBUG   HandlerThread:1292 [handler.py:handle_request():139] handle_request: defer
+2022-11-23 13:12:36,547 INFO    HandlerThread:1292 [handler.py:handle_request_defer():162] handle defer: 8
+2022-11-23 13:12:36,548 DEBUG   SenderThread:1292 [sender.py:send_request():317] send_request: defer
+2022-11-23 13:12:36,548 INFO    SenderThread:1292 [sender.py:send_request_defer():459] handle sender defer: 8
+2022-11-23 13:12:36,549 INFO    SenderThread:1292 [file_pusher.py:finish():168] shutting down file pusher
+2022-11-23 13:12:36,922 INFO    Thread-20 :1292 [upload_job.py:push():143] Uploaded file /home/snng/SAR-satelite-image-ship-detection/wandb/run-20221123_131232-2b9zb0im/files/wandb-summary.json
+2022-11-23 13:12:36,927 INFO    Thread-18 :1292 [upload_job.py:push():143] Uploaded file /home/snng/SAR-satelite-image-ship-detection/wandb/run-20221123_131232-2b9zb0im/files/output.log
+2022-11-23 13:12:36,933 INFO    Thread-17 :1292 [upload_job.py:push():143] Uploaded file /home/snng/SAR-satelite-image-ship-detection/wandb/run-20221123_131232-2b9zb0im/files/config.yaml
+2022-11-23 13:12:36,935 INFO    Thread-19 :1292 [upload_job.py:push():143] Uploaded file /home/snng/SAR-satelite-image-ship-detection/wandb/run-20221123_131232-2b9zb0im/files/requirements.txt
+2022-11-23 13:12:37,135 INFO    Thread-12 :1292 [sender.py:transition_state():463] send defer: 9
+2022-11-23 13:12:37,136 DEBUG   HandlerThread:1292 [handler.py:handle_request():139] handle_request: defer
+2022-11-23 13:12:37,136 INFO    HandlerThread:1292 [handler.py:handle_request_defer():162] handle defer: 9
+2022-11-23 13:12:37,137 DEBUG   SenderThread:1292 [sender.py:send_request():317] send_request: defer
+2022-11-23 13:12:37,137 INFO    SenderThread:1292 [sender.py:send_request_defer():459] handle sender defer: 9
+2022-11-23 13:12:37,137 INFO    SenderThread:1292 [file_pusher.py:join():173] waiting for file pusher
+2022-11-23 13:12:37,137 INFO    SenderThread:1292 [sender.py:transition_state():463] send defer: 10
+2022-11-23 13:12:37,137 DEBUG   HandlerThread:1292 [handler.py:handle_request():139] handle_request: defer
+2022-11-23 13:12:37,138 INFO    HandlerThread:1292 [handler.py:handle_request_defer():162] handle defer: 10
+2022-11-23 13:12:37,138 DEBUG   SenderThread:1292 [sender.py:send_request():317] send_request: defer
+2022-11-23 13:12:37,138 INFO    SenderThread:1292 [sender.py:send_request_defer():459] handle sender defer: 10
+2022-11-23 13:12:37,224 INFO    SenderThread:1292 [sender.py:transition_state():463] send defer: 11
+2022-11-23 13:12:37,225 DEBUG   HandlerThread:1292 [handler.py:handle_request():139] handle_request: defer
+2022-11-23 13:12:37,225 INFO    HandlerThread:1292 [handler.py:handle_request_defer():162] handle defer: 11
+2022-11-23 13:12:37,225 DEBUG   SenderThread:1292 [sender.py:send_request():317] send_request: defer
+2022-11-23 13:12:37,225 INFO    SenderThread:1292 [sender.py:send_request_defer():459] handle sender defer: 11
+2022-11-23 13:12:37,225 INFO    SenderThread:1292 [sender.py:transition_state():463] send defer: 12
+2022-11-23 13:12:37,226 DEBUG   SenderThread:1292 [sender.py:send():303] send: final
+2022-11-23 13:12:37,227 DEBUG   HandlerThread:1292 [handler.py:handle_request():139] handle_request: defer
+2022-11-23 13:12:37,227 DEBUG   SenderThread:1292 [sender.py:send():303] send: footer
+2022-11-23 13:12:37,227 INFO    HandlerThread:1292 [handler.py:handle_request_defer():162] handle defer: 12
+2022-11-23 13:12:37,227 DEBUG   SenderThread:1292 [sender.py:send_request():317] send_request: defer
+2022-11-23 13:12:37,227 INFO    SenderThread:1292 [sender.py:send_request_defer():459] handle sender defer: 12
+2022-11-23 13:12:37,229 DEBUG   HandlerThread:1292 [handler.py:handle_request():139] handle_request: poll_exit
+2022-11-23 13:12:37,229 DEBUG   SenderThread:1292 [sender.py:send_request():317] send_request: poll_exit
+2022-11-23 13:12:37,231 DEBUG   HandlerThread:1292 [handler.py:handle_request():139] handle_request: server_info
+2022-11-23 13:12:37,231 DEBUG   SenderThread:1292 [sender.py:send_request():317] send_request: server_info
+2022-11-23 13:12:37,237 DEBUG   HandlerThread:1292 [handler.py:handle_request():139] handle_request: get_summary
+2022-11-23 13:12:37,238 DEBUG   HandlerThread:1292 [handler.py:handle_request():139] handle_request: sampled_history
+2022-11-23 13:12:37,412 INFO    MainThread:1292 [wandb_run.py:_footer_history_summary_info():3377] rendering history
+2022-11-23 13:12:37,412 INFO    MainThread:1292 [wandb_run.py:_footer_history_summary_info():3409] rendering summary
+2022-11-23 13:12:37,412 INFO    MainThread:1292 [wandb_run.py:_footer_sync_info():3333] logging synced files
+2022-11-23 13:12:37,413 DEBUG   HandlerThread:1292 [handler.py:handle_request():139] handle_request: shutdown
+2022-11-23 13:12:37,414 INFO    HandlerThread:1292 [handler.py:finish():814] shutting down handler
+2022-11-23 13:12:38,227 INFO    WriterThread:1292 [datastore.py:close():279] close: /home/snng/SAR-satelite-image-ship-detection/wandb/run-20221123_131232-2b9zb0im/run-2b9zb0im.wandb
+2022-11-23 13:12:38,412 INFO    SenderThread:1292 [sender.py:finish():1331] shutting down sender
+2022-11-23 13:12:38,412 INFO    SenderThread:1292 [file_pusher.py:finish():168] shutting down file pusher
+2022-11-23 13:12:38,412 INFO    SenderThread:1292 [file_pusher.py:join():173] waiting for file pusher
+2022-11-23 13:12:38,417 INFO    MainThread:1292 [internal.py:handle_exit():78] Internal process exited

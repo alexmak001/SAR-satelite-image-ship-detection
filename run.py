@@ -19,25 +19,25 @@ def main(targets):
 
         # make directory copy test data x3
         os.system("mkdir yolov7/train/")
-        os.system("mkdir yolov7/train/images")
-        os.system("mkdir yolov7/train/annotations")
+#         os.system("mkdir yolov7/train/images")
+#         os.system("mkdir yolov7/train/annotations")
 
         os.system("cp -r test/test_data/images/ yolov7/train/images")
-        os.system("cp -r test/test_data/annotations/ yolov7/train/annotations")
+        os.system("cp -r test/test_data/annotations_yolo/ yolov7/train/annotations")
 
         os.system("mkdir yolov7/test/")
-        os.system("mkdir yolov7/test/images")
-        os.system("mkdir yolov7/test/annotations")
+#         os.system("mkdir yolov7/test/images")
+#         os.system("mkdir yolov7/test/annotations")
 
         os.system("cp -r test/test_data/images/ yolov7/test/images")
-        os.system("cp -r test/test_data/annotations/ yolov7/test/annotations")
+        os.system("cp -r test/test_data/annotations_yolo/ yolov7/test/annotations")
 
         os.system("mkdir yolov7/val/")
-        os.system("mkdir yolov7/val/images")
-        os.system("mkdir yolov7/val/annotations")
+#         os.system("mkdir yolov7/val/images")
+#         os.system("mkdir yolov7/val/annotations")
 
         os.system("cp -r test/test_data/images/ yolov7/val/images")
-        os.system("cp -r test/test_data/annotations/ yolov7/val/annotations")
+        os.system("cp -r test/test_data/annotations_yolo/ yolov7/val/annotations")
 
         shutil.copy("datahelper/sar_ship_dataset.yaml","yolov7/")
 

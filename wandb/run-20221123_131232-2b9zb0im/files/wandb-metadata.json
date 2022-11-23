@@ -1,0 +1,262 @@
+{
+    "os": "Linux-3.10.0-1160.76.1.el7.x86_64-x86_64-with-glibc2.31",
+    "python": "3.9.5",
+    "heartbeatAt": "2022-11-23T21:12:32.626257",
+    "startedAt": "2022-11-23T21:12:32.082607",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--img",
+        "640",
+        "--batch",
+        "5",
+        "--epochs",
+        "1",
+        "--data",
+        "yolov7/sar_ship_dataset.yaml",
+        "--weights",
+        "yolov7-w6.pt",
+        "--project",
+        "sar-ship-detection",
+        "--bbox_interval",
+        "1",
+        "--save_period",
+        "1"
+    ],
+    "state": "running",
+    "program": "/home/snng/SAR-satelite-image-ship-detection/yolov7/train.py",
+    "codePath": "yolov7/train.py",
+    "git": {
+        "remote": "https://github.com/alexmak001/SAR-satelite-image-ship-detection.git",
+        "commit": "8b66cfdedff1dd0ea01744e2d6f438816dc5e4cf"
+    },
+    "email": "n.seanng@gmail.com",
+    "root": "/home/snng/SAR-satelite-image-ship-detection",
+    "host": "snng-15824",
+    "username": "snng",
+    "executable": "/opt/conda/bin/python",
+    "cpu_count": 20,
+    "cpu_count_logical": 40,
+    "cpu_freq": {
+        "current": 1417.5722250000003,
+        "min": 1200.0,
+        "max": 3100.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 1343.31,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 2199.194,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1268.92,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1369.763,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1292.822,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1395.544,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1238.574,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1200.439,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1488.061,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 2978.271,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 2200.0,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1300.61,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1249.182,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1265.698,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1200.305,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1302.893,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1224.072,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1866.589,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1245.288,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1332.299,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1301.953,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 2196.24,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1396.484,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1296.582,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1331.762,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1271.203,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1200.036,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1213.061,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1321.289,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1432.604,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1252.673,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1203.393,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1232.8,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1246.093,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1219.909,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1257.238,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1209.57,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1274.829,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1725.061,
+            "min": 1200.0,
+            "max": 3100.0
+        },
+        {
+            "current": 1238.171,
+            "min": 1200.0,
+            "max": 3100.0
+        }
+    ],
+    "disk": {
+        "total": 784.2262649536133,
+        "used": 278.3058204650879
+    },
+    "gpu": "GeForce GTX 1080 Ti",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "GeForce GTX 1080 Ti",
+            "memory_total": 11721506816
+        }
+    ],
+    "memory": {
+        "total": 377.61977767944336
+    }
+}
