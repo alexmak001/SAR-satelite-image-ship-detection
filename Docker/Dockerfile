@@ -31,6 +31,7 @@ RUN pip install --no-cache-dir pandas geopandas earthengine-api geemap datetime 
 # pandas 
 COPY requirements.txt .
 RUN pip install -r requirements.txt
+RUN pip install torch >=1.7.0
 
 # clone yolov5
 # RUN git clone https://github.com/ultralytics/yolov5
