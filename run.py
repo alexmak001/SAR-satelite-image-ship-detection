@@ -9,18 +9,18 @@ def main(targets):
 
 
     if 'test' in targets:
-        try:
-            import ee
+#         try:
+#             import ee
 
-            import geemap
-            import folium
-            import rasterio
-            from matplotlib import pyplot
-            #from osgeo import gdal
-            print("All Imports Work!")
+#             import geemap
+#             import folium
+#             import rasterio
+#             from matplotlib import pyplot
+#             #from osgeo import gdal
+#             print("All Imports Work!")
 
-        except:
-            print("Import Failed")
+#         except:
+#             print("Import Failed")
     return
 
 
