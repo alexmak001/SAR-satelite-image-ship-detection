@@ -5,5 +5,13 @@
 /alex_notebooks/annotations_yolo/
 /alex_notebooks/main
 
+/sean_notebooks/data/images/
+/sean_notebooks/data/annotations/
+/sean_notebooks/data/annotations_yolo/
+/sean_notebooks/data/main
+/sean_notebooks/data/test/
+/sean_notebooks/data/train/
+/sean_notebooks/data
+
 /yolov7
 /data
