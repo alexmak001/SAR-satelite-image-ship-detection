@@ -3,25 +3,51 @@
 import sys
 import os
 import json
-
+import shutil
 
 def main(targets):
 
 
     if 'test' in targets:
-#         try:
-#             import ee
+        
+        # clone yolov7
+        os.system("git clone https://github.com/WongKinYiu/yolov7")
 
-#             import geemap
-#             import folium
-#             import rasterio
-#             from matplotlib import pyplot
-#             #from osgeo import gdal
-#             print("All Imports Work!")
+        # fixes borkbne loss.py file
+        os.system("rm yolov7/utils/loss.py")
+        shutil.copy("datahelper/loss.py", "yolov7/utils/")
 
-#         except:
-#             print("Import Failed")
-    return
+        # make directory copy test data x3
+        os.system("mkdir yolov7/train/")
+        os.system("mkdir yolov7/train/images")
+        os.system("mkdir yolov7/train/annotations")
+
+        os.system("cp -r test/test_data/images/ yolov7/train/images")
+        os.system("cp -r test/test_data/annotations/ yolov7/train/annotations")
+
+        os.system("mkdir yolov7/test/")
+        os.system("mkdir yolov7/test/images")
+        os.system("mkdir yolov7/test/annotations")
+
+        os.system("cp -r test/test_data/images/ yolov7/test/images")
+        os.system("cp -r test/test_data/annotations/ yolov7/test/annotations")
+
+        os.system("mkdir yolov7/val/")
+        os.system("mkdir yolov7/val/images")
+        os.system("mkdir yolov7/val/annotations")
+
+        os.system("cp -r test/test_data/images/ yolov7/val/images")
+        os.system("cp -r test/test_data/annotations/ yolov7/val/annotations")
+
+        shutil.copy("datahelper/sar_ship_dataset.yaml","yolov7/")
+
+        # we run our YOLO training tiny model for 1 epoch
+        print("Data downloaded and moved successfully!")
+        print("Starting model training:")
+
+        
+
+        return True
 
 
 if __name__ == '__main__':
