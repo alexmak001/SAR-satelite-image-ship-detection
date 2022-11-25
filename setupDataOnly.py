@@ -9,7 +9,7 @@ import shutil
 # need to change this when make new data zip
 # link of old dataset w missing data in test
 # 'https://drive.google.com/uc?id=1l5o0N59Ut4-ahZxYdFZa6vT_xytjuEjY'
-url = 'https://drive.google.com/uc?id=1fdp8nBcGBjOv6XoPMEJdZDdUaG1gmWxh'
+url = 'https://drive.google.com/uc?id=1fdp8nBcGBjOv6XoPMEJdZDdUaG1gmWxh&confirm=t'
 output = 'data_download.zip'
 
 gdown.download(url, output, quiet=False)
