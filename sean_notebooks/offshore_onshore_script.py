@@ -13,44 +13,44 @@ import shutil
 import os
 
 # move data
-with open("data/main/test_offshore.txt") as f:
-    while True:
-        line =  f.readline()
-        line = line.replace("\n","")
-        filename = line + ".jpg"
+#with open("data/main/test_offshore.txt") as f:
+#    while True:
+#        line =  f.readline()
+#       line = line.replace("\n","")
+#        filename = line + ".jpg"
 
-        original = os.path.abspath("data/test/images/" + filename)
+#        original = os.path.abspath("data/test/images/" + filename)
         
-        target = os.path.abspath("data/test/offshore/" + filename)
+ #       target = os.path.abspath("data/test/offshore/" + filename)
 
-        try:
-            shutil.move(original, target)
-        except Exception as e:
-            print(e)
+ #       try:
+ #           shutil.move(original, target)
+ #       except Exception as e:
+ #           print(e)
 #             print(filename + " NOT FOUND - offshore")
 
-        if not line:
-            break
+#        if not line:
+#            break
 
 
-with open("data/main/test_inshore.txt") as f:
-    while True:
-        line =  f.readline()
-        line = line.replace("\n","")
-        filename = line + ".jpg"
+#with open("data/main/test_inshore.txt") as f:
+#    while True:
+#        line =  f.readline()
+#        line = line.replace("\n","")
+#        filename = line + ".jpg"
 
-        original = os.path.abspath("data/test/images/" + filename)
+#        original = os.path.abspath("data/test/images/" + filename)
         
-        target = os.path.abspath("data/test/inshore/" + filename)
+ #       target = os.path.abspath("data/test/inshore/" + filename)
 
-        try:
-            shutil.move(original, target)
-        except Exception as e:
-            print(e)
+ #       try:
+ #           shutil.move(original, target)
+  #      except Exception as e:
+   #         print(e)
 #             print(filename + " NOT FOUND - inshore")
 
-        if not line:
-            break
+   #     if not line:
+   #         break
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -123,6 +123,6 @@ def train_model(model, criterion, optimizer, num_epochs=3):
                                                         epoch_acc))
     return model
 
-model_trained = train_model(model, criterion, optimizer, num_epochs=10)
+model_trained = train_model(model, criterion, optimizer, num_epochs=50)
 
 torch.save(model_trained.state_dict(), 'offshore_inshore_clf_50e.h5')
