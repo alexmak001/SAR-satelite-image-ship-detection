@@ -13,44 +13,47 @@ import shutil
 import os
 
 # move data
-#with open("data/main/test_offshore.txt") as f:
-#    while True:
-#        line =  f.readline()
-#       line = line.replace("\n","")
-#        filename = line + ".jpg"
+os.system('mkdir data/image_data')
+os.system('mkdir data/image_data/offshore')
+os.system('mkdir data/image_data/inshore')
+with open("data/main/test_offshore.txt") as f:
+   while True:
+       line =  f.readline()
+      line = line.replace("\n","")
+       filename = line + ".jpg"
 
-#        original = os.path.abspath("data/test/images/" + filename)
+       original = os.path.abspath("data/test/images/" + filename)
         
- #       target = os.path.abspath("data/test/offshore/" + filename)
+       target = os.path.abspath("data/image_data/offshore/" + filename)
 
- #       try:
- #           shutil.move(original, target)
- #       except Exception as e:
- #           print(e)
-#             print(filename + " NOT FOUND - offshore")
+       try:
+           shutil.move(original, target)
+       except Exception as e:
+           print(e)
+            print(filename + " NOT FOUND - offshore")
 
-#        if not line:
-#            break
+       if not line:
+           break
 
 
-#with open("data/main/test_inshore.txt") as f:
-#    while True:
-#        line =  f.readline()
-#        line = line.replace("\n","")
-#        filename = line + ".jpg"
+with open("data/main/test_inshore.txt") as f:
+   while True:
+       line =  f.readline()
+       line = line.replace("\n","")
+       filename = line + ".jpg"
 
-#        original = os.path.abspath("data/test/images/" + filename)
+       original = os.path.abspath("data/test/images/" + filename)
         
- #       target = os.path.abspath("data/test/inshore/" + filename)
+       target = os.path.abspath("data/image_data/inshore/" + filename)
 
- #       try:
- #           shutil.move(original, target)
-  #      except Exception as e:
-   #         print(e)
-#             print(filename + " NOT FOUND - inshore")
+       try:
+           shutil.move(original, target)
+       except Exception as e:
+           print(e)
+            print(filename + " NOT FOUND - inshore")
 
-   #     if not line:
-   #         break
+       if not line:
+           break
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
