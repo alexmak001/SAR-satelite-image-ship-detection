@@ -3,7 +3,9 @@
 /alex_notebooks/images/
 /alex_notebooks/annotations/
 /alex_notebooks/annotations_yolo/
-/alex_notebooks/main
+/alex_notebooks/main/
+/alex_notebooks/wandb/
+/alex_notebooks/artifacts/
 
 /sean_notebooks/data/images/
 /sean_notebooks/data/annotations/
