@@ -19,7 +19,7 @@ os.system('mkdir data/image_data/inshore')
 with open("data/main/test_offshore.txt") as f:
    while True:
        line =  f.readline()
-      line = line.replace("\n","")
+       line = line.replace("\n","")
        filename = line + ".jpg"
 
        original = os.path.abspath("data/test/images/" + filename)
@@ -29,7 +29,7 @@ with open("data/main/test_offshore.txt") as f:
        try:
            shutil.move(original, target)
        except Exception as e:
-           print(e)
+            print(e)
             print(filename + " NOT FOUND - offshore")
 
        if not line:
@@ -49,7 +49,7 @@ with open("data/main/test_inshore.txt") as f:
        try:
            shutil.move(original, target)
        except Exception as e:
-           print(e)
+            print(e)
             print(filename + " NOT FOUND - inshore")
 
        if not line:
