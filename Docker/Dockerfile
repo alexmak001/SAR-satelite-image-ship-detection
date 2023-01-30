@@ -27,11 +27,12 @@ USER jovyan
 
 # RUN conda install -y scikit-learn
 
-RUN pip install --no-cache-dir pandas geopandas earthengine-api geemap datetime numpy rasterio matplotlib folium gdown wandb torchvision Pillow 
+RUN pip install --no-cache-dir pandas geopandas earthengine-api geemap datetime numpy rasterio matplotlib folium gdown wandb torchvision Pillow beautifulsoup4 lxml
 # pandas 
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 RUN pip install torch >=1.7.0
+RUN pip install tqdm
 
 # clone yolov5
 # RUN git clone https://github.com/ultralytics/yolov5
