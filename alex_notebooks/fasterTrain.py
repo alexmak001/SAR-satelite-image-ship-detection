@@ -44,7 +44,7 @@ torch.manual_seed(config.seed)
 class ShipDataset:
     def __init__(self, path, transform=None):
         self.path = path
-        self.files = list(sorted(os.listdir("annotations_yolo/")))
+        self.files = list(sorted(os.listdir("data/annotations_yolo/")))
         self.transform = transform
         
     def __len__(self):
@@ -54,8 +54,8 @@ class ShipDataset:
         file_image = self.files[idx][:-3] + 'jpg'
         file_label = self.files[idx][:-3] + 'xml'
 
-        img_path = os.path.join("images/", file_image)
-        label_path = os.path.join("annotations/", file_label)
+        img_path = os.path.join("data/images/", file_image)
+        label_path = os.path.join("data/annotations/", file_label)
         
         
         # Read an image with OpenCV, gray scale
