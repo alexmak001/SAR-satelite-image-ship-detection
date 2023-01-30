@@ -39,7 +39,7 @@ def main(targets):
         img_90 = np.percentile(img_vals,90)
         img_30 = np.percentile(img_vals,30)
 
-        img_df.append({'50th': img_50, '80th': img_80, '90th': img_90, '30th': img_30})
+        img_df.append({'50th': img_50, '80th': img_80, '90th': img_90, '30th': img_30}, ignore_index=True)
 
     return clf.predict(img_df)
 
