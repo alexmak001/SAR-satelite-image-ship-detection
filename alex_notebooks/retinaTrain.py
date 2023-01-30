@@ -1,8 +1,5 @@
 import os
 import glob
-import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
-import matplotlib.patches as patches
 from bs4 import BeautifulSoup
 import sys 
 
@@ -14,7 +11,6 @@ import torch
 import torchvision
 from torch.utils.data import Dataset
 from torchvision import transforms
-from matplotlib import pyplot as plt
 import os
 import random
 import utils

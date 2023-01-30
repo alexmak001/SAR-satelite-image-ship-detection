@@ -44,6 +44,33 @@ def main(targets):
     return clf.predict(img_df)
 
 
+def predict(target):
+    # targets == filepath to the downloaded images
+
+    clf = joblib.load("inshore_offshore_clf_model.pkl")
+
+    fp = target
+
+    # read in images
+    fnames = os.listdir(fp)
+    train = []
+    for file in fnames:
+        train.append(plt.imread(fp + '/{}'.format(file)))
+    
+    img_df = pd.DataFrame(columns = ['50th', '80th', '90th', '30th'])
+    
+    for img in train:
+        img_vals = np.copy(img)
+        img_50 = np.percentile(img_vals,50)
+        img_80 = np.percentile(img_vals,80)
+        img_90 = np.percentile(img_vals,90)
+        img_30 = np.percentile(img_vals,30)
+
+        img_df.append({'50th': img_50, '80th': img_80, '90th': img_90, '30th': img_30}, ignore_index=True)
+
+    return clf.predict(img_df)
+
+
 if __name__ == '__main__':
     # run via:
     # python run.py
