@@ -26,11 +26,11 @@ wandb.init(entity="ship-detection", project="sar-ship-detection")
 
 # WandB – Config is a variable that holds and saves hyperparameters and inputs
 config = wandb.config          # Initialize config
-config.batch_size = 8          # input batch size for training (default: 64)
-config.epochs = 1             # number of epochs to train (default: 10)
-config.lr = 0.005               # learning rate (default: 0.01)
-config.momentum = 0.1          # SGD momentum (default: 0.5) 
-config.weight_decay = 0         # weight decay
+config.batch_size = 10         # input batch size for training (default: 64)
+config.epochs = 300             # number of epochs to train (default: 10)
+config.lr = 0.001               # learning rate (default: 0.01)
+config.momentum = 0.7         # SGD momentum (default: 0.5) 
+config.weight_decay = 0.01         # weight decay
 config.seed = 42               # random seed (default: 42)
 config.log_interval = 5     # how many batches to wait before logging training status
 config.threshold = 0.3      # confidence threshold for an object to be considered to be detected
@@ -95,7 +95,7 @@ def main(model_name):
     # parameters
     params = [p for p in retina.parameters() if p.requires_grad] # select parameters that require gradient calculation
     optimizer = torch.optim.SGD(params, lr=config.lr,
-                                    momentum=config.momentum)
+                                    momentum=config.momentum, weight_decay=config.weight_decay)
 
     print("Training Model")
     # train model
