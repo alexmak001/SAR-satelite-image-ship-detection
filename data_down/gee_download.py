@@ -19,8 +19,10 @@ import ast
 """
 This script is used to downlaod Sentinel-1 SAR satellite images from Google Earth Engine using the API.
 When running the script, pass your list of coordinates, start date, and end date as the targets. Coordinates are acquired from Google Earth Engine.
-# to do: tell how to get coords
-
+Follow this format for running the script:
+python gee_download.py '[(,),(,),(,),(,),(,)]' 'YYYY MM DD' 'YYYY MM DD'
+    The coordinates should be passed as a list of tupes encased in quotation marks.
+    The year, month, and date of the start and end dates should separated by spaces and encased in quotation marks as well (see above).
 """
 
 
