@@ -95,7 +95,7 @@ def main(model_name):
     # parameters
     params = [p for p in retina.parameters() if p.requires_grad] # select parameters that require gradient calculation
     optimizer = torch.optim.SGD(params, lr=config.lr,
-                                    momentum=config.momentum, weight_decay=config.weight_decay)
+                                    momentum=config.momentum)#, weight_decay=config.weight_decay)
 
     print("Training Model")
     # train model
