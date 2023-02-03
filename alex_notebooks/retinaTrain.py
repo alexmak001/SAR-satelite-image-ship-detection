@@ -31,7 +31,7 @@ config.lr = 0.001               # learning rate (default: 0.01)
 config.momentum = 0.7         # SGD momentum (default: 0.5) 
 config.weight_decay = 0.1         # weight decay
 config.seed = 42               # random seed (default: 42)
-config.log_interval = 5     # how many batches to wait before logging training status
+config.log_interval = 10     # how many batches to wait before logging training status
 config.threshold = 0.5      # confidence threshold for an object to be considered to be detected
 
 torch.manual_seed(config.seed)
