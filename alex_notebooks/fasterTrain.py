@@ -2,7 +2,6 @@ import os
 import glob
 from bs4 import BeautifulSoup
 import sys 
-
 from PIL import Image
 import cv2
 import numpy as np
@@ -30,10 +29,10 @@ config.batch_size = 10         # input batch size for training (default: 64)
 config.epochs = 300            # number of epochs to train (default: 10)
 config.lr = 0.001              # learning rate (default: 0.01)
 config.momentum = 0.7          # SGD momentum (default: 0.5) 
-config.weight_decay = 0.01    # weight decay
+config.weight_decay = 0.1    # weight decay
 config.seed = 42               # random seed (default: 42)
 config.log_interval = 5        # how many batches to wait before logging training status
-config.threshold = 0.3         # confidence threshold for an object to be considered to be detected
+config.threshold = 0.5         # confidence threshold for an object to be considered to be detected
 
 torch.manual_seed(config.seed)
 
@@ -86,7 +85,6 @@ def main(model_name):
     val_loader = torch.utils.data.DataLoader(val_set, batch_size=config.batch_size,collate_fn=utils.collate_fn)
 
     print("Loading Model")
-    # load the model
     # load a model pre-trained on COCO
     fasterRCNN = torchvision.models.detection.fasterrcnn_resnet50_fpn(weights="DEFAULT")
 
@@ -103,7 +101,13 @@ def main(model_name):
         
     # parameters
     params = [p for p in fasterRCNN.parameters() if p.requires_grad] # select parameters that require gradient calculation
-    optimizer = torch.optim.SGD(params, lr=config.lr,
+    
+    # weight decay or nah
+    if config.weight_decay > 0 :
+        optimizer = torch.optim.SGD(params, lr=config.lr,
+                                    momentum=config.momentum,weight_decay=config.weight_decay)
+    else:
+        optimizer = torch.optim.SGD(params, lr=config.lr,
                                     momentum=config.momentum)
 
     print("Training Model")
@@ -138,7 +142,9 @@ def main(model_name):
         all_loss.append(epoch_loss)
 
         if epoch % config.log_interval == 0:
-            wandb.log({"loss": epoch_loss})
+            precision, recall, AP, f1, mAP = utils.calc_test_stats(val_loader, fasterRCNN, config.threshold, device)
+            wandb.log({"epoch":epoch, "loss": epoch_loss, "precision": precision,"recall":recall,"AP":AP,"mAP":mAP,"f1":f1})
+            
             print("Epoch #: {0}, Loss: {1}, Time: {2}".format(epoch, epoch_loss.item(),time.time() - start))
     
     print("Finished Training")
@@ -146,36 +152,6 @@ def main(model_name):
     # save model
     torch.save(fasterRCNN.state_dict(), "models/"+model_name)
     torch.save(fasterRCNN.state_dict(), os.path.join(wandb.run.dir, model_name))
-
-    print("Calculating Test Statistics")
-    labels = []
-    preds_adj_all = []
-    annot_all = []
-
-    # inference
-    for im, annot in tqdm(val_loader, position = 0, leave = True):
-        im = list(img.to(device) for img in im)
-        #annot = [{k: v.to(device) for k, v in t.items()} for t in annot]
-
-        for t in annot:
-            labels += t['labels']
-
-        with torch.no_grad():
-            preds_adj = utils.make_prediction(fasterRCNN, im, config.threshold)
-            preds_adj = [{k: v.to(torch.device('cpu')) for k, v in t.items()} for t in preds_adj]
-            preds_adj_all.append(preds_adj)
-            annot_all.append(annot)
-
-    # get metrics on validation set
-    sample_metrics = []
-    for batch_i in range(len(preds_adj_all)):
-        sample_metrics += utils.get_batch_statistics(preds_adj_all[batch_i], annot_all[batch_i], iou_threshold=0.5) 
-
-    true_positives, pred_scores, pred_labels = [torch.cat(x, 0) for x in list(zip(*sample_metrics))] 
-    precision, recall, AP, f1, ap_class = utils.ap_per_class(true_positives, pred_scores, pred_labels, torch.tensor(labels))
-    mAP = torch.mean(torch.tensor(AP,dtype=torch.float64))
-
-    wandb.log({"precision": precision,"recall":recall,"AP":AP,"mAP":mAP,"f1":f1})
     print("Done!")
 
 if __name__ == '__main__':  

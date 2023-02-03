@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import matplotlib.patches as patches
 from bs4 import BeautifulSoup
-
 from PIL import Image
 import cv2
 import numpy as np
@@ -15,7 +14,7 @@ from torch.utils.data import Dataset
 from matplotlib import pyplot as plt
 import os
 import random
-
+from tqdm import tqdm
 
 # helper function for dataset
 def generate_box(obj):
@@ -275,3 +274,33 @@ def compute_ap(recall, precision):
     # and sum (\Delta recall) * prec
     ap = np.sum((mrec[i + 1] - mrec[i]) * mpre[i + 1])
     return ap
+
+def calc_test_stats(val_loader, model, threshold, device):
+    labels = []
+    preds_adj_all = []
+    annot_all = []
+
+    # inference
+    for im, annot in val_loader:
+        im = list(img.to(device) for img in im)
+        #annot = [{k: v.to(device) for k, v in t.items()} for t in annot]
+
+        for t in annot:
+            labels += t['labels']
+
+        with torch.no_grad():
+            preds_adj = make_prediction(model, im, threshold)
+            preds_adj = [{k: v.to(torch.device('cpu')) for k, v in t.items()} for t in preds_adj]
+            preds_adj_all.append(preds_adj)
+            annot_all.append(annot)
+
+    # get metrics on validation set
+    sample_metrics = []
+    for batch_i in range(len(preds_adj_all)):
+        sample_metrics += get_batch_statistics(preds_adj_all[batch_i], annot_all[batch_i], iou_threshold=0.5) 
+
+    true_positives, pred_scores, pred_labels = [torch.cat(x, 0) for x in list(zip(*sample_metrics))] 
+    precision, recall, AP, f1, ap_class = ap_per_class(true_positives, pred_scores, pred_labels, torch.tensor(labels))
+    mAP = torch.mean(torch.tensor(AP,dtype=torch.float64))
+
+    return precision, recall, AP, f1, mAP
