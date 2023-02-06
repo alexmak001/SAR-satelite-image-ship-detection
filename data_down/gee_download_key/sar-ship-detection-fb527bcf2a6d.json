@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "sar-ship-detection",
+  "private_key_id": "fb527bcf2a6d7c039237f1861763b74bda711bf7",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDEr0KFtDib055+\n9NFmDGA/GH3C1fc3dDomGr08AWOLClot6F99KP3p6FYUh/fgPk/pXBCuyTdkEKR5\nIAtSlwDg5Oujw610uYi/nK0ZV9dZNtv3WHojTq5QSc/Zom1Z+jiLdtoNQNM2qKtD\nX0FcsDkM0+VzLPFOy+rpx1Jj7mb/Bgbhyaw9SpK4lX3rRaU6LnM3Nv4GFCAZcd/v\nZrHaMDUuWe8mwPpHPktvhM0AM/ae/vUC1Ytnz8f8NlXfBJqO9xeVgk6OvSbUCtt1\nO1bMVZCG1bRpS6UR0uJla9DfOHngDvmwgPToBq4fLC6mqD6ULwjOS31MEkX7X43f\nq883y103AgMBAAECggEAQ74rltqabs1l90tCPjhABCte0XcZtW9iQdKO3/aIfxC7\nO7mf/f9a6TAdSegE76b2piUQF+t1GRGEXLW1QKaC5nLiWF7ixOPMXlbL5gEzymYT\nQC+orbWBY2Tw4oBH0qhUxnBSrSLpPJe+mS9bV13Y4HqxOki9+kpQ6GE/Fu07a1Vg\nnNt1Ila6xOmDW6/Kf9N5Ixmi3b9SHNWhoU1bJbRJxUeNoXkhXT1P2Gb1D4oAJ18f\nao7Ly1ZUSvdE7gy+0k+rhfRVkTMcVrQbKYSr6Nlhj1xN1CWwUgxA9uMGqikBXcGR\n8EmRWVWFZS7/4e1h5B5MdR1luB0HRhU4g12yie9MbQKBgQDw/JjAVk6U0G18pOjE\ngJm9ktD917Xjsxg9Ju7m4BaYEsItwB3Yz0iEqF7Fo2KqFhmYyeMTc2Ky4DaLH+kZ\n4O3n8s0/k6rQnNYiJ5iPbPjoSxh/wHpm48fjKJnRe7bppsRI80zrg2g2K2gBJTYZ\nl1+F1AQ6U7suET9YBsFTXPldrQKBgQDQ8BsyjJRJTrTH2KPttZVbPYk4poPYVZc4\nG7IcLfPxrywvVMnxOXZSnls7HNdKZfwHMfbWLR6Zgl7A2QDOjcO2KIBceZqPw191\nibk9raiVA00M0uvmnIuhEGWUm96/kgsWJ2zZW72ErLzD+Hr/lYp0OUN4R4iCKeRY\nNGFv+p968wKBgDyNC4iQZxBHSqtd+EqfkYGrqS2PDNnYv0dmR/Lk7WhqljXOpvE6\nLBuA/sckJX9dLDNSzuatQGh3o9zTOMvS05RLUr0dyna+YaOVVWT8WZJshAxdfaPq\nqefu5K9ZKX2N9JXr5DDtBLtPrsNS6UQG3+6Ndj59mXOay9K/Z8Ydf17FAoGALTXX\nXL/IknhCa//3sMca82xEVgrJ+rTCjPSJPMnAwGo8MF2zeMwLS2NSsF7UQxgASfpI\nxB1tQqBQKoCKSSep0q++3sO9ayBGdqN/ftYl5WCaeozlWLhFCmwG3vo/X8qVNY0A\nY6QTRTMvgWQyET3lgLKnY85uvmOcMm3bK6Taf3sCgYA7vOUWO3pmsBBiHzZ2mu4v\n5JbwfWhhlv2xN23cy9Sq+57n0/LZVtIe+i73loZIeSAioeIzBIiYN1S8foWASvay\nXeTIqnWJEm7NouwrrdcXe9/KZ0/8F6oJb+P/PEDbEAIfDEcgR1BkV3TLgcJ7cZZF\nD/lQBHeRijdKQ5sXFwOPqA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "snng-download@sar-ship-detection.iam.gserviceaccount.com",
+  "client_id": "104274598566694609866",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/snng-download%40sar-ship-detection.iam.gserviceaccount.com"
+}
