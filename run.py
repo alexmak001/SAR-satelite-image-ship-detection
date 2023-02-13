@@ -22,7 +22,7 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 from datetime import date
 from datetime import timedelta
-
+import download_helper
 import ast
 
 import joblib
@@ -69,10 +69,17 @@ def main(targets):
         # # output message saying where model is saved
         # print('Model saved at: yolov7/sar-ship-detection')
         
+        img_fp = "port_la_sar/2020-01-05.tif" #load tif image
 
+        splitImg = download_helper.image_splitter(img_fp)
         
+        allPred = []
+        print(splitImg.shape)
+        for i in splitImg:
+            pred = download_helper.inshore_offshore_classifier(i)
+            allPred.append(pred)
 
-        return True
+        return allPred
 
 
 if __name__ == '__main__':
