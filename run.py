@@ -77,12 +77,12 @@ def main(targets):
         n = splitImg.shape[1]
         
         allPred = []
-        print(splitImg.shape)
+        #print(splitImg.shape)
         for i in range(m):
             for j in range(n):
                 pred = download_helper.inshore_offshore_classifier(splitImg[i][j])
                 allPred.append(pred)
-
+        print(allPred)
         return allPred
 
 
