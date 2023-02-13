@@ -8,7 +8,7 @@ import rasterio
 import cv2
 from PIL import Image
 
-from osgeo import gdal
+#from osgeo import gdal
 
 import numpy as np
 import pandas as pd
