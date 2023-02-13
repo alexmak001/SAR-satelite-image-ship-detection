@@ -74,7 +74,8 @@ def main(targets):
         splitImg = download_helper.image_splitter(img_fp)
         
         allPred = []
-        print(splitImg.shape)
+        
+        print(splitImg[0].shape)
         for i in splitImg:
             pred = download_helper.inshore_offshore_classifier(i)
             allPred.append(pred)
