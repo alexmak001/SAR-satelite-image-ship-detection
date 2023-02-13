@@ -71,7 +71,7 @@ def main(targets):
         
         img_fp = "port_la_sar/2020-01-05.tif" #load tif image
 
-        splitImg = download_helper.image_splitter(img_fp)
+        splitImg = download_helper.image_splitter(img_fp)[0]
         
         m = splitImg.shape[0]
         n = splitImg.shape[1]
@@ -80,8 +80,8 @@ def main(targets):
         print(splitImg.shape)
         for i in range(m):
             for j in range(n):
-            pred = download_helper.inshore_offshore_classifier(splitImg[i][j])
-            allPred.append(pred)
+                pred = download_helper.inshore_offshore_classifier(splitImg[i][j])
+                allPred.append(pred)
 
         return allPred
 
