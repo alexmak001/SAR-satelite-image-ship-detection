@@ -36,7 +36,7 @@ num_classes = 2  # 1 class (ship) + background
 in_features = faster_rcnn.roi_heads.box_predictor.cls_score.in_features
 # replace the pre-trained head with a new one
 faster_rcnn.roi_heads.box_predictor = torchvision.models.detection.faster_rcnn.FastRCNNPredictor(in_features, num_classes)
-faster_rcnn.load_state_dict(torch.load("models/faster300ep.pt"))
+faster_rcnn.load_state_dict(torch.load("alex_notebooks/models/faster300ep.pt"))
 faster_rcnn.eval()
 
 # initialize Earth Engine
@@ -202,9 +202,10 @@ def inshore_offshore_classifier(img):
     img_30 = np.percentile(img_vals,30)
     
     features = np.array([[img_50, img_80, img_90, img_30]])
-    return clf.predict(features)
+    return clf.predict(features)[0]
 
 
 def detect_ships_inshore(image):
+
     prediction = faster_rcnn(image)
     return sum(prediction[0]["scores"]>threshold).item()
