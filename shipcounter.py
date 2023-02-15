@@ -30,4 +30,6 @@ def ship_counter(place_coords, start_date, end_date):
 
 
 
+    # delete images locally
+
     return 
