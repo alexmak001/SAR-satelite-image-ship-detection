@@ -39,6 +39,11 @@ faster_rcnn.roi_heads.box_predictor = torchvision.models.detection.faster_rcnn.F
 faster_rcnn.load_state_dict(torch.load("alex_notebooks/models/faster300ep.pt"))
 faster_rcnn.eval()
 
+# initialize Earth Engine
+service_account = 'snng-download@sar-ship-detection.iam.gserviceaccount.com'
+credentials = ee.ServiceAccountCredentials(service_account, 'sar-ship-detection-fb527bcf2a6d.json')
+ee.Initialize(credentials)
+
 
 
 def ship_counter(place_coords, start_date, end_date, del_images):
