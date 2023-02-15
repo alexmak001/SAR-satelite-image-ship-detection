@@ -29,6 +29,9 @@ threshold = 0.5
 # load in predictor
 clf = joblib.load("sean_notebooks/inshore_offshore_clf_normal_model.pkl")
 
+# TODO: move  model to device
+
+
 # load in faster r cnn
 faster_rcnn = torchvision.models.detection.fasterrcnn_resnet50_fpn()
 num_classes = 2  # 1 class (ship) + background
@@ -41,7 +44,7 @@ faster_rcnn.eval()
 
 # initialize Earth Engine
 service_account = 'snng-download@sar-ship-detection.iam.gserviceaccount.com'
-credentials = ee.ServiceAccountCredentials(service_account, 'sar-ship-detection-fb527bcf2a6d.json')
+credentials = ee.ServiceAccountCredentials(service_account, 'alex_notebooks/models/sar-ship-detection-fb527bcf2a6d.json')
 ee.Initialize(credentials)
 
 
@@ -51,20 +54,23 @@ def ship_counter(place_coords, start_date, end_date, del_images):
     path = "gee_data/"
 
     # downloads all images to a file called gee_data
-    dates = image_downloader(place_coords, start_date, end_date)
-
+    print("Downloading Images...")
+    dates = image_downloader(place_coords, start_date, end_date,path)
+    print("Finished Downloading Images")
     
     fnames = os.listdir(path)
 
     totalShip_count = []
 
+    print("Counting Ships")
     for file in fnames:
         file_fp = path+file
 
         # splits each image into an m xn array of 800x800
         split_img, img_name = image_splitter(file_fp)
-
-        print(img_name,split_img.shape)
+        
+        # TODO: Convert it to a 1d array of images
+       
 
 
         m = split_img.shape[0]
@@ -72,13 +78,22 @@ def ship_counter(place_coords, start_date, end_date, del_images):
         
         # counts number of ships in each sub image
         subImageCount = 0
-        #print(splitImg.shape)
+        
+        
         for i in range(m):
             for j in range(n):
+                # get cur image
                 curImg = split_img[i][j]
-
+                
                 # classify to be inshore(0) or offshore (1)
                 offshore = inshore_offshore_classifier(curImg) == 1
+
+                print(img_name,curImg.shape, offshore)
+
+                # need to format image for pytorch 
+                curImg = torch.tensor(curImg,dtype=torch.float32)
+                curImg = torch.unsqueeze(curImg, dim=0)
+                curImg = [curImg]
 
                 if offshore:
                     numShip = detect_ships_inshore(curImg)
@@ -87,15 +102,17 @@ def ship_counter(place_coords, start_date, end_date, del_images):
                 
                 subImageCount += numShip
         
-        totalShip_count.append(subImageCount)
+        print(file,subImageCount.item())
+
+        totalShip_count.append(subImageCount.item())
 
     
     # delete images locally
     if del_images:
         shutil.rmtree(path)
+        print("file deleted")
     
-    print(dates)
-    print(totalShip_count)
+    
 
     return dates, totalShip_count
 
@@ -103,9 +120,9 @@ def ship_counter(place_coords, start_date, end_date, del_images):
 
 def image_downloader(place_coords, start_date, end_date, path):
     
-    # input given as 'MM/DD/YYY'
-    start = datetime.strptime(start_date, '%m/%d/%Y')
-    end = datetime.strptime(end_date, '%m/%d/%Y')
+    # input given as 'MM/DD/YYYY'
+    start_date = datetime.strptime(start_date, '%m/%d/%Y')
+    end_date = datetime.strptime(end_date, '%m/%d/%Y')
 
     
     # create folders if not already created
@@ -133,7 +150,6 @@ def image_downloader(place_coords, start_date, end_date, path):
     print('Successfully Downloaded')
     
     return dates
-
 
 
 
@@ -179,6 +195,7 @@ def image_splitter(img_fp):
     rescaled = a_scaled = 255*(reshaped-reshaped.min())/(reshaped.max()-reshaped.min())
 
     # normalize between 0 and 1
+    # TODO MAKE A BETTER RESCALING
     rescale_normalized = rescaled / 255
     
     # split image into subimages
@@ -208,4 +225,25 @@ def inshore_offshore_classifier(img):
 def detect_ships_inshore(image):
 
     prediction = faster_rcnn(image)
-    return sum(prediction[0]["scores"]>threshold).item()
+    return sum(prediction[0]["scores"]>threshold)
+
+
+def main():
+
+    place_coords = [(-118.32027994564326,33.64246038322455),(-118.07789408138545,33.64246038322455),(-118.07789408138545,33.78867573774964),(-118.32027994564326,33.78867573774964),(-118.32027994564326,33.64246038322455)]
+    # datetime(start_year, start_month, start_day)
+    # string should be formatted as "YEAR MONTH DAY"
+    start_date = "01/01/2020"
+    end_date = "01/12/2020"
+    del_images = False
+
+    dates, totalShip_count = ship_counter(place_coords, start_date, end_date, del_images)
+
+    print(dates)
+    print(totalShip_count)
+
+    return 
+
+if __name__ == '__main__':
+    
+    main()
