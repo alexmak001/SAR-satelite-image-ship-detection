@@ -1,50 +1,112 @@
 import os
 import shutil
 import sys
-
 import ee
 import geemap
 import rasterio
 import cv2
 from PIL import Image
-
-#from osgeo import gdal
-
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-
 from datetime import datetime
 from datetime import date
 from datetime import timedelta
 import joblib
 import numpy as np
-
 import ast
-
 import joblib
+import torch
+import torchvision
+
+#from osgeo import gdal
+
+# change these values if needed
+threshold = 0.5
+
+# load models in 
+
+# load in predictor
+clf = joblib.load("sean_notebooks/inshore_offshore_clf_normal_model.pkl")
+
+# load in faster r cnn
+faster_rcnn = torchvision.models.detection.fasterrcnn_resnet50_fpn()
+num_classes = 2  # 1 class (ship) + background
+# get number of input features for the classifier
+in_features = faster_rcnn.roi_heads.box_predictor.cls_score.in_features
+# replace the pre-trained head with a new one
+faster_rcnn.roi_heads.box_predictor = torchvision.models.detection.faster_rcnn.FastRCNNPredictor(in_features, num_classes)
+faster_rcnn.load_state_dict(torch.load("models/faster300ep.pt"))
+faster_rcnn.eval()
 
 
-def ship_counter(place_coords, start_date, end_date):
+
+def ship_counter(place_coords, start_date, end_date, del_images):
+
+    path = "gee_data/"
+
+    # downloads all images to a file called gee_data
+    dates = image_downloader(place_coords, start_date, end_date)
+
+    
+    fnames = os.listdir(path)
+
+    totalShip_count = []
+
+    for file in fnames:
+        file_fp = path+file
+
+        # splits each image into an m xn array of 800x800
+        split_img, img_name = image_splitter(file_fp)
+
+        print(img_name,split_img.shape)
 
 
+        m = split_img.shape[0]
+        n = split_img.shape[1]
+        
+        # counts number of ships in each sub image
+        subImageCount = 0
+        #print(splitImg.shape)
+        for i in range(m):
+            for j in range(n):
+                curImg = split_img[i][j]
 
+                # classify to be inshore(0) or offshore (1)
+                offshore = inshore_offshore_classifier(curImg) == 1
 
+                if offshore:
+                    numShip = detect_ships_inshore(curImg)
+                else:
+                    numShip = detect_ships_inshore(curImg)
+                
+                subImageCount += numShip
+        
+        totalShip_count.append(subImageCount)
+
+    
     # delete images locally
+    if del_images:
+        shutil.rmtree(path)
+    
+    print(dates)
+    print(totalShip_count)
 
-    return 
+    return dates, totalShip_count
 
-def image_downloader(place_coords, start_date, end_date):
+
+
+def image_downloader(place_coords, start_date, end_date, path):
     
     # input given as 'MM/DD/YYY'
     start = datetime.strptime(start_date, '%m/%d/%Y')
     end = datetime.strptime(end_date, '%m/%d/%Y')
 
+    
     # create folders if not already created
-    if not os.path.exists('gee_data'):
-        os.mkdir('gee_data')
-    if not os.path.exists('gee_data/full_img'):
-        os.mkdir('gee_data/full_img')
+    if not os.path.exists(path):
+        os.mkdir(path)
+    
         
     bbox = place_coords
     
@@ -59,12 +121,13 @@ def image_downloader(place_coords, start_date, end_date):
         image = ee.Image(collection_list.get(i)).select('VV')
 
         try:
-            geemap.ee_export_image(image, filename = "gee_data/full_img/{}.tif".format(date), region = region)
+            geemap.ee_export_image(image, filename = path+"{}.tif".format(date), region = region)
         except Exception as e:
             print(e)
 
     print('Successfully Downloaded')
-    return
+    
+    return dates
 
 
 
@@ -119,8 +182,7 @@ def image_splitter(img_fp):
     return split, img_name
 
 
-# load in predictor
-clf = joblib.load("sean_notebooks/inshore_offshore_clf_normal_model.pkl")
+
 
 def inshore_offshore_classifier(img):
     """
@@ -136,3 +198,8 @@ def inshore_offshore_classifier(img):
     
     features = np.array([[img_50, img_80, img_90, img_30]])
     return clf.predict(features)
+
+
+def detect_ships_inshore(image):
+    prediction = faster_rcnn(image)
+    return sum(prediction[0]["scores"]>threshold).item()
