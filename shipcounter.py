@@ -70,37 +70,36 @@ def ship_counter(place_coords, start_date, end_date, del_images):
         split_img, img_name = image_splitter(file_fp)
         
         # TODO: Convert it to a 1d array of images
-       
+        # flatten split array into a [m*n, 800, 800] array
+        flattened = np.reshape(split_img, (-1, split_img.shape[2], split_img.shape[3]))
 
 
-        m = split_img.shape[0]
-        n = split_img.shape[1]
+        m = flattened.shape[0]
         
         # counts number of ships in each sub image
         subImageCount = 0
         
         
         for i in range(m):
-            for j in range(n):
-                # get cur image
-                curImg = split_img[i][j]
-                
-                # classify to be inshore(0) or offshore (1)
-                offshore = inshore_offshore_classifier(curImg) == 1
+            # get cur image
+            curImg = flattened[i]
 
-                print(img_name,curImg.shape, offshore)
+            # classify to be inshore(0) or offshore (1)
+            offshore = inshore_offshore_classifier(curImg) == 1
 
-                # need to format image for pytorch 
-                curImg = torch.tensor(curImg,dtype=torch.float32)
-                curImg = torch.unsqueeze(curImg, dim=0)
-                curImg = [curImg]
+            print(img_name,curImg.shape, offshore)
 
-                if offshore:
-                    numShip = detect_ships_inshore(curImg)
-                else:
-                    numShip = detect_ships_inshore(curImg)
-                
-                subImageCount += numShip
+            # need to format image for pytorch 
+            curImg = torch.tensor(curImg,dtype=torch.float32)
+            curImg = torch.unsqueeze(curImg, dim=0)
+            curImg = [curImg]
+
+            if offshore:
+                numShip = detect_ships_inshore(curImg)
+            else:
+                numShip = detect_ships_inshore(curImg)
+
+            subImageCount += numShip
         
         print(file,subImageCount.item())
 
@@ -183,6 +182,10 @@ def image_splitter(img_fp):
 
     with rasterio.open(img_fp) as src:
         img_array = src.read()[0]
+        
+    # have to clip values to take away gray tint from image
+    # and have to do this so that inshore offshore classifier works
+    img_array = np.clip(img_array, -20, 0)
     
     img_height, img_width = img_array.shape
     # get next biggest multiple of 800
@@ -201,6 +204,7 @@ def image_splitter(img_fp):
     # split image into subimages
         # will return array [m, n, 800, 800] where there are an m x n number of images with size 800x800 
     split = reshape_split(rescale_normalized, kernel_size=(800,800))
+    
     return split, img_name
 
 
