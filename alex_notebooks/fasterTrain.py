@@ -82,7 +82,7 @@ def main(model_name):
     print("train length {0}".format(len(train_dataset)))
 
     val_dataset = ShipDataset(
-    path = 'test_yolo/'
+    path = 'data/test_yolo/'
 )
     print("test length {0}".format(len(val_dataset)))
 
