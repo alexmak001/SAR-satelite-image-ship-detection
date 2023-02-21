@@ -30,7 +30,7 @@ threshold = 0.5
 clf = joblib.load("sean_notebooks/inshore_offshore_clf_normal_model.pkl")
 
 # TODO: move  model to device
-
+device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 
 # load in faster r cnn
 faster_rcnn = torchvision.models.detection.fasterrcnn_resnet50_fpn()
@@ -41,6 +41,8 @@ in_features = faster_rcnn.roi_heads.box_predictor.cls_score.in_features
 faster_rcnn.roi_heads.box_predictor = torchvision.models.detection.faster_rcnn.FastRCNNPredictor(in_features, num_classes)
 faster_rcnn.load_state_dict(torch.load("alex_notebooks/models/faster300ep.pt"))
 faster_rcnn.eval()
+faster_rcnn.to(device)
+
 
 # initialize Earth Engine
 service_account = 'snng-download@sar-ship-detection.iam.gserviceaccount.com'
@@ -55,7 +57,7 @@ def ship_counter(place_coords, start_date, end_date, del_images):
 
     # downloads all images to a file called gee_data
     print("Downloading Images...")
-    dates = image_downloader(place_coords, start_date, end_date,path)
+    #dates = image_downloader(place_coords, start_date, end_date,path)
     print("Finished Downloading Images")
     
     fnames = os.listdir(path)
@@ -65,10 +67,10 @@ def ship_counter(place_coords, start_date, end_date, del_images):
     print("Counting Ships")
     for file in fnames:
         file_fp = path+file
-
+        # TODO: FIX Function to make it to nearest multiple of 800 OR PAD WITH BLACK
         # splits each image into an m xn array of 800x800
         split_img, img_name = image_splitter(file_fp)
-        
+        #print(split_img.shape)
         # TODO: Convert it to a 1d array of images
         # flatten split array into a [m*n, 800, 800] array
         flattened = np.reshape(split_img, (-1, split_img.shape[2], split_img.shape[3]))
@@ -79,6 +81,9 @@ def ship_counter(place_coords, start_date, end_date, del_images):
         # counts number of ships in each sub image
         subImageCount = 0
         
+        # loop through all images and classify them first
+        inshoreImg = []
+        offshoreImg = []
         
         for i in range(m):
             # get cur image
@@ -87,19 +92,41 @@ def ship_counter(place_coords, start_date, end_date, del_images):
             # classify to be inshore(0) or offshore (1)
             offshore = inshore_offshore_classifier(curImg) == 1
 
-            print(img_name,curImg.shape, offshore)
-
-            # need to format image for pytorch 
-            curImg = torch.tensor(curImg,dtype=torch.float32)
-            curImg = torch.unsqueeze(curImg, dim=0)
-            curImg = [curImg]
-
+            #print(img_name,curImg.shape, offshore)
+            
+            # appends to array
             if offshore:
-                numShip = detect_ships_inshore(curImg)
+                offshoreImg.append(curImg)
             else:
-                numShip = detect_ships_inshore(curImg)
+                inshoreImg.append(curImg)
 
-            subImageCount += numShip
+        inshoreImg = np.array(inshoreImg)
+        offshoreImg = np.array(offshoreImg)
+
+        # converts numpy array of inshore images to tensors for pytorch
+        inshoreImg = torch.tensor(inshoreImg,dtype=torch.float32)
+        inshoreImg = torch.unsqueeze(inshoreImg, dim=0)
+        inshoreImg = inshoreImg.permute(1,0,2,3)
+        inshoreImg = inshoreImg.to(device)
+
+        # counts inshore
+        count_in = detect_ships_inshore(inshoreImg)
+        print(count_in)
+        #subImageCount += count_in
+
+        # converts numpy array of offshore images to tensors for pytorch
+        offshoreImg = torch.tensor(offshoreImg,dtype=torch.float32)
+        offshoreImg = torch.unsqueeze(offshoreImg, dim=0)
+        offshoreImg = offshoreImg.permute(1,0,2,3)
+        offshoreImg = offshoreImg.to(device)
+
+        #counts offshore 
+        # TODO: Implement logic of function
+        count_off = detect_ships_offshore(offshoreImg)
+
+        print(count_in,count_off)
+
+        subImageCount = count_in + count_off
         
         print(file,subImageCount.item())
 
@@ -112,7 +139,7 @@ def ship_counter(place_coords, start_date, end_date, del_images):
         print("file deleted")
     
     
-
+    dates = 1
     return dates, totalShip_count
 
 
@@ -182,6 +209,7 @@ def image_splitter(img_fp):
 
     with rasterio.open(img_fp) as src:
         img_array = src.read()[0]
+        print(img_array.shape)
         
     # have to clip values to take away gray tint from image
     # and have to do this so that inshore offshore classifier works
@@ -189,6 +217,7 @@ def image_splitter(img_fp):
     
     img_height, img_width = img_array.shape
     # get next biggest multiple of 800
+    # TODO: Make it closest multiple of 800 instead OR PAD WITH BLACK
     new_height = img_height + (800 - img_height % 800)
     new_width = img_width + (800 - img_width % 800)
     
@@ -226,11 +255,23 @@ def inshore_offshore_classifier(img):
     return clf.predict(features)[0]
 
 
+# TODO: get it to work
 def detect_ships_inshore(image):
+    prediction = faster_rcnn(image)
+    totalShip = 0
+    # double check predictions
+    for i in range(len(prediction)):
+        print(prediction[i]["scores"])
+        totalShip += sum(prediction[i]["scores"]>threshold)
+    
+    return totalShip
+
+# TODO: Implement logic of function
+def detect_ships_offshore(image):
 
     prediction = faster_rcnn(image)
+    
     return sum(prediction[0]["scores"]>threshold)
-
 
 def main():
 
@@ -238,7 +279,7 @@ def main():
     # datetime(start_year, start_month, start_day)
     # string should be formatted as "YEAR MONTH DAY"
     start_date = "01/01/2020"
-    end_date = "01/12/2020"
+    end_date = "01/08/2020"
     del_images = False
 
     dates, totalShip_count = ship_counter(place_coords, start_date, end_date, del_images)
