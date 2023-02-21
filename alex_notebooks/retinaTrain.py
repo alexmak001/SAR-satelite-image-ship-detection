@@ -39,7 +39,7 @@ torch.manual_seed(config.seed)
 class ShipDataset:
     def __init__(self, path, transform=None):
         self.path = path
-        self.files = list(sorted(os.listdir("data/annotations_yolo/")))
+        self.files = list(sorted(os.listdir(path)))
         self.transform = transform
         
     def __len__(self):
