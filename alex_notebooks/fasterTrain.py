@@ -12,7 +12,7 @@ from torch.utils.data import Dataset
 from torchvision import transforms
 import os
 import random
-import utils
+import utility
 import wandb
 from tqdm import tqdm
 
@@ -27,7 +27,7 @@ wandb.init(entity="ship-detection", project="sar-ship-detection")
 config = wandb.config          # Initialize config
 config.batch_size = 10         # input batch size for training (default: 64)
 config.epochs = 300            # number of epochs to train (default: 10)
-config.lr = 0.001              # learning rate (default: 0.01)
+config.lr = 0.005              # learning rate (default: 0.01)
 config.momentum = 0.9          # SGD momentum (default: 0.5) 
 config.weight_decay = 0    # weight decay
 config.seed = 42               # random seed (default: 42)
@@ -57,7 +57,7 @@ class ShipDataset:
         image = cv2.imread(img_path,0)
         
         image = image/255.0
-        target = utils.generate_target(label_path)
+        target = utility.generate_target(label_path)
 
         
         if self.transform:
@@ -75,14 +75,19 @@ def main(model_name):
 
     print("Loading Data")
     # load the data
-    dataset = ShipDataset(
-        path = 'images/'
-    )
+    train_dataset = ShipDataset(
+    path = 'data/train_yolo/'
+)
 
-    train_set, val_set = torch.utils.data.random_split(dataset, [1500,359],)
+    print("train length {0}".format(len(train_dataset)))
 
-    train_loader = torch.utils.data.DataLoader(train_set, batch_size=config.batch_size, collate_fn=utils.collate_fn)
-    val_loader = torch.utils.data.DataLoader(val_set, batch_size=config.batch_size,collate_fn=utils.collate_fn)
+    val_dataset = ShipDataset(
+    path = 'test_yolo/'
+)
+    print("test length {0}".format(len(val_dataset)))
+
+    train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=config.batch_size, collate_fn=utility.collate_fn)
+    val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=config.batch_size,collate_fn=utility.collate_fn)
 
     print("Loading Model")
     # load a model pre-trained on COCO
@@ -142,7 +147,7 @@ def main(model_name):
         all_loss.append(epoch_loss)
 
         if epoch % config.log_interval == 0:
-            precision, recall, AP, f1, mAP = utils.calc_test_stats(val_loader, fasterRCNN, config.threshold, device)
+            precision, recall, AP, f1, mAP = utility.calc_test_stats(val_loader, fasterRCNN, config.threshold, device)
             wandb.log({"epoch":epoch, "loss": epoch_loss, "precision": precision,"recall":recall,"AP":AP,"mAP":mAP,"f1":f1})
             
             print("Epoch #: {0}, Loss: {1}, Time: {2}".format(epoch, epoch_loss.item(),time.time() - start))

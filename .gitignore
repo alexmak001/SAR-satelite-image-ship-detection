@@ -7,6 +7,8 @@
 /alex_notebooks/wandb/
 /alex_notebooks/artifacts/
 /alex_notebooks/models/
+/alex_notebooks/test_yolo/
+/alex_notebooks/train_yolo/
 
 /sean_notebooks/data/images/
 /sean_notebooks/data/annotations/
