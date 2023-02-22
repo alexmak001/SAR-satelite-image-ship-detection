@@ -261,6 +261,7 @@ def detect_ships_inshore(image):
     totalShip = 0
     # double check predictions
     for i in range(len(prediction)):
+        print("inshore")
         print(prediction[i]["scores"])
         totalShip += sum(prediction[i]["scores"]>threshold)
     
@@ -270,8 +271,14 @@ def detect_ships_inshore(image):
 def detect_ships_offshore(image):
 
     prediction = faster_rcnn(image)
-    
-    return sum(prediction[0]["scores"]>threshold)
+
+    totalShip = 0
+    for i in range(len(prediction)):
+        print("offshore")
+        print(prediction[i]["scores"])
+        totalShip += sum(prediction[i]["scores"]>threshold)
+
+    return totalShip
 
 def main():
 
