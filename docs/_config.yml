@@ -2,3 +2,6 @@ plugins:
   - jekyll-feed
 
 source: docs/
+
+name: SAR Ship Detection 
+markdown: kramdown
