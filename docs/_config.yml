@@ -1,2 +1,4 @@
 plugins:
   - jekyll-feed
+
+source: docs/
