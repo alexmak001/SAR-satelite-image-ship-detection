@@ -221,10 +221,17 @@ def image_splitter(img_fp):
     new_height = img_height + (800 - img_height % 800)
     new_width = img_width + (800 - img_width % 800)
     
-    reshaped = cv2.resize(img_array, (new_height, new_width))
+    # calculate number of pixels to pad
+    delta_w = new_width - img_width
+    delta_h = new_height - img_height
+    top, bottom = delta_h // 2, delta_h - (delta_h // 2)
+    left, right = delta_w // 2, delta_w - (delta_w // 2)
+    
+    # pad image
+    image_pad = np.pad(img_array, ((top, bottom), (left, right)), mode='constant', constant_values=-20)
     
     # for some reason have to rescale or else when saving image it will be dark
-    rescaled = a_scaled = 255*(reshaped-reshaped.min())/(reshaped.max()-reshaped.min())
+    rescaled = 255*(image_pad-image_pad.min())/(image_pad.max()-image_pad.min())
 
     # normalize between 0 and 1
     # TODO MAKE A BETTER RESCALING
