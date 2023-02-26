@@ -2802,6 +2802,21 @@ input, select, textarea {
 				margin-top: 0;
 			}
 
+ /* places */
+	ul.places {
+		list-style: none;
+		padding: 0;
+	}
+
+		ul.places > li {
+			padding: 0;
+			margin: 1.5em 0 0 0;
+		}
+
+			ul.places > li:first-child {
+				margin-top: 0;
+			}
+
 /* Icons */
 
 	ul.icons {
@@ -3236,11 +3251,11 @@ input, select, textarea {
 			}
 
 		.wrapper.alt {
-			background-color: #261c3e;
+			background-color: /*#261c3e*/ #0a4273;
 		}
 
 		.wrapper.style1 {
-			background-color: #5e42a6;
+			background-color: /*#072b4a*/ #0a4273;
 		}
 
 		.wrapper.style1-alt {
@@ -3370,7 +3385,7 @@ input, select, textarea {
 		display: -webkit-flex;
 		display: -ms-flex;
 		display: flex;
-		background-color: #5e42a6;
+		background-color: #072b4a;
 		cursor: default;
 		padding: 1.75em 2em;
 	}
@@ -3524,7 +3539,7 @@ input, select, textarea {
 
 	#sidebar {
 		padding: 2.5em 2.5em 0.5em 2.5em ;
-		background: #0a4273;
+		background: /*#0a4273*/ #072b4a;
 		cursor: default;
 		height: 100vh;
 		left: 0;
@@ -3874,7 +3889,8 @@ input, select, textarea {
 
 	#intro {
 		background-attachment: fixed;
-		background-image: url("images/intro.svg");
+		background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.6)),
+		url("images/2020_01_05.jpg");
 		background-position: top right;
 		background-repeat: no-repeat;
 		background-size: 100% 100%;
