@@ -18,6 +18,7 @@
 /sean_notebooks/data/train/
 /sean_notebooks/data
 /sean_notebooks/offshore_onshore_models
+/sean_notebooks/faster300ep.pt
 
 
 /sar-ship-detection
