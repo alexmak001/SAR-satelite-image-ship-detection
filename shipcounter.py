@@ -182,6 +182,7 @@ def image_downloader(place_coords, start_date, end_date, path):
 def image_splitter(img_fp):
     """
     Takes the image filepath returns m x n array of the subimages
+    pads with 0
     """
     #     img = gdal.Open(img_fp)
     #     img_array = img.GetRasterBand(1).ReadAsArray()
@@ -227,14 +228,14 @@ def image_splitter(img_fp):
     top, bottom = delta_h // 2, delta_h - (delta_h // 2)
     left, right = delta_w // 2, delta_w - (delta_w // 2)
     
-    # pad image
+    # pad image with 0
     image_pad = np.pad(img_array, ((top, bottom), (left, right)), mode='constant', constant_values=-20)
     
     # for some reason have to rescale or else when saving image it will be dark
     rescaled = 255*(image_pad-image_pad.min())/(image_pad.max()-image_pad.min())
 
     # normalize between 0 and 1
-    # TODO MAKE A BETTER RESCALING
+    # MAKE A BETTER RESCALING
     rescale_normalized = rescaled / 255
     
     # split image into subimages
