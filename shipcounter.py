@@ -185,7 +185,7 @@ def image_downloader(place_coords, start_date, end_date, path):
 def image_splitter(img_fp):
     """
     Takes the image filepath returns m x n array of the subimages
-    pads with 0
+    pads with 0 
     """
     #     img = gdal.Open(img_fp)
     #     img_array = img.GetRasterBand(1).ReadAsArray()
