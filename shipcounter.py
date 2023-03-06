@@ -19,7 +19,10 @@ import joblib
 import torch
 import torchvision
 
-#from osgeo import gdal
+# filepaths
+clf_fp = "sean_notebooks/inshore_offshore_clf_normal_model.pkl"
+faster_fp = "alex_notebooks/models/faster300ep.pt"
+credentials_fp = 'alex_notebooks/models/sar-ship-detection-fb527bcf2a6d.json'
 
 # change these values if needed
 threshold = 0.5
@@ -27,7 +30,7 @@ threshold = 0.5
 # load models in 
 
 # load in predictor
-clf = joblib.load("sean_notebooks/inshore_offshore_clf_normal_model.pkl")
+clf = joblib.load(clf_fp)
 
 # TODO: move  model to device
 device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
@@ -39,14 +42,14 @@ num_classes = 2  # 1 class (ship) + background
 in_features = faster_rcnn.roi_heads.box_predictor.cls_score.in_features
 # replace the pre-trained head with a new one
 faster_rcnn.roi_heads.box_predictor = torchvision.models.detection.faster_rcnn.FastRCNNPredictor(in_features, num_classes)
-faster_rcnn.load_state_dict(torch.load("alex_notebooks/models/faster300ep.pt"))
+faster_rcnn.load_state_dict(torch.load(faster_fp))
 faster_rcnn.eval()
 faster_rcnn.to(device)
 
 
 # initialize Earth Engine
 service_account = 'snng-download@sar-ship-detection.iam.gserviceaccount.com'
-credentials = ee.ServiceAccountCredentials(service_account, 'alex_notebooks/models/sar-ship-detection-fb527bcf2a6d.json')
+credentials = ee.ServiceAccountCredentials(service_account, credentials_fp)
 ee.Initialize(credentials)
 
 
