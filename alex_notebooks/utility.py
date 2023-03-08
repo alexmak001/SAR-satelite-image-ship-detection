@@ -427,3 +427,63 @@ def image_splitter(img_fp):
     split = reshape_split(rescale_normalized, kernel_size=(800,800))
     
     return split, img_name
+
+def plot_large_image(model,image_path,threshold,save_path):
+    """
+    model: pytorch 
+    image_path: path tif file
+    threshold: confidence threshold for model
+    save_path: path to save plot (must be jpg), if none will not save
+    """
+
+    # split image and save size for future
+    split_image, _ = image_splitter(image_path)
+    split_size = split_image.shape[:2]
+
+    # flatten image and format to work with pytroch device
+    flattened = np.reshape(split_image, (-1, split_image.shape[2], split_image.shape[3]))
+    torch_split_img = np.array(flattened)
+    torch_split_img = torch.tensor(torch_split_img,dtype=torch.float32)
+    torch_split_img = torch.unsqueeze(torch_split_img, dim=0)
+    torch_split_img = torch_split_img.permute(1,0,2,3)
+    torch_split_img = torch_split_img.to(device)
+
+    # predict bounding boxes
+    pred = model(torch_split_img)
+    # reshape to match image split
+    pred = np.reshape(pred,split_size)
+
+
+    # Create a 3x3 plot with a shared axis
+#     figsize=(split_size[0], split_size[1])
+    fig, axs = plt.subplots(split_size[0], split_size[1], sharex=True, sharey=True, figsize=(split_size[1] * 2, 
+                                                                                             split_size[0] * 2))
+
+    # Loop over the images and annotations and plot them on the corresponding subplot
+    for i in range(split_size[0]):
+        for j in range(split_size[1]):
+            # Plot the image
+            axs[i, j].imshow(split_image[i, j], cmap='gray', aspect='auto')
+            
+            # Remove the axis labels and ticks
+            axs[i, j].set_xticks([])
+            axs[i, j].set_yticks([])
+            axs[i, j].axis('off')
+            # Loop over the annotations and plot them as bounding boxes
+            curPred = pred[i, j]
+            for k in range(len(curPred["scores"])):
+                # checks if above threshold
+                if curPred["scores"][k] > threshold:
+                    annotation = curPred['boxes'][k]
+                    annotation = annotation.cpu().detach().numpy()
+                    left, upper, right, lower = annotation
+                    width, height = right - left, lower - upper
+                    rect = plt.Rectangle((left, upper), width, height, linewidth=1, edgecolor='r', facecolor='none')
+                    axs[i, j].add_patch(rect)
+
+    # Remove the space between the images
+    plt.subplots_adjust(wspace=0, hspace=0)
+    if save_path:
+        plt.savefig(save_path,quality=100,dpi=500)
+    # Show the plot
+    plt.show()
