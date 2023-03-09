@@ -467,7 +467,7 @@ def get_metric(model,datalaoder,threshold,device):
     t3 = t2-t1
     result = "Precision: {0:.3f} \n Recall: {1:.3f} \n AP: {2:.3f} \n F1: {3:.3f} \n mAP {4:.3f} \n time: {5:.3f} \n threshold: {6:}".format(precision.item(), recall.item(), AP.item(), f1.item(),mAP.item(), t3,threshold)
     #print(result)
-    print(threshold + "done")
+    #print(threshold + "done")
     return [precision.item(), recall.item(), AP.item(), f1.item(),mAP.item(), t3, threshold]
 
 def plot_ground_truth_and_predictions(model, data_loader, device,threshold, n,save_path):
@@ -690,7 +690,7 @@ def get_metric_YOLO(model, dataloader, threshold):
     t2 = time.time()
     t3 = t2-t1
     result = "Precision: {0:.3f} \n Recall: {1:.3f} \n AP: {2:.3f} \n F1: {3:.3f} \n mAP {4:.3f} \n time: {5:.3f} \n threshold: {6:}".format(precision.item(), recall.item(), AP.item(), f1.item(),mAP.item(), t3,threshold)
-    print(result)
+    #print(result)
     return [precision.item(), recall.item(), AP.item(), f1.item(),mAP.item(), t3, threshold]
 
 def read_file(filename):
