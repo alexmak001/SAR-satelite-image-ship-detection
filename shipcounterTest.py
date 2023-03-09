@@ -18,6 +18,7 @@ import ast
 import joblib
 import torch
 import torchvision
+import time 
 
 # filepaths
 clf_fp = "sean_notebooks/inshore_offshore_clf_normal_model.pkl"
@@ -26,16 +27,25 @@ retina_fp = "alex_notebooks/models/retina300R2.pt"
 credentials_fp = 'alex_notebooks/models/sar-ship-detection-fb527bcf2a6d.json'
 
 # change these values if needed
-retina_threshold = 0.8
+retina_threshold = 0.85
 faster_threshold = 0.7
-# load models in 
 
-# load in predictor
+
+# batch size 
+batch_size = 4
+# clear cuda
+import gc
+
+gc.collect()
+
+torch.cuda.empty_cache()
+
+# load in classifier
 clf = joblib.load(clf_fp)
 
 # move  model to device
 device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
-
+# load models in 
 # load in faster r cnn
 faster_rcnn = torchvision.models.detection.fasterrcnn_resnet50_fpn()
 num_classes = 2  # 1 class (ship) + background
@@ -63,13 +73,13 @@ ee.Initialize(credentials)
 
 def ship_counter(place_coords, start_date, end_date, del_images):
 
-    path = "gee_data/"
+    path = "alex_notebooks/BigData/"
 
     # downloads all images to a file called gee_data
     print("Downloading Images...")
     #dates = image_downloader(place_coords, start_date, end_date,path)
     print("Finished Downloading Images")
-    dates = [1,2,3]
+    dates = os.listdir(path)
     fnames = os.listdir(path)
 
     totalShip_count = []
@@ -113,28 +123,31 @@ def ship_counter(place_coords, start_date, end_date, del_images):
         inshoreImg = np.array(inshoreImg)
         offshoreImg = np.array(offshoreImg)
 
+        # print(inshoreImg.shape)
+        # print(offshoreImg.shape)
+
         # converts numpy array of inshore images to tensors for pytorch
         inshoreImg = torch.tensor(inshoreImg,dtype=torch.float32)
         inshoreImg = torch.unsqueeze(inshoreImg, dim=0)
         inshoreImg = inshoreImg.permute(1,0,2,3)
-        inshoreImg = inshoreImg.to(device)
+        #inshoreImg = inshoreImg.to(device)
 
         # counts inshore
         count_in = detect_ships_inshore(inshoreImg)
-        print(count_in)
+        #print(count_in)
         #subImageCount += count_in
 
         # converts numpy array of offshore images to tensors for pytorch
         offshoreImg = torch.tensor(offshoreImg,dtype=torch.float32)
         offshoreImg = torch.unsqueeze(offshoreImg, dim=0)
         offshoreImg = offshoreImg.permute(1,0,2,3)
-        offshoreImg = offshoreImg.to(device)
+        #offshoreImg = offshoreImg.to(device)
 
         #counts offshore 
         # TODO: Implement logic of function
         count_off = detect_ships_offshore(offshoreImg)
 
-        print(count_in,count_off)
+        #print(count_in,count_off)
 
         subImageCount = count_in + count_off
         
@@ -214,39 +227,40 @@ def image_splitter(img_fp):
 
     # get image name to return
     # splits full fp by \, then gets the YYYY-MM-DD_#.jpg, then cuts off .jpg 
-    img_name = img_fp.split('\\')[-1][:-4]
+    img_name = img_fp
 
+    img_array = cv2.imread(img_fp,0)
 
-
-    with rasterio.open(img_fp) as src:
-        img_array = src.read()[0]
-        print(img_array.shape)
+    # with rasterio.open(img_fp) as src:
+    #     img_array = src.read()[0]
+    #     print(img_array.shape)
         
     # have to clip values to take away gray tint from image
     # and have to do this so that inshore offshore classifier works
-    img_array = np.clip(img_array, -20, 0)
+    #img_array = np.clip(img_array, -20, 0)
     
-    img_height, img_width = img_array.shape
-    # get next biggest multiple of 800
-    # TODO: Make it closest multiple of 800 instead OR PAD WITH BLACK
-    new_height = img_height + (800 - img_height % 800)
-    new_width = img_width + (800 - img_width % 800)
+    # img_height, img_width = img_array.shape
+    # # get next biggest multiple of 800
+    # # TODO: Make it closest multiple of 800 instead OR PAD WITH BLACK
+    # new_height = img_height + (800 - img_height % 800)
+    # new_width = img_width + (800 - img_width % 800)
     
-    # calculate number of pixels to pad
-    delta_w = new_width - img_width
-    delta_h = new_height - img_height
-    top, bottom = delta_h // 2, delta_h - (delta_h // 2)
-    left, right = delta_w // 2, delta_w - (delta_w // 2)
+    # # calculate number of pixels to pad
+    # delta_w = new_width - img_width
+    # delta_h = new_height - img_height
+    # top, bottom = delta_h // 2, delta_h - (delta_h // 2)
+    # left, right = delta_w // 2, delta_w - (delta_w // 2)
     
-    # pad image with 0
-    image_pad = np.pad(img_array, ((top, bottom), (left, right)), mode='constant', constant_values=-20)
+    # # pad image with 0
+    # image_pad = np.pad(img_array, ((top, bottom), (left, right)), mode='constant', constant_values=-20)
     
-    # for some reason have to rescale or else when saving image it will be dark
-    rescaled = 255*(image_pad-image_pad.min())/(image_pad.max()-image_pad.min())
+    # # for some reason have to rescale or else when saving image it will be dark
+    # rescaled = 255*(image_pad-image_pad.min())/(image_pad.max()-image_pad.min())
 
     # normalize between 0 and 1
     # MAKE A BETTER RESCALING
-    rescale_normalized = rescaled / 255
+
+    rescale_normalized = img_array / 255
     
     # split image into subimages
         # will return array [m, n, 800, 800] where there are an m x n number of images with size 800x800 
@@ -275,27 +289,72 @@ def inshore_offshore_classifier(img):
 
 
 def detect_ships_inshore(image):
-    prediction = faster_rcnn(image)
+    
+    
+    data_batches = torch.split(image, batch_size)
+
+    # Create an empty list to store the predictions
+    prediction = []
+
+    # Iterate over the data batches and obtain the predictions for each batch
+    with torch.no_grad():
+        for batch in data_batches:
+            # Move the batch to the device where the model is located
+            batch = batch.to(device)
+            
+            # Make predictions for the batch
+            batch_predictions = faster_rcnn(batch)
+            # print(batch_predictions)
+            # print(len(batch_predictions))
+
+            for pred in batch_predictions:
+                # Move the predictions to the CPU and append them to the list
+                prediction.append(pred["scores"].cpu())
+            # Move the predictions to the CPU and append them to the list
+            #prediction.append(batch_predictions.cpu())
+
+    
     totalShip = 0
     # double check predictions
     for i in range(len(prediction)):
-        print("inshore")
-        print(prediction[i]["scores"])
-        totalShip += sum(prediction[i]["scores"]>faster_threshold)
-    
+        #print("inshore")
+        #print(prediction[i]["scores"])
+        totalShip += sum(prediction[i]>faster_threshold)
+    #print(totalShip)
     return totalShip
 
 # TODO: Implement logic of function
 def detect_ships_offshore(image):
 
-    prediction = retina(image)
+    
+    data_batches = torch.split(image, batch_size)
 
+    # Create an empty list to store the predictions
+    prediction = []
+
+    # Iterate over the data batches and obtain the predictions for each batch
+    with torch.no_grad():
+        for batch in data_batches:
+            # Move the batch to the device where the model is located
+            batch = batch.to(device)
+            
+            # Make predictions for the batch
+            batch_predictions = faster_rcnn(batch)
+          
+
+            for pred in batch_predictions:
+                # Move the predictions to the CPU and append them to the list
+                prediction.append(pred["scores"].cpu())
+            # Move the predictions to the CPU and append them to the list
+         
+
+    
     totalShip = 0
+    # double check predictions
     for i in range(len(prediction)):
-        print("offshore")
-        print(prediction[i]["scores"])
-        totalShip += sum(prediction[i]["scores"]>retina_threshold)
 
+        totalShip += sum(prediction[i]>faster_threshold)
+    
     return totalShip
 
 def main():
@@ -307,8 +366,12 @@ def main():
     end_date = "01/08/2020"
     del_images = False
 
+    t1 = time.time()
     dates, totalShip_count = ship_counter(place_coords, start_date, end_date, del_images)
+    t2 = time.time()
+    t3 = t2-t1
 
+    print(t3)
     print(dates)
     print(totalShip_count)
 
