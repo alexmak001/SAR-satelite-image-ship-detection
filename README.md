@@ -9,7 +9,7 @@ To run the test, simply run python run.py test
 
 ## HOW TO RUN THE SHIP COUNTING SCRIPT:
 [//]: <> (Have to figure out what to do about json key)
-1. Once you have activated your DSMLP environment using the launch script above, please ensure you have the private json key downloaded. This will be used for initializing and authenticating Google Earth Engine.
+1. Once you have activated your DSMLP environment using the launch script above, please ensure you have the private json key downloaded. This will be used for initializing and authenticating Google Earth Engine. [website](https://developers.google.com/earth-engine/guides/service_account)
 2. We will have to get the coordinates for the desired area of interest from the Google Earth Engine [website](https://code.earthengine.google.com/).
     - Note: If you do not have a Google Earth Engine account you will have to make one.
     - To get the coordinates, navigate on the map to your desired place of interest
