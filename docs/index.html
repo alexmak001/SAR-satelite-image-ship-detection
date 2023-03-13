@@ -21,6 +21,7 @@
 						<ul>
 							<li><a href="#intro">Abstract</a></li>
 							<li><a href="#introduction">Introduction</a></li>
+							<li><a href="#applications">Applications</a></li>
 							<!-- <li><a href="#one">one</a></li> -->
 							<li><a href="#methods">Methods</a></li>
 							<!-- <li><a href="#three">three</a></li> -->
@@ -53,6 +54,144 @@
 							<p>Insert introduction here.</p>
 							
 					</section>
+
+				<!-- Applications -->	
+				<section id="applications" class="wrapper style1 fade-up">
+					<div class="inner">
+						<h1>Applications</h2>
+
+						<!-- different content divs for diff places-->
+						<div id="content1" class="content active">
+							
+							<div id='image-container' class = "split style1">
+								<!-- have sectin here to keep style-->
+								<section>
+									<ul>
+										<!--sub-buttons to switch between time frames within a place-->
+										<li style="display:inline"><button class='sub_button' id="portla_before_covid" data-image="images/feb2020_portla.jpg">Before COVID Lockdown (February, 2020)</button></li>
+										<li style="display:inline"><button class='sub_button' id="portla_after_covid" data-image="images/april2020_portla.jpg">After COVID Lockdown (April, 2020)</button></li>
+										
+										</ul>
+									<p><img src="images/feb2020_portla.jpg" alt="Image 1" class='port_la_pic'></p>
+								</section>
+							
+								<section>
+									<div class = 'button-container'>
+										<ul class="places">
+											<li><button id='button1' class = "active-button" onclick="showContent(1)" data-image="images/feb2020_portla.jpg">Port of Los Angeles</button></li>
+											<li><button id='button2' onclick="showContent(2)" data-image="images/before_suez.jpg">Suez Canal</button></li>
+											<li><button  id='button3'onclick="showContent(3)" >Singapore</button></li>
+										</ul>
+									</div>
+								</section>
+							</div>
+						</div>
+
+						<div id="content2" class="content">
+							<div id='image-container1' class = "split style1">
+								<section>
+									<ul>
+										<li style="display:inline"><button class='sub_button' id="place2_1" data-image="images/before_suez.jpg">Before Ever Given Stuck</button></li>
+										<li style="display:inline"><button class='sub_button' id="place2_2" data-image="images/during_suez.jpg">While Ever Given Stuck</button></li>
+										<li style="display:inline"><button class='sub_button' id="place2_3" data-image="images/after_suez.jpg">After Ever Given Freed</button></li>
+										</ul>
+									<p><img src="images/before_suez.jpg" alt="Image 1" class="suez_canal_pic"></p>
+								</section>
+							
+								<section>
+									<div class = 'button-container'>
+										<ul class="places">
+											<li><button id='button1' onclick="showContent(1)" data-image="images/feb2020_portla.jpg">Port of Los Angeles</button></li>
+											<li><button id='button2' class = "active-button" onclick="showContent(2)" data-image="images/before_suez.jpg">Suez Canal</button></li>
+											<li><button id='button3' onclick="showContent(3)">Singapore</button></li>
+										</ul>
+									</div>
+								</section>
+							</div>
+							
+						</div>
+
+
+
+						<style type="text/css">
+							/* Style for the content divs */
+							.content {
+								display: none;
+								/* padding: 10px; */
+								/* border: 1px solid #ddd; */
+								/* border-radius: 5px; */
+								/* margin-top: 20px; */
+							}
+					
+							/* Style for the active content div */
+							.active {
+								display: block;
+							}
+					
+							/* Style for the button container */
+							.button-container {
+								margin-top: 20px;
+							}
+					
+							
+						</style>
+
+						<script type="text/javascript">
+							function showContent(num) {
+
+								const img = document.querySelector('#image-container img');
+								const img1 = document.querySelector('#image-container1 img');
+								// Hide all content divs
+								var contents = document.getElementsByClassName("content");
+								for (var i = 0; i < contents.length; i++) {
+									contents[i].classList.remove("active");
+								}
+
+								// Remove the 'active-button' class from all buttons
+								var buttons = document.getElementsByTagName("button");
+								for (var i = 0; i < buttons.length; i++) {
+									buttons[i].classList.remove("active-button");
+								}
+
+								// Show the selected content div and add the 'active-button' class to the clicked button
+								var selectedContent = document.getElementById("content" + num);
+								selectedContent.classList.add("active");
+								var clickedButton = document.getElementById("button" + num);
+								clickedButton.classList.add("active-button");
+
+								// have these here to make sure even after using sub buttons to swtich, it'll switch back to original picture
+								img.src = clickedButton.dataset.image;
+								img.alt = clickedButton.textContent;
+
+								img1.src = clickedButton.dataset.image;
+								img1.alt = clickedButton.textContent;
+
+								
+							}
+						</script>
+
+						
+						<!-- Script for changing image with sub-buttons -->
+						   <script>
+							const buttons = document.querySelectorAll('.sub_button');
+							const img = document.querySelector('#image-container img');
+							const img1 = document.querySelector('#image-container1 img');
+						  
+							buttons.forEach(button => {
+							  button.addEventListener('click', () => {
+								img.src = button.dataset.image;
+								img.alt = button.textContent;
+
+								img1.src = button.dataset.image;
+								img1.alt = button.textContent;
+							  });
+							});
+
+						  </script> 
+
+						  
+						
+				</section>
 				
 				<!-- Methods -->	
 				<section id="methods" class="wrapper style1 fade-up">
@@ -68,138 +207,6 @@
 						<div class="inner">
 							<h1>Conclusion</h2>
 							<p>Insert Conclusion here.</p>
-
-							<!-- different content divs for diff places-->
-							<div id="content1" class="content active">
-								
-								<div id='image-container' class = "split style1">
-									<!-- have sectin here to keep style-->
-									<section>
-										<ul>
-											<!--sub-buttons to switch between time frames within a place-->
-											<li style="display:inline"><button class='sub_button' id="portla_before_covid" data-image="images/feb2020_portla.jpg">Before COVID Lockdown (February, 2020)</button></li>
-											<li style="display:inline"><button class='sub_button' id="portla_after_covid" data-image="images/april2020_portla.jpg">After COVID Lockdown (April, 2020)</button></li>
-											
-											</ul>
-										<p><img src="images/feb2020_portla.jpg" alt="Image 1"></p>
-									</section>
-								
-									<section>
-										<div class = 'button-container'>
-											<ul class="places">
-												<li><button id='button1' class = "active-button" onclick="showContent(1)" data-image="images/feb2020_portla.jpg">Port of Los Angeles</button></li>
-												<li><button id='button2' onclick="showContent(2)" data-image="images/before_suez.jpg">Suez Canal</button></li>
-												<li><button  id='button3'onclick="showContent(3)" >Singapore</button></li>
-											</ul>
-										</div>
-									</section>
-								</div>
-							</div>
-
-							<div id="content2" class="content">
-								<div id='image-container1' class = "split style1">
-									<section>
-										<ul>
-											<li style="display:inline"><button class='sub_button' id="place2_1" data-image="images/before_suez.jpg">Before Ever Given Stuck</button></li>
-											<li style="display:inline"><button class='sub_button' id="place2_2" data-image="images/during_suez.jpg">While Ever Given Stuck</button></li>
-											<li style="display:inline"><button class='sub_button' id="place2_3" data-image="images/after_suez.jpg">After Ever Given Freed</button></li>
-											</ul>
-										<p><img src="images/before_suez.jpg" alt="Image 1"></p>
-									</section>
-								
-									<section>
-										<div class = 'button-container'>
-											<ul class="places">
-												<li><button id='button1' onclick="showContent(1)" data-image="images/feb2020_portla.jpg">Port of Los Angeles</button></li>
-												<li><button id='button2' class = "active-button" onclick="showContent(2)" data-image="images/before_suez.jpg">Suez Canal</button></li>
-												<li><button id='button3' onclick="showContent(3)">Singapore</button></li>
-											</ul>
-										</div>
-									</section>
-								</div>
-								
-							</div>
-
-
-
-							<style type="text/css">
-								/* Style for the content divs */
-								.content {
-									display: none;
-									/* padding: 10px; */
-									/* border: 1px solid #ddd; */
-									/* border-radius: 5px; */
-									/* margin-top: 20px; */
-								}
-						
-								/* Style for the active content div */
-								.active {
-									display: block;
-								}
-						
-								/* Style for the button container */
-								.button-container {
-									margin-top: 20px;
-								}
-						
-								
-							</style>
-
-							<script type="text/javascript">
-								function showContent(num) {
-
-									const img = document.querySelector('#image-container img');
-									const img1 = document.querySelector('#image-container1 img');
-									// Hide all content divs
-									var contents = document.getElementsByClassName("content");
-									for (var i = 0; i < contents.length; i++) {
-										contents[i].classList.remove("active");
-									}
-
-									// Remove the 'active-button' class from all buttons
-									var buttons = document.getElementsByTagName("button");
-									for (var i = 0; i < buttons.length; i++) {
-										buttons[i].classList.remove("active-button");
-									}
-
-									// Show the selected content div and add the 'active-button' class to the clicked button
-									var selectedContent = document.getElementById("content" + num);
-									selectedContent.classList.add("active");
-									var clickedButton = document.getElementById("button" + num);
-									clickedButton.classList.add("active-button");
-
-									// have these here to make sure even after using sub buttons to swtich, it'll switch back to original picture
-									img.src = clickedButton.dataset.image;
-									img.alt = clickedButton.textContent;
-
-									img1.src = clickedButton.dataset.image;
-									img1.alt = clickedButton.textContent;
-
-									
-								}
-							</script>
-
-							
-							<!-- Script for changing image with sub-buttons -->
-							   <script>
-								const buttons = document.querySelectorAll('.sub_button');
-								const img = document.querySelector('#image-container img');
-								const img1 = document.querySelector('#image-container1 img');
-							  
-								buttons.forEach(button => {
-								  button.addEventListener('click', () => {
-									img.src = button.dataset.image;
-									img.alt = button.textContent;
-
-									img1.src = button.dataset.image;
-									img1.alt = button.textContent;
-								  });
-								});
-
-							  </script> 
-
-							  
-							
 					</section>
 
 			</div>
