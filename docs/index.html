@@ -60,53 +60,55 @@
 					<div class="inner">
 						<h1>Applications</h2>
 
-						<!-- different content divs for diff places-->
+						<!-- Port LA-->
 						<div id="content1" class="content active">
 							
 							<div id='image-container' class = "split style1">
-								<!-- have sectin here to keep style-->
+								<!-- have section here to keep style-->
 								<section>
 									<ul>
 										<!--sub-buttons to switch between time frames within a place-->
-										<li style="display:inline"><button class='sub_button' id="portla_before_covid" data-image="images/feb2020_portla.jpg" data-caption="test caption1">Before COVID Lockdown (February, 2020)</button></li>
-										<li style="display:inline"><button class='sub_button' id="portla_after_covid" data-image="images/april2020_portla.jpg" data-caption="test caption2">After COVID Lockdown (April, 2020)</button></li>
+										<li style="display:inline"><button class='sub_button' id="portla_before_covid" data-image="images/feb2020_portla.jpg" data-caption="Ship Count: 52; Date: February 04, 2020">Before COVID Lockdown</button></li>
+										<li style="display:inline"><button class='sub_button' id="portla_during_covid" data-image="images/mar2020_portla.jpg" data-caption="Ship Count: 33; Date: March 17, 2020">During COVID Lockdown</button></li>
 										
 										</ul>
 
 										<img src="images/feb2020_portla.jpg" alt="Image 1" class='port_la_pic'>
-										<div style="width:image width px; font-size:80%; text-align:center;" id="img_caption">test caption1</div>
+										<div style="width:image width px; font-size:80%; text-align:center;" id="img_caption">Ship Count: 52; Date: February 04, 2020</div>
 										
 								</section>
 							
 								<section>
 									<div class = 'button-container'>
 										<ul class="places">
-											<li><button id='button1' class = "active-button" onclick="showContent(1)" data-image="images/feb2020_portla.jpg">Port of Los Angeles</button></li>
-											<li><button id='button2' onclick="showContent(2)" data-image="images/before_suez.jpg">Suez Canal</button></li>
-											<li><button  id='button3'onclick="showContent(3)" >Singapore</button></li>
+											<li><button id='button1' class = "active-button" onclick="showContent(1)" data-image="images/feb2020_portla.jpg" data-caption="Ship Count: 52; Date: February 04, 2020">Port of Los Angeles</button></li>
+											<li><button id='button2' onclick="showContent(2)" data-image="images/before_suez.jpg" data-caption="Ship Count: 44; Date: March 24, 2021">Suez Canal</button></li>
+											<li><button  id='button3' onclick="showContent(3)" data-image="images/sg_start.jpg" data-caption="Ship Count: 211; Date: December 2, 2019">Singapore</button></li>
 										</ul>
 									</div>
 								</section>
 							</div>
 						</div>
 
+						<!-- Suez Canal -->
 						<div id="content2" class="content">
 							<div id='image-container1' class = "split style1">
 								<section>
 									<ul>
-										<li style="display:inline"><button class='sub_button' id="place2_1" data-image="images/before_suez.jpg">Before Ever Given Stuck</button></li>
-										<li style="display:inline"><button class='sub_button' id="place2_2" data-image="images/during_suez.jpg">While Ever Given Stuck</button></li>
-										<li style="display:inline"><button class='sub_button' id="place2_3" data-image="images/after_suez.jpg">After Ever Given Freed</button></li>
+										<li style="display:inline"><button class='sub_button' id="place2_1" data-image="images/before_suez.jpg" data-caption="Ship Count: 44; Date: March 20, 2021">Before Ever Given Stuck</button></li>
+										<li style="display:inline"><button class='sub_button' id="place2_2" data-image="images/during_suez.jpg" data-caption="Ship Count: 95; Date: March 25, 2021">While Ever Given Stuck</button></li>
+										<li style="display:inline"><button class='sub_button' id="place2_3" data-image="images/after_suez.jpg" data-caption="Ship Count: 54; Date: April 11, 2021">After Ever Given Freed</button></li>
 										</ul>
 									<p><img src="images/before_suez.jpg" alt="Image 1" class="suez_canal_pic"></p>
+									<div style="width:image width px; font-size:80%; text-align:center;" id="img_caption1">Ship Count: 44; Date: March 20, 2021</div>
 								</section>
 							
 								<section>
 									<div class = 'button-container'>
 										<ul class="places">
-											<li><button id='button1' onclick="showContent(1)" data-image="images/feb2020_portla.jpg">Port of Los Angeles</button></li>
-											<li><button id='button2' class = "active-button" onclick="showContent(2)" data-image="images/before_suez.jpg">Suez Canal</button></li>
-											<li><button id='button3' onclick="showContent(3)">Singapore</button></li>
+											<li><button id='button1' onclick="showContent(1)" data-image="images/feb2020_portla.jpg" data-caption="Ship Count: 52; Date: February 04, 2020">Port of Los Angeles</button></li>
+											<li><button id='button2' class = "active-button" onclick="showContent(2)" data-image="images/before_suez.jpg" data-caption="Ship Count: 44; Date: March 20, 2021">Suez Canal</button></li>
+											<li><button id='button3' onclick="showContent(3)" data-image="images/sg_start.jpg" data-caption="Ship Count: 211; Date: December 2, 2019">Singapore</button></li>
 										</ul>
 									</div>
 								</section>
@@ -114,6 +116,7 @@
 							
 						</div>
 
+						<!-- Singapore -->
 						<div id="content3" class="content">
 							
 							<div id='image-container2' class = "split style1">
@@ -121,19 +124,20 @@
 								<section>
 									<ul>
 										<!--sub-buttons to switch between time frames within a place-->
-										<li style="display:inline"><button class='sub_button' id="sg_before_covid" data-image="images/sg_start.jpg">Before COVID Lockdown (December, 2019)</button></li>
-										<li style="display:inline"><button class='sub_button' id="sg_during_covid" data-image="images/sg_end.jpg">During COVID Lockdown (April, 2020)</button></li>
+										<li style="display:inline"><button class='sub_button' id="sg_before_covid" data-image="images/sg_start.jpg" data-caption="Ship Count: 211; Date: December 2, 2019">Before COVID Lockdown</button></li>
+										<li style="display:inline"><button class='sub_button' id="sg_during_covid" data-image="images/sg_end.jpg" data-caption="Ship Count: 148; Date: April 24, 2020">During COVID Lockdown</button></li>
 										
 										</ul>
 									<p><img src="images/sg_start.jpg" alt="Image 1" class='sg_pic'></p>
+									<div style="width:image width px; font-size:80%; text-align:center;" id="img_caption2">Ship Count: 211; Date: December 2, 2019</div>
 								</section>
 							
 								<section>
 									<div class = 'button-container'>
 										<ul class="places">
-											<li><button id='button1' onclick="showContent(1)" data-image="images/feb2020_portla.jpg">Port of Los Angeles</button></li>
-											<li><button id='button2' onclick="showContent(2)" data-image="images/before_suez.jpg">Suez Canal</button></li>
-											<li><button  id='button3' class = "active-button" onclick="showContent(3)" data-image="images/sg_start.jpg">Singapore</button></li>
+											<li><button id='button1' onclick="showContent(1)" data-image="images/feb2020_portla.jpg" data-caption="Ship Count: 52; Date: February 04, 2020">Port of Los Angeles</button></li>
+											<li><button id='button2' onclick="showContent(2)" data-image="images/before_suez.jpg" data-caption="Ship Count: 44; Date: March 20, 2021">Suez Canal</button></li>
+											<li><button  id='button3' class = "active-button" onclick="showContent(3)" data-image="images/sg_start.jpg" data-caption="Ship Count: 211; Date: December 2, 2019">Singapore</button></li>
 										</ul>
 									</div>
 								</section>
@@ -170,6 +174,11 @@
 
 								const img = document.querySelector('#image-container img');
 								const img1 = document.querySelector('#image-container1 img');
+								const im2 = document.querySelector('#image-container2 img')
+
+								const cap = document.getElementById('img_caption')
+								const cap1 = document.getElementById('img_caption1')
+								const cap2 = document.getElementById('img_caption2')
 								// Hide all content divs
 								var contents = document.getElementsByClassName("content");
 								for (var i = 0; i < contents.length; i++) {
@@ -195,6 +204,13 @@
 								img1.src = clickedButton.dataset.image;
 								img1.alt = clickedButton.textContent;
 
+								img2.src = clickedButton.dataset.image;
+								img2.alt = clickedButton.textContent;
+
+								cap.innerHTML = clickedButton.dataset.caption
+								cap1.innerHTML = clickedButton.dataset.caption
+								cap2.innerHTML = clickedButton.dataset.caption
+
 								
 							}
 						</script>
@@ -207,10 +223,14 @@
 							const img1 = document.querySelector('#image-container1 img');
 							const img2 = document.querySelector('#image-container2 img');
 							const cap = document.getElementById('img_caption')
+							const cap1 = document.getElementById('img_caption1')
+							const cap2 = document.getElementById('img_caption2')
 						  
 							buttons.forEach(button => {
 							  button.addEventListener('click', () => {
-								cap.textContent = button.dataset.caption
+								cap.innerHTML = button.dataset.caption
+								cap1.innerHTML = button.dataset.caption
+								cap2.innerHTML = button.dataset.caption
 
 								img.src = button.dataset.image;
 								img.alt = button.textContent;
