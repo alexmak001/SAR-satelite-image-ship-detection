@@ -68,11 +68,14 @@
 								<section>
 									<ul>
 										<!--sub-buttons to switch between time frames within a place-->
-										<li style="display:inline"><button class='sub_button' id="portla_before_covid" data-image="images/feb2020_portla.jpg">Before COVID Lockdown (February, 2020)</button></li>
-										<li style="display:inline"><button class='sub_button' id="portla_after_covid" data-image="images/april2020_portla.jpg">After COVID Lockdown (April, 2020)</button></li>
+										<li style="display:inline"><button class='sub_button' id="portla_before_covid" data-image="images/feb2020_portla.jpg" data-caption="test caption1">Before COVID Lockdown (February, 2020)</button></li>
+										<li style="display:inline"><button class='sub_button' id="portla_after_covid" data-image="images/april2020_portla.jpg" data-caption="test caption2">After COVID Lockdown (April, 2020)</button></li>
 										
 										</ul>
-									<p><img src="images/feb2020_portla.jpg" alt="Image 1" class='port_la_pic'></p>
+
+										<img src="images/feb2020_portla.jpg" alt="Image 1" class='port_la_pic'>
+										<div style="width:image width px; font-size:80%; text-align:center;" id="img_caption">test caption1</div>
+										
 								</section>
 							
 								<section>
@@ -109,6 +112,32 @@
 								</section>
 							</div>
 							
+						</div>
+
+						<div id="content3" class="content">
+							
+							<div id='image-container2' class = "split style1">
+								<!-- have section here to keep style-->
+								<section>
+									<ul>
+										<!--sub-buttons to switch between time frames within a place-->
+										<li style="display:inline"><button class='sub_button' id="sg_before_covid" data-image="images/sg_start.jpg">Before COVID Lockdown (December, 2019)</button></li>
+										<li style="display:inline"><button class='sub_button' id="sg_during_covid" data-image="images/sg_end.jpg">During COVID Lockdown (April, 2020)</button></li>
+										
+										</ul>
+									<p><img src="images/sg_start.jpg" alt="Image 1" class='sg_pic'></p>
+								</section>
+							
+								<section>
+									<div class = 'button-container'>
+										<ul class="places">
+											<li><button id='button1' onclick="showContent(1)" data-image="images/feb2020_portla.jpg">Port of Los Angeles</button></li>
+											<li><button id='button2' onclick="showContent(2)" data-image="images/before_suez.jpg">Suez Canal</button></li>
+											<li><button  id='button3' class = "active-button" onclick="showContent(3)" data-image="images/sg_start.jpg">Singapore</button></li>
+										</ul>
+									</div>
+								</section>
+							</div>
 						</div>
 
 
@@ -176,14 +205,21 @@
 							const buttons = document.querySelectorAll('.sub_button');
 							const img = document.querySelector('#image-container img');
 							const img1 = document.querySelector('#image-container1 img');
+							const img2 = document.querySelector('#image-container2 img');
+							const cap = document.getElementById('img_caption')
 						  
 							buttons.forEach(button => {
 							  button.addEventListener('click', () => {
+								cap.textContent = button.dataset.caption
+
 								img.src = button.dataset.image;
 								img.alt = button.textContent;
 
 								img1.src = button.dataset.image;
 								img1.alt = button.textContent;
+
+								img2.src = button.dataset.image;
+								img2.alt = button.textContent;
 							  });
 							});
 
