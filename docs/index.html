@@ -40,7 +40,8 @@
 					<section id="intro" class="wrapper style1 fullscreen fade-up">
 						<div class="inner">
 							<h1>Maritime Ship Detection Using Synthetic Aperture Radar Satellite Imagery</h1>
-							<h2>A tool to count vessels in any part of the world using open sourced data.</h2>
+							<p>A tool to count vessels in any part of the world using open sourced data</p>
+							<p>By: Alexander Makhratchev and Sean Ng</p>
 							
 							<!-- <ul class="actions">
 								<li><a href="#one" class="button scrolly">Learn more</a></li>
@@ -90,7 +91,7 @@
 										</ul>
 
 										<img src="images/feb2020_portla.jpg" alt="Image 1" class='port_la_pic'>
-										<div style="width:image width px; font-size:80%; text-align:center;" id="img_caption">Ship Count: 52; Date: February 04, 2020. Most of the ships on the sea are counted correctly and that there are only a few misclassifications inland.</div>
+										<div style="width:image width px; font-size:100%; text-align:center;" id="img_caption">Ship Count: 52; Date: February 04, 2020. Most of the ships on the sea are counted correctly and that there are only a few misclassifications inland.</div>
 										
 								</section>
 							
@@ -139,7 +140,7 @@
 										</ul>
 
 									<p><img src="images/before_suez.jpg" alt="Image 1" class="suez_canal_pic"></p>
-									<div style="width:image width px; font-size:80%; text-align:center;" id="img_caption1">Ship Count: 44; Date: March 20, 2021</div>
+									<div style="width:image width px; font-size:100%; text-align:center;" id="img_caption1">Ship Count: 44; Date: March 20, 2021</div>
 								</section>
 							
 								<section>
@@ -185,7 +186,7 @@
 										
 										</ul>
 									<p><img src="images/sg_start.jpg" alt="Image 1" class='sg_pic'></p>
-									<div style="width:image width px; font-size:80%; text-align:center;" id="img_caption2">Ship Count: 249; Date: January 7, 2020</div>
+									<div style="width:image width px; font-size:100%; text-align:center;" id="img_caption2">Ship Count: 249; Date: January 7, 2020</div>
 								</section>
 							
 								<section>
@@ -326,9 +327,9 @@
 								<div style="width:image width px; text-align:center; font-size:80%;" id="img_caption2">Workflow Diagram</div>
 								<p>
 									<br>
-									To obtain the count of ships within an image, we have broken our pipeline down into 4 major steps. Our final workflow is as follows: 
+									To obtain the count of ships within an image, we have broken our pipeline down into 5 major steps. Our final workflow is as follows: 
 									<ol>
-										<li>the first step of the process is to acquire images from Google Earth Engine. The user can input the coordinates
+										<li>The first step of the process is to acquire images from Google Earth Engine. The user can input the coordinates
 											of their area of interest as well as the desired start and end dates into the ship counting script and will start downloading the images.
 										</li>
 											<ul>
@@ -336,9 +337,11 @@
 													<a href='https://github.com/alexmak001/SAR-satelite-image-ship-detection'>GitHub Repo</a>)</i></li>
 											</ul>
 										 <li>Once the images are downloaded, each image will be preprocessed and split up into sub images one at a time.</li>
-										 <li>Then, each sub image is classified as either inshore or offshore and based off that classification, the respective object detection model will
-											be used to detect and count the number of ships.
-										</li>
+										 <li>Then, each sub image is classified as either inshore or offshore.</li>
+										 <li>
+											Once classified, the sub image will be fed into its respective object detection model and will
+											be used to detect and count the number of ships present.
+										 </li>
 										<li>
 											Finally, the counts for all the sub images will be aggregated together to give the total counts within the full sized image. 	
 										</li> 
@@ -352,10 +355,10 @@
 							<h2>Acquiring Images & Preprocessing</h2>
 								<p>
 									The data we intend to deploy our model on is the Sentinel-1 SAR image collection on Google Earth
-									Engine. To access this data, we built a helper function that takes in the coordinates of the desired area
-									as well as the start and end dates that the user wants to pull from. The coordinates for this function
+									Engine. To access this data, the user inputs the coordinates of the desired area
+									as well as the start and end dates that the user wants to pull from. The coordinates 
 									can be found on the Google Earth Engine Code editor <i>(Please refer to the <a href='https://github.com/alexmak001/SAR-satelite-image-ship-detection'>GitHub Repo</a> 
-									for more details.)</i> The helper function will then download the set of images locally as .tif files.
+									for more details.)</i> The set of images will then be downloaded locally as .tif files.
 									<br><br> 
 									Once downloaded, we have to do some additional cleaning of the image values because as you can see below, 
 									the image appears to have a gray tint to it. Fixing this requires clipping images values from -20 to 0 
@@ -375,7 +378,7 @@
 
 								<h2>Inshore-Offshore Classifier</h2>
 								<p>To build our inshore-offshore classifier, we trained on the Large-Scale SAR Ship Detection Dataset-v1.0(LS-SSDD-v1.0) dataset. This dataset 
-									contains 15 large SAR images that are broken down into 9000 sub-images with varying presence of land, sea, and ships.Then to find the best model for classification
+									contains 15 large SAR images that are broken down into 9000 sub-images with varying presence of land, sea, and ships. Then to find the best model for classification
 									we gathered a list of different machine learning models and assessed the average accuracy of each model on the dataset. From 
 									this we found that the K-Nearest Neighbors model performed the best in terms of accuracy out of all the models.
 									<br><br>
@@ -414,19 +417,17 @@
 								<img src="images/fasterpredwater.png" alt="Image 1" width="50%" height="50%" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
 								<div style="width:image width px; text-align:center; font-size:80%;" id="img_caption2">Example of image with detected ships.</div>
 
-								
 					</section>
-
 
 					<!-- Results -->	
 					<section id="results" class="wrapper style1 fade-up">
 						<div class="inner">
 							<h1>Results</h1>
-							<h3>Inshore-Offshore Classifier</h3>
+							<h3>Inshore-Offshore Classifier</h3><br>
 								<img src="images/clf_bar.png" alt="Image 1" width="50%" height="50%" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-								<div style="width:image width px; text-align:center; font-size:80%;" id="img_caption2">Average accuracies of classifiers</div>
+								<div style="width:image width px; text-align:center; font-size:80%;" id="img_caption2">Average accuracies of classifiers</div><br>
 								<img src="images/clf_results.png" alt="Image 1" width="50%" height="50%" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-								<div style="width:image width px; text-align:center; font-size:80%;" id="img_caption2">Average accuracies and runtimes of classifiers</div>
+								<div style="width:image width px; text-align:center; font-size:80%;" id="img_caption2">Average accuracies and runtimes of classifiers</div><br>
 							<p>
 								As we can see from the bar graph and table above, the Decision Tree, Random Forest, and K-Nearest Neighbors
 								models all performed quite similarly in terms of average accuracy and runtime. However, in the end we decided to go with the K-Nearest Neighbors model
@@ -434,11 +435,11 @@
 								predictions so that the images are fed into their correct object detection models.    
 							</p>
 
-							<h3>Object Detection Models</h3>
+							<h3>Object Detection Models</h3><br>
 								<img src="images/od_metric_full.png" alt="Image 1" width="50%" height="50%" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-								<div style="width:image width px; text-align:center; font-size:80%;" id="img_caption2">bar graphs of metrics for object detection models</div>
+								<div style="width:image width px; text-align:center; font-size:80%;" id="img_caption2">bar graphs of metrics for object detection models</div><br>
 								<img src="images/od_metrics.png" alt="Image 1" width="50%" height="50%" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-								<div style="width:image width px; text-align:center; font-size:80%;" id="img_caption2">Table of metrics for object detection models</div>
+								<div style="width:image width px; text-align:center; font-size:80%;" id="img_caption2">Table of metrics for object detection models</div><br>
 							<p>
 								From the above metrics, we can see that the Faster R-CNN had the highest accuracy scores, but was slowest on inference. Because of this, we decided to 
 								go with Faster R-CNN for the more complicated inshore images. For the offshore images, we went with RetinaNet due to the fact that it performs almost as good
@@ -447,10 +448,15 @@
 
 							<h3>Full Pipeline</h3>
 								<img src="images/tool_comparison.png" alt="Image 1" width="50%" height="50%" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-								<div style="width:image width px; text-align:center; font-size:80%;" id="img_caption2">bar graphs of metrics for object detection models</div>
+								<div style="width:image width px; text-align:center; font-size:80%;" id="img_caption2">bar graphs of metrics for object detection models</div><br>
 							<p>
 								We can see from above that our tool performs slightly faster than just using Faster R-CNN for both inshore and offshore, and does about the same performance wise.
 								This tells us that our tool predicts just as well as Faster R-CNN, and we hope that the small speed increase will translate to scale.
+
+								<br><br>
+								<i>Note: All results from the inshore-offshore classifier and object detection models are derived from the test set of the 
+									Large-Scale SAR Ship Detection Dataset-v1.0(LS-SSDD-v1.0) dataset.
+								</i>
 							</p>
 
 
@@ -491,153 +497,6 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-		
-
-
-		<!-- Extra sections that came with template -->
-
-		<!-- One
-		<section id="one" class="wrapper style2 spotlights">
-			<section>
-				<a href="#" class="image"><img src="images/pic01.jpg" alt="" data-position="center center" /></a>
-				<div class="content">
-					<div class="inner">
-						<h2>Sed ipsum dolor</h2>
-						<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
-						<ul class="actions">
-							<li><a href="generic.html" class="button">Learn more</a></li>
-						</ul>
-					</div>
-				</div>
-			</section>
-			<section>
-				<a href="#" class="image"><img src="images/pic02.jpg" alt="" data-position="top center" /></a>
-				<div class="content">
-					<div class="inner">
-						<h2>Feugiat consequat</h2>
-						<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
-						<ul class="actions">
-							<li><a href="generic.html" class="button">Learn more</a></li>
-						</ul>
-					</div>
-				</div>
-			</section>
-			<section>
-				<a href="#" class="image"><img src="images/pic03.jpg" alt="" data-position="25% 25%" /></a>
-				<div class="content">
-					<div class="inner">
-						<h2>Ultricies aliquam</h2>
-						<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
-						<ul class="actions">
-							<li><a href="generic.html" class="button">Learn more</a></li>
-						</ul>
-					</div>
-				</div>
-			</section>
-		</section>
-
-		Two
-		<section id="two" class="wrapper style3 fade-up">
-			<div class="inner">
-				<h2>What we do</h2>
-				<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p>
-				<div class="features">
-					<section>
-						<span class="icon solid major fa-code"></span>
-						<h3>Lorem ipsum amet</h3>
-						<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-					</section>
-					<section>
-						<span class="icon solid major fa-lock"></span>
-						<h3>Aliquam sed nullam</h3>
-						<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-					</section>
-					<section>
-						<span class="icon solid major fa-cog"></span>
-						<h3>Sed erat ullam corper</h3>
-						<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-					</section>
-					<section>
-						<span class="icon solid major fa-desktop"></span>
-						<h3>Veroeros quis lorem</h3>
-						<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-					</section>
-					<section>
-						<span class="icon solid major fa-link"></span>
-						<h3>Urna quis bibendum</h3>
-						<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-					</section>
-					<section>
-						<span class="icon major fa-gem"></span>
-						<h3>Aliquam urna dapibus</h3>
-						<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-					</section>
-				</div>
-				<ul class="actions">
-					<li><a href="generic.html" class="button">Learn more</a></li>
-				</ul>
-			</div>
-		</section>
-
-	 	Three
-		<section id="three" class="wrapper style1 fade-up">
-			<div class="inner">
-				<h2>Get in touch</h2>
-				<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p>
-				<div class="split style1">
-					<section>
-						<form method="post" action="#">
-							<div class="fields">
-								<div class="field half">
-									<label for="name">Name</label>
-									<input type="text" name="name" id="name" />
-								</div>
-								<div class="field half">
-									<label for="email">Email</label>
-									<input type="text" name="email" id="email" />
-								</div>
-								<div class="field">
-									<label for="message">Message</label>
-									<textarea name="message" id="message" rows="5"></textarea>
-								</div>
-							</div>
-							<ul class="actions">
-								<li><a href="" class="button submit">Send Message</a></li>
-							</ul>
-						</form>
-					</section>
-					<section>
-						<ul class="contact">
-							<li>
-								<h3>Address</h3>
-								<span>12345 Somewhere Road #654<br />
-								Nashville, TN 00000-0000<br />
-								USA</span>
-							</li>
-							<li>
-								<h3>Email</h3>
-								<a href="#">user@untitled.tld</a>
-							</li>
-							<li>
-								<h3>Phone</h3>
-								<span>(000) 000-0000</span>
-							</li>
-							<li>
-								<h3>Social</h3>
-								<ul class="icons">
-									<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-									<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-								</ul>
-							</li>
-						</ul>
-					</section>
-				</div>
-			</div>
-		</section>
-		-->
 	 
 
 	</body>
