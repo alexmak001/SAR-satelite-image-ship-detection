@@ -19,7 +19,7 @@
 				<div class="inner">
 					<nav>
 						<ul>
-							<li><a href="#intro">Abstract</a></li>
+							<!-- <li><a href="#intro">Abstract</a></li> -->
 							<li><a href="#introduction">Introduction</a></li>
 							<li><a href="#applications">Applications</a></li>
 							<!-- <li><a href="#one">one</a></li> -->
@@ -40,17 +40,8 @@
 					<section id="intro" class="wrapper style1 fullscreen fade-up">
 						<div class="inner">
 							<h1>Maritime Ship Detection Using Synthetic Aperture Radar Satellite Imagery</h1>
-							<h2>Abstract</h2>
-							<p>Satellites are being launched into space at an exponential rate and are able 
-								to produce high quality images in relatively short intervals of time on any part 
-								of Earth. The amount of data and types of it are also increasing significantly and 
-								we specifically use Synthetic Aperture Radar (SAR) satellite imagery in 
-								order to detect ships traveling through bodies of water. We created a ship counting tool 
-								that intakes a start date, end date, and an area of interest and returns the number of ships 
-								for each day between the two dates. The images are first classified into offshore or inshore 
-								and a separate object detection algorithm counts the number of ships per image. The classifier 
-								and object detection networks are trained using the Large-Scale SAR Ship Detection Dataset-v1.0 (LS-SSDD-v1.0) 
-								and deployed on Google Earth Engine.</p>
+							<h2>A tool to count vessels in any part of the world using open sourced data.</h2>
+							
 							<!-- <ul class="actions">
 								<li><a href="#one" class="button scrolly">Learn more</a></li>
 							</ul> -->
@@ -61,9 +52,16 @@
 					<section id="introduction" class="wrapper style1 fade-up">
 						<div class="inner">
 							<h1>Introduction</h2>
-							<p>Insert introduction here. Previously, other researchers only used one singluar deep learning model to detect ships for both inshore and offshore images. 
-								However, with our approach, we intend to leverage the better accuracy of the more complex model and the better speed of the lighter weight model to hopefully
-								give us a faster and more accurate pipeline overall. 
+							<p> Satellites are being launched into space at an exponential rate and are able 
+								to produce high quality images in relatively short intervals of time on any part 
+								of Earth. The amount of data and types of it are also increasing significantly and 
+								we specifically use Synthetic Aperture Radar (SAR) satellite imagery in 
+								order to detect ships traveling through bodies of water. We created a ship counting tool 
+								that intakes a start date, end date, and an area of interest and returns the number of ships 
+								for each day between the two dates. The images are first classified into offshore or inshore 
+								and a separate object detection algorithm counts the number of ships per image. The classifier 
+								and object detection networks are trained using the Large-Scale SAR Ship Detection Dataset-v1.0 (LS-SSDD-v1.0) 
+								and deployed on Google Earth Engine. 
 							</p>
 							
 					</section>
