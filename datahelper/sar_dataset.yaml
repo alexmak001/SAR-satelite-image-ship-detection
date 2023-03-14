@@ -1,5 +1,0 @@
-train: ./train/images
-test: ./test/images
-val: ./val/images
-nc: 1
-names: ["ship"]
