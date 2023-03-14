@@ -38,7 +38,7 @@ for file in all_files:
     original = "data/annotations_yolo/" + file
         
     
-    if num < 12:
+    if num < 11:
         target = "data/train_yolo/" + file
         shutil.copy(original, target)
     else:
