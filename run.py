@@ -34,8 +34,19 @@ def main(targets):
         print("Test")
 
     if "data" in targets:
-        print("a")
+        os.system("python3 src/data/make_dataset.py ")
 
+    if "train_ret" in targets:
+        os.system("python3 src/models/train_retina_model.py ")
+
+    if "train_faster" in targets:
+        os.system("python3 src/models/train_fasterRCNN_model.py ")
+
+    if "predict" in targets:
+        os.system("python3 src/models/predict.py ")
+
+    if "viz" in targets:
+        os.system("python3 src/visualization/visualize.py ")
 
 if __name__ == '__main__':
     # run via:
