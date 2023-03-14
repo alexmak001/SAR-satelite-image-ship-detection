@@ -51,7 +51,10 @@
 					<section id="introduction" class="wrapper style1 fade-up">
 						<div class="inner">
 							<h1>Introduction</h2>
-							<p>Insert introduction here.</p>
+							<p>Insert introduction here. Previously, other researchers only used one singluar deep learning model to detect ships for both inshore and offshore images. 
+								However, with our approach, we intend to leverage the better accuracy of the more complex model and the better speed of the lighter weight model to hopefully
+								give us a faster and more accurate pipeline overall. 
+							</p>
 							
 					</section>
 
@@ -252,9 +255,52 @@
 				<!-- Methods -->	
 				<section id="methods" class="wrapper style1 fade-up">
 					<div class="inner">
-						<h1>Methods</h2>
-						<p>Insert methods here.</p>
-						
+
+							<h1>Methods</h1>
+							<p>To obtain the count of ships, we break up the problem into two sub-problems:
+								<ol>
+									<li>Classifying whether an image is inshore/offshore</li>
+									<li>Based off that classification, we use one of two different ship detection models.</li>
+								</ol>
+								
+							</p>
+								<h2>Inshore-Offshore Classifier</h2>
+								<p>To build our inshore-offshore classifier, we trained on the Large-Scale SAR Ship Detection Dataset-v1.0(LS-SSDD-v1.0) dataset. This dataset 
+									contains 15 large SAR images that are broken down into 9000 sub-images with varying presence of land, sea, and ships.Then to find the best model for classification
+									we gathered a list of different machine learning models and assessed the average accuracy of each model on the dataset. From 
+									this we found that the K-Nearest Neighbors model performed the best in terms of accuracy out of all the models.
+									<br><br>
+									Once we found the best model, we needed to find the best hyperparameters for our model to give us the best performance. 
+									To do this we used a technique called Grid Search Cross Validation which essentially tries out different combinations of parameters in the model
+									and outputs the best performing set of parameters. In our case, we found that our K-Nearest Neighbors model worked best with 5 neighbors, 
+									kd_tree for the algorithm to compute the neighbors, and with the weights of each datapoint weighted uniformly.
+									<br><br>
+
+									<figure class="eg_classify_left">
+										<img src="images/eg_inshore.jpg" alt='missing' width="95%" height="95%"/>
+										<figcaption style="text-align:center;">Example of image classified as inshore</figcaption>
+									</figure>
+									<figure style="margin-left: 20px">
+										<img src="images/eg_offshore.jpg" alt='missing'  width="95%" height="95%"/>
+										<figcaption style="text-align:center;">Example of image classified as offshore</figcaption>
+									</figure>
+									
+									
+								</p>
+								<h2>Object Detection Models</h2>
+								<p>
+									For detecting ships within inshore images we trained deep learning object detection model called Faster R-CNN. As we can see below, inshore images are often more 
+									complicated with the presence of different land features. Due to this fact, detecting ships can be a little harder of a problem because of that we wanted 
+									to use a more robust model that can handle such cases and will allow for more accurate detection of ships when faced with more complex images. 
+									<br><br>
+									In the opposite case of offshore images, these images are often much less information dense where images feature mostly open ocean and in some cases ships. 
+									Since these images are not as complicated, we decided to use the faster and more lightweight model RetinaNet.  
+									<br><br>
+									Both of these models were built using the deep learning package Pytorch within Python. However, we ran into some problems where we could only use images
+									with ships present in them to train the models. This cut down our total dataset size from 9,000 images to 1,900 images. We tried to fix this problem by introducing 
+									image augmentations such as rotations and adding noise to try and increase the size of our dataset, but due to time constraints we were unable to implement these.
+									However, to solve this issue we instead trained our models for more iterations. 
+								</p>
 				</section>
 
 					
