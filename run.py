@@ -1,9 +1,3 @@
-# dummy run file for now
-
-# import sys
-# import os
-# import json
-# import shutil
 
 import os
 import shutil
