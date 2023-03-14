@@ -1,40 +1,37 @@
-/LS-SSDD-v1.0-OPEN
-/alex_notebooks/raw_data/
-/alex_notebooks/images/
-/alex_notebooks/annotations/
-/alex_notebooks/annotations_yolo/
-/alex_notebooks/main/
-/alex_notebooks/wandb/
-/alex_notebooks/artifacts/
-/alex_notebooks/models/
-/alex_notebooks/test_yolo/
-/alex_notebooks/train_yolo/
-/alex_notebooks/BigData/
+/work/LS-SSDD-v1.0-OPEN
+/work/alex_notebooks/raw_data/
+/work/alex_notebooks/images/
+/work/alex_notebooks/annotations/
+/work/alex_notebooks/annotations_yolo/
+/work/alex_notebooks/main/
+/work/alex_notebooks/wandb/
+/work/alex_notebooks/artifacts/
+/work/alex_notebooks/models/
+/work/alex_notebooks/test_yolo/
+/work/alex_notebooks/train_yolo/
+/work/alex_notebooks/BigData/
 
-/sean_notebooks/data/images/
-/sean_notebooks/data/annotations/
-/sean_notebooks/data/annotations_yolo/
-/sean_notebooks/data/main
-/sean_notebooks/data/test/
-/sean_notebooks/data/train/
-/sean_notebooks/data
-/sean_notebooks/offshore_onshore_models
-/sean_notebooks/faster300ep.pt
+/work/sean_notebooks/data/images/
+/work/sean_notebooks/data/annotations/
+/work/sean_notebooks/data/annotations_yolo/
+/work/sean_notebooks/data/main
+/work/sean_notebooks/data/test/
+/work/sean_notebooks/data/train/
+/work/sean_notebooks/data
+/work/sean_notebooks/offshore_onshore_models
+/work/sean_notebooks/faster300ep.pt
 
 
 
-/sar-ship-detection
-/wandb
-/gee_data
-/yolov7
-/yolov7_trained
-/data_sample
+/work/sar-ship-detection
+/work/wandb
+/work/gee_data
+/work/yolov7
+/work/yolov7_trained
+/work/data_sample
 
-/data_down/gee_data
-/data_down/gee_download_key/sar-ship-detection-fb527bcf2a6d.json
+/work/data_down/gee_data
+/work/data_down/gee_download_key/sar-ship-detection-fb527bcf2a6d.json
 
-_site/
+/work_site/
 
-/alex_notebooks/
-
-/sean_notebooks/
