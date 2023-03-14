@@ -28,6 +28,8 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;}
 
+
+
 body {
 	line-height: 1;
 }
@@ -115,7 +117,7 @@ input, select, textarea {
 /* Type */
 
 	body, input, select, textarea {
-		color: rgba(255, 255, 255, 0.55);
+		color: rgba(255, 255, 255);
 		font-family: Arial, Helvetica, sans-serif;
 		font-size: 16.5pt;
 		font-weight: normal;
@@ -2565,6 +2567,29 @@ input, select, textarea {
 		max-height: 100%;
 	} */
 
+	figure{
+		display: inline-block;
+		max-width: 25%;
+		max-height: 25%;
+	}
+
+	.eg_classify_left {
+		display: inline-block;
+		max-width: 25%;
+		max-height: 25%;
+		margin-left: 21%;
+	}
+	.eg_classify_right {
+		max-width: 25%;
+		max-height: 25%;
+		display: inline;
+		border-radius: 0.25em;
+		margin: 0 1.5em 1em 0;
+		margin-left: 50px;
+	}
+
+	
+
 	.port_la_pic{
 		max-width: 100%;
 		max-height: 100%;
@@ -2675,7 +2700,7 @@ input, select, textarea {
 
 		dl dt {
 			display: block;
-			font-weight: bold;
+			/* font-weight: bold; */
 			margin: 0 0 1em 0;
 		}
 

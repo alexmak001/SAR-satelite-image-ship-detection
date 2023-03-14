@@ -25,7 +25,8 @@
 							<!-- <li><a href="#one">one</a></li> -->
 							<li><a href="#methods">Methods</a></li>
 							<!-- <li><a href="#three">three</a></li> -->
-							<li><a href="#conclusion">Conclusions</a></li>
+							<li><a href="#results">Results</a></li>
+							<li><a href="#conclusion">Conclusion</a></li>
 							<li><a href="about.html">About</a></li>
 						</ul>
 					</nav>
@@ -40,7 +41,16 @@
 						<div class="inner">
 							<h1>Maritime Ship Detection Using Synthetic Aperture Radar Satellite Imagery</h1>
 							<h2>Abstract</h2>
-							<p>Insert Abstract Here.</p>
+							<p>Satellites are being launched into space at an exponential rate and are able 
+								to produce high quality images in relatively short intervals of time on any part 
+								of Earth. The amount of data and types of it are also increasing significantly and 
+								we specifically use Synthetic Aperture Radar (SAR) satellite imagery in 
+								order to detect ships traveling through bodies of water. We created a ship counting tool 
+								that intakes a start date, end date, and an area of interest and returns the number of ships 
+								for each day between the two dates. The images are first classified into offshore or inshore 
+								and a separate object detection algorithm counts the number of ships per image. The classifier 
+								and object detection networks are trained using the Large-Scale SAR Ship Detection Dataset-v1.0 (LS-SSDD-v1.0) 
+								and deployed on Google Earth Engine.</p>
 							<!-- <ul class="actions">
 								<li><a href="#one" class="button scrolly">Learn more</a></li>
 							</ul> -->
@@ -51,7 +61,10 @@
 					<section id="introduction" class="wrapper style1 fade-up">
 						<div class="inner">
 							<h1>Introduction</h2>
-							<p>Insert introduction here.</p>
+							<p>Insert introduction here. Previously, other researchers only used one singluar deep learning model to detect ships for both inshore and offshore images. 
+								However, with our approach, we intend to leverage the better accuracy of the more complex model and the better speed of the lighter weight model to hopefully
+								give us a faster and more accurate pipeline overall. 
+							</p>
 							
 					</section>
 
@@ -68,22 +81,37 @@
 								<section>
 									<ul>
 										<!--sub-buttons to switch between time frames within a place-->
-										<li style="display:inline"><button class='sub_button' id="portla_before_covid" data-image="images/feb2020_portla.jpg" data-caption="Ship Count: 52; Date: February 04, 2020">Before COVID Lockdown</button></li>
-										<li style="display:inline"><button class='sub_button' id="portla_during_covid" data-image="images/mar2020_portla.jpg" data-caption="Ship Count: 33; Date: March 17, 2020">During COVID Lockdown</button></li>
+										<li style="display:inline"><button class='sub_button' id="portla_before_covid" data-image="images/feb2020_portla.jpg" 
+											data-caption="Ship Count: 52; Date: February 04, 2020. Most of the ships on the sea are counted correctly 
+											and that there are only a few misclassifications inland.">Before COVID Lockdown</button></li>
+
+										<li style="display:inline"><button class='sub_button' id="portla_during_covid" data-image="images/mar2020_portla.jpg" 
+											data-caption="Ship Count: 33; Date: March 17, 2020. There are much fewer ships with the lockdowns in place. 
+											All the ships in the ocean are detected with a few incorrect ones inland as well.">During COVID Lockdown</button></li>
 										
 										</ul>
 
 										<img src="images/feb2020_portla.jpg" alt="Image 1" class='port_la_pic'>
-										<div style="width:image width px; font-size:80%; text-align:center;" id="img_caption">Ship Count: 52; Date: February 04, 2020</div>
+										<div style="width:image width px; font-size:80%; text-align:center;" id="img_caption">Ship Count: 52; Date: February 04, 2020. Most of the ships on the sea are counted correctly and that there are only a few misclassifications inland.</div>
 										
 								</section>
 							
 								<section>
 									<div class = 'button-container'>
 										<ul class="places">
-											<li><button id='button1' class = "active-button" onclick="showContent(1)" data-image="images/feb2020_portla.jpg" data-caption="Ship Count: 52; Date: February 04, 2020">Port of Los Angeles</button></li>
-											<li><button id='button2' onclick="showContent(2)" data-image="images/before_suez.jpg" data-caption="Ship Count: 44; Date: March 24, 2021">Suez Canal</button></li>
-											<li><button  id='button3' onclick="showContent(3)" data-image="images/sg_start.jpg" data-caption="Ship Count: 211; Date: December 2, 2019">Singapore</button></li>
+											<li><button id='button1' class = "active-button" onclick="showContent(1)" data-image="images/feb2020_portla.jpg" 
+												data-caption="Ship Count: 52; Date: February 04, 2020. Most of the ships on the sea are counted correctly 
+												and that there are only a few misclassifications inland.">Port of Los Angeles</button></li>
+
+											<li><button id='button2' onclick="showContent(2)" data-image="images/before_suez.jpg" 
+												data-caption="Ship Count: 44; Date: March 20, 2021. Most of the ships in the open sea are being 
+												detected while the ships in the canal seem to be undetected. This might be due to the fact that 
+												the ships are near land and the model thinks it is some other metallic object.">Suez Canal</button></li>
+
+											<li><button  id='button3' onclick="showContent(3)" data-image="images/sg_start.jpg" 
+												data-caption="Ship Count: 249; Date: January 7, 2020. Before the COVID-19 outbreak, 
+												there are lots of ships seen in the image, with some not being detected. The none detected 
+												ones are fairly small and the goal of our tool is to detect bigger ones such as cargo ships.">Singapore</button></li>
 										</ul>
 									</div>
 								</section>
@@ -95,10 +123,23 @@
 							<div id='image-container1' class = "split style1">
 								<section>
 									<ul>
-										<li style="display:inline"><button class='sub_button' id="place2_1" data-image="images/before_suez.jpg" data-caption="Ship Count: 44; Date: March 20, 2021">Before Ever Given Stuck</button></li>
-										<li style="display:inline"><button class='sub_button' id="place2_2" data-image="images/during_suez.jpg" data-caption="Ship Count: 95; Date: March 25, 2021">While Ever Given Stuck</button></li>
-										<li style="display:inline"><button class='sub_button' id="place2_3" data-image="images/after_suez.jpg" data-caption="Ship Count: 54; Date: April 11, 2021">After Ever Given Freed</button></li>
+										<li style="display:inline"><button class='sub_button' id="place2_1" data-image="images/before_suez.jpg" 
+											data-caption="Ship Count: 44; Date: March 20, 2021. Most of the ships in the open sea are being 
+											detected while the ships in the canal seem to be undetected. This might be due to the fact that 
+											the ships are near land and the model thinks it is some other metallic object.">Before Ever Given Stuck</button></li>
+
+										<li style="display:inline"><button class='sub_button' id="place2_2" data-image="images/during_suez.jpg" 
+											data-caption="Ship Count: 95; Date: March 25, 2021. There are a lot more ships here because the Ever 
+											Given ship was stuck (the company that makes the ship is called Evergreen). The ship itself can be 
+											found at the right top corner of the canal; the white shiny object blocking the canal. 
+											There are a few more mis detections inland.">While Ever Given Stuck</button></li>
+
+										<li style="display:inline"><button class='sub_button' id="place2_3" data-image="images/after_suez.jpg" 
+											data-caption="Ship Count: 54; Date: April 11, 2021. Much fewer ships seen in this picture, with 
+											some being detected in the canal and others not being detected on the open sea. We are not sure 
+											if the other small specs on the water are ships or noise, as we do not have the ground truth.">After Ever Given Freed</button></li>
 										</ul>
+
 									<p><img src="images/before_suez.jpg" alt="Image 1" class="suez_canal_pic"></p>
 									<div style="width:image width px; font-size:80%; text-align:center;" id="img_caption1">Ship Count: 44; Date: March 20, 2021</div>
 								</section>
@@ -106,9 +147,19 @@
 								<section>
 									<div class = 'button-container'>
 										<ul class="places">
-											<li><button id='button1' onclick="showContent(1)" data-image="images/feb2020_portla.jpg" data-caption="Ship Count: 52; Date: February 04, 2020">Port of Los Angeles</button></li>
-											<li><button id='button2' class = "active-button" onclick="showContent(2)" data-image="images/before_suez.jpg" data-caption="Ship Count: 44; Date: March 20, 2021">Suez Canal</button></li>
-											<li><button id='button3' onclick="showContent(3)" data-image="images/sg_start.jpg" data-caption="Ship Count: 211; Date: December 2, 2019">Singapore</button></li>
+											<li><button id='button1' onclick="showContent(1)" data-image="images/feb2020_portla.jpg" 
+												data-caption="Ship Count: 52; Date: February 04, 2020. Most of the ships on the sea 
+												are counted correctly and that there are only a few misclassifications inland.">Port of Los Angeles</button></li>
+
+											<li><button id='button2' class = "active-button" onclick="showContent(2)" data-image="images/before_suez.jpg" 
+												data-caption="Ship Count: 44; Date: March 20, 2021. Most of the ships in the open sea are being detected 
+												while the ships in the canal seem to be undetected. This might be due to the fact that the ships are near 
+												land and the model thinks it is some other metallic object.">Suez Canal</button></li>
+
+											<li><button id='button3' onclick="showContent(3)" data-image="images/sg_start.jpg" 
+												data-caption="Ship Count: 249; Date: January 7, 2020. Before the COVID-19 outbreak, 
+												there are lots of ships seen in the image, with some not being detected. The none 
+												detected ones are fairly small and the goal of our tool is to detect bigger ones such as cargo ships.">Singapore</button></li>
 										</ul>
 									</div>
 								</section>
@@ -124,20 +175,38 @@
 								<section>
 									<ul>
 										<!--sub-buttons to switch between time frames within a place-->
-										<li style="display:inline"><button class='sub_button' id="sg_before_covid" data-image="images/sg_start.jpg" data-caption="Ship Count: 211; Date: December 2, 2019">Before COVID Lockdown</button></li>
-										<li style="display:inline"><button class='sub_button' id="sg_during_covid" data-image="images/sg_end.jpg" data-caption="Ship Count: 148; Date: April 24, 2020">During COVID Lockdown</button></li>
+										<li style="display:inline"><button class='sub_button' id="sg_before_covid" data-image="images/sg_start.jpg" 
+											data-caption="Ship Count: 249; Date: January 7, 2020. Before the COVID-19 outbreak, there are lots of 
+											ships seen in the image, with some not being detected. The none detected ones are fairly small and the goal 
+											of our tool is to detect bigger ones such as cargo ships.">Before COVID Lockdown</button></li>
+
+										<li style="display:inline"><button class='sub_button' id="sg_during_covid" data-image="images/sg_end.jpg" 
+											data-caption="Ship Count: 288; Date: April 13, 2020. After lockdowns there was a slight drop in the 
+											number of ships in this area. Most of the buildings on the land are made of metal so they reflect a 
+											lot of the signal back and look similar to ships on the ocean.">During COVID Lockdown</button></li>
 										
 										</ul>
 									<p><img src="images/sg_start.jpg" alt="Image 1" class='sg_pic'></p>
-									<div style="width:image width px; font-size:80%; text-align:center;" id="img_caption2">Ship Count: 211; Date: December 2, 2019</div>
+									<div style="width:image width px; font-size:80%; text-align:center;" id="img_caption2">Ship Count: 249; Date: January 7, 2020</div>
 								</section>
 							
 								<section>
 									<div class = 'button-container'>
 										<ul class="places">
-											<li><button id='button1' onclick="showContent(1)" data-image="images/feb2020_portla.jpg" data-caption="Ship Count: 52; Date: February 04, 2020">Port of Los Angeles</button></li>
-											<li><button id='button2' onclick="showContent(2)" data-image="images/before_suez.jpg" data-caption="Ship Count: 44; Date: March 20, 2021">Suez Canal</button></li>
-											<li><button  id='button3' class = "active-button" onclick="showContent(3)" data-image="images/sg_start.jpg" data-caption="Ship Count: 211; Date: December 2, 2019">Singapore</button></li>
+											<li><button id='button1' onclick="showContent(1)" data-image="images/feb2020_portla.jpg" 
+												data-caption="Ship Count: 52; Date: February 04, 2020. Most of the ships on the sea 
+												are counted correctly and that there are only a few misclassifications inland.">Port of Los Angeles</button></li>
+
+											<li><button id='button2' onclick="showContent(2)" data-image="images/before_suez.jpg" 
+												data-caption="Ship Count: 44; Date: March 20, 2021. Most of the ships in the open 
+												sea are being detected while the ships in the canal seem to be undetected. This 
+												might be due to the fact that the ships are near land and the model thinks it is 
+												some other metallic object.">Suez Canal</button></li>
+
+											<li><button id='button3' class = "active-button" onclick="showContent(3)" data-image="images/sg_start.jpg" 
+												data-caption="Ship Count: 249; Date: January 7, 2020. Before the COVID-19 outbreak, there are lots of 
+												ships seen in the image, with some not being detected. The none detected ones are fairly small and the 
+												goal of our tool is to detect bigger ones such as cargo ships.">Singapore</button></li>
 										</ul>
 									</div>
 								</section>
@@ -252,17 +321,156 @@
 				<!-- Methods -->	
 				<section id="methods" class="wrapper style1 fade-up">
 					<div class="inner">
-						<h1>Methods</h2>
-						<p>Insert methods here.</p>
-						
-				</section>
+
+							<h1>Methods</h1>
+							<h2>Full Pipeline</h2>
+								<img src="images/Workflow.jpg" alt="Image 1" width="50%" height="50%" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+								<div style="width:image width px; text-align:center; font-size:80%;" id="img_caption2">Workflow Diagram</div>
+								<p>
+									<br>
+									To obtain the count of ships within an image, we have broken our pipeline down into 4 major steps. Our final workflow is as follows: 
+									<ol>
+										<li>the first step of the process is to acquire images from Google Earth Engine. The user can input the coordinates
+											of their area of interest as well as the desired start and end dates into the ship counting script and will start downloading the images.
+										</li>
+											<ul>
+												<li><i>(For a more detailed tutorial on how to get the desired coordinates and how to run the ship counting script, please refer to the 
+													<a href='https://github.com/alexmak001/SAR-satelite-image-ship-detection'>GitHub Repo</a>)</i></li>
+											</ul>
+										 <li>Once the images are downloaded, each image will be preprocessed and split up into sub images one at a time.</li>
+										 <li>Then, each sub image is classified as either inshore or offshore and based off that classification, the respective object detection model will
+											be used to detect and count the number of ships.
+										</li>
+										<li>
+											Finally, the counts for all the sub images will be aggregated together to give the total counts within the full sized image. 	
+										</li> 
+									</ol>
+
+									<br>
+									The following subsections will explain each step in more detail.
+								</p>
+							<br>
+
+							<h2>Acquiring Images & Preprocessing</h2>
+								<p>
+									The data we intend to deploy our model on is the Sentinel-1 SAR image collection on Google Earth
+									Engine. To access this data, we built a helper function that takes in the coordinates of the desired area
+									as well as the start and end dates that the user wants to pull from. The coordinates for this function
+									can be found on the Google Earth Engine Code editor <i>(Please refer to the <a href='https://github.com/alexmak001/SAR-satelite-image-ship-detection'>GitHub Repo</a> 
+									for more details.)</i> The helper function will then download the set of images locally as .tif files.
+									<br><br> 
+									Once downloaded, we have to do some additional cleaning of the image values because as you can see below, 
+									the image appears to have a gray tint to it. Fixing this requires clipping images values from -20 to 0 
+									where values less than -20 are set to -20 and values greater than 0 are set to 0. As you can see below, 
+									it creates a much more contrasted and clearer image. From there,
+									we pad black bars around the image so that when we split the image in the next step, we will get equally sized sub images.
+								</p>
+								<figure class="eg_classify_left">
+									<img src="images/raw_port_la.jpg" alt='missing' width="100%" height="100%"/>
+									<figcaption style="text-align:center; font-size:80%;">Raw Image from Google Earth Engine</figcaption>
+								</figure>
+								<figure style="margin-left: 20px">
+									<img src="images/padded_port_la.jpg" alt='missing'  width="95%" height="95%"/>
+									<figcaption style="text-align:center; font-size:80%;">Preprocessed Image</figcaption>
+								</figure>
+								<br>
+
+								<h2>Inshore-Offshore Classifier</h2>
+								<p>To build our inshore-offshore classifier, we trained on the Large-Scale SAR Ship Detection Dataset-v1.0(LS-SSDD-v1.0) dataset. This dataset 
+									contains 15 large SAR images that are broken down into 9000 sub-images with varying presence of land, sea, and ships.Then to find the best model for classification
+									we gathered a list of different machine learning models and assessed the average accuracy of each model on the dataset. From 
+									this we found that the K-Nearest Neighbors model performed the best in terms of accuracy out of all the models.
+									<br><br>
+									Once we found the best model, we needed to find the best hyperparameters for our model to give us the best performance. 
+									To do this we used a technique called Grid Search Cross Validation which essentially tries out different combinations of parameters in the model
+									and outputs the best performing set of parameters. In our case, we found that our K-Nearest Neighbors model worked best with 5 neighbors, 
+									kd_tree for the algorithm to compute the neighbors, and with the weights of each datapoint weighted uniformly.
+									<br><br>
+
+									<figure class="eg_classify_left">
+										<img src="images/eg_inshore.jpg" alt='missing' width="95%" height="95%"/>
+										<figcaption style="text-align:center; font-size:80%;">Example of image classified as inshore</figcaption>
+									</figure>
+									<figure style="margin-left: 20px">
+										<img src="images/eg_offshore.jpg" alt='missing'  width="95%" height="95%"/>
+										<figcaption style="text-align:center; font-size:80%;">Example of image classified as offshore</figcaption>
+									</figure>
+									
+									
+								</p>
+								<h2>Object Detection Models</h2>
+								<p>
+									For detecting ships within inshore images we trained deep learning object detection model called Faster R-CNN. As we can see below, inshore images are often more 
+									complicated with the presence of different land features. Due to this fact, detecting ships can be a little harder of a problem because of that we wanted 
+									to use a more robust model that can handle such cases and will allow for more accurate detection of ships when faced with more complex images. 
+									<br><br>
+									In the opposite case of offshore images, these images are often much less information dense where images feature mostly open ocean and in some cases ships. 
+									Since these images are not as complicated, we decided to use the faster and more lightweight model RetinaNet.  
+									<br><br>
+									Both of these models were built using the deep learning package Pytorch within Python. However, we ran into some problems where we could only use images
+									with ships present in them to train the models. This cut down our total dataset size from 9,000 images to 1,900 images. We tried to fix this problem by introducing 
+									image augmentations such as rotations and adding noise to try and increase the size of our dataset, but due to time constraints we were unable to implement these.
+									However, to solve this issue we instead trained our models for more iterations. 
+									<br><br>
+								</p>
+								<img src="images/fasterpredwater.png" alt="Image 1" width="50%" height="50%" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+								<div style="width:image width px; text-align:center; font-size:80%;" id="img_caption2">Example of image with detected ships.</div>
+
+								
+					</section>
+
+
+					<!-- Results -->	
+					<section id="results" class="wrapper style1 fade-up">
+						<div class="inner">
+							<h1>Results</h1>
+							<h3>Inshore-Offshore Classifier</h3>
+								<img src="images/clf_bar.png" alt="Image 1" width="50%" height="50%" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+								<div style="width:image width px; text-align:center; font-size:80%;" id="img_caption2">Average accuracies of classifiers</div>
+								<img src="images/clf_results.png" alt="Image 1" width="50%" height="50%" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+								<div style="width:image width px; text-align:center; font-size:80%;" id="img_caption2">Average accuracies and runtimes of classifiers</div>
+							<p>
+								As we can see from the bar graph and table above, the Decision Tree, Random Forest, and K-Nearest Neighbors
+								models all performed quite similarly in terms of average accuracy and runtime. However, in the end we decided to go with the K-Nearest Neighbors model
+								for its slightly better accuracy despite having a slightly slower runtime. This is because within our application, we want to ensure more accurate inshore/offshore 
+								predictions so that the images are fed into their correct object detection models.    
+							</p>
+
+							<h3>Object Detection Models</h3>
+								<img src="images/od_metric_full.png" alt="Image 1" width="50%" height="50%" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+								<div style="width:image width px; text-align:center; font-size:80%;" id="img_caption2">bar graphs of metrics for object detection models</div>
+								<img src="images/od_metrics.png" alt="Image 1" width="50%" height="50%" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+								<div style="width:image width px; text-align:center; font-size:80%;" id="img_caption2">Table of metrics for object detection models</div>
+							<p>
+								From the above metrics, we can see that the Faster R-CNN had the highest accuracy scores, but was slowest on inference. Because of this, we decided to 
+								go with Faster R-CNN for the more complicated inshore images. For the offshore images, we went with RetinaNet due to the fact that it performs almost as good
+								as well as a little bit faster than Faster R-CNN. However, these speed and accuracy differences are quite small.
+							</p>
+
+							<h3>Full Pipeline</h3>
+								<img src="images/tool_comparison.png" alt="Image 1" width="50%" height="50%" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+								<div style="width:image width px; text-align:center; font-size:80%;" id="img_caption2">bar graphs of metrics for object detection models</div>
+							<p>
+								We can see from above that our tool performs slightly faster than just using Faster R-CNN for both inshore and offshore, and does about the same performance wise.
+								This tells us that our tool predicts just as well as Faster R-CNN, and we hope that the small speed increase will translate to scale.
+							</p>
+
+
+
+					</section>
 
 					
 					<!-- Conclusion -->	
 					<section id="conclusion" class="wrapper style1 fade-up">
 						<div class="inner">
-							<h1>Conclusion</h2>
-							<p>Insert Conclusion here.</p>
+							<h1>Conclusion</h1>
+							<p>Our goal is for the ship counting tool we have created to be used for other projects 
+								such as political policy monitoring, or economic modeling. The modularity of it allows 
+								for different parts of the tool to be easily replaced or reconfigured. For example, if a 
+								new object detection model is created it can be easily trained and swapped with the current 
+								one in the tool. Another example is if a new source of satellite imagery data becomes open source 
+								or purchased it can be inputted into the tool instead of Google Earth Engine. Overall, we hope that 
+								others continue to build upon this tool or apply it for a beneficial purpose.</p>
 					</section>
 
 			</div>

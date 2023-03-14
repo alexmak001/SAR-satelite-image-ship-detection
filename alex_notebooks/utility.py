@@ -16,6 +16,7 @@ import os
 import random
 from tqdm import tqdm
 import rasterio
+import joblib
 # helper function for dataset
 def generate_box(obj):
     
@@ -699,6 +700,23 @@ def read_file(filename):
         for line in f:
             lines.append(line.strip())
     return lines
+
+def inshore_offshore_classifier(img):
+    """
+    Takes in an image and classifies it as either offshore(1) or inshore(0)
+    """
+    clf_fp = "inshore_offshore_clf_normal_model.pkl"
+    clf = joblib.load(clf_fp)
+    img_vals = np.copy(img)
+    img_50 = np.percentile(img_vals,50)
+    img_80 = np.percentile(img_vals,80)
+    img_90 = np.percentile(img_vals,90)
+    img_30 = np.percentile(img_vals,30)
+    
+    features = np.array([[img_50, img_80, img_90, img_30]])
+    return clf.predict(features)[0]
+
+
 
 # array of all test annotation with ships 
 allShipsTest = os.listdir("test_yolo/")
