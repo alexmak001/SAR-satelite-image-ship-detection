@@ -89,12 +89,13 @@
 									<ul>
 										<!--sub-buttons to switch between time frames within a place-->
 										<li style="display:inline"><button class='sub_button' id="portla_before_covid" data-image="images/feb2020_portla.jpg" 
-											data-caption="Ship Count: 52; Date: February 04, 2020. Most of the ships on the sea are counted correctly 
-											and that there are only a few misclassifications inland.">Before COVID Lockdown</button></li>
+											data-caption="Ship Count: 52; Date: February 04, 2020. Majority of the offshore ships are detected 
+											and that there are only a few incorrect detections inshore.">Before COVID Lockdown</button></li>
 
 										<li style="display:inline"><button class='sub_button' id="portla_during_covid" data-image="images/mar2020_portla.jpg" 
-											data-caption="Ship Count: 33; Date: March 17, 2020. There are much fewer ships with the lockdowns in place. 
-											All the ships in the ocean are detected with a few incorrect ones inland as well.">During COVID Lockdown</button></li>
+											data-caption="Ship Count: 33; Date: March 17, 2020. Even though it is the same place, it is slightly 
+											bright which causes some new objects to be detected as ships. The effects of the lockdown are evident with the 
+											lower ship count within the port.">During COVID Lockdown</button></li>
 										
 										</ul>
 
@@ -113,18 +114,19 @@
 									<div class = 'button-container'>
 										<ul class="places">
 											<li><button id='button1' class = "active-button" onclick="showContent(1)" data-image="images/feb2020_portla.jpg" 
-												data-caption="Ship Count: 52; Date: February 04, 2020. Most of the ships on the sea are counted correctly 
-												and that there are only a few misclassifications inland.">Port of Los Angeles</button></li>
+												data-caption="Ship Count: 52; Date: February 04, 2020. Majority of the offshore ships are detected 
+												and that there are only a few incorrect detections inshore.">Port of Los Angeles</button></li>
 
 											<li><button id='button2' onclick="showContent(2)" data-image="images/before_suez.jpg" 
-												data-caption="Ship Count: 44; Date: March 20, 2021. Most of the ships in the open sea are being 
-												detected while the ships in the canal seem to be undetected. This might be due to the fact that 
-												the ships are near land and the model thinks it is some other metallic object.">Suez Canal</button></li>
+												data-caption="Ship Count: 44; Date: March 20, 2021. We can see that the tool has no issues detecting ships
+												in the open sea, but struggles with detecting ships near land as evident in the top right 
+												corner of the image.">Suez Canal</button></li>
 
 											<li><button  id='button3' onclick="showContent(3)" data-image="images/sg_start.jpg" 
-												data-caption="Ship Count: 249; Date: January 7, 2020. Before the COVID-19 outbreak, 
-												there are lots of ships seen in the image, with some not being detected. The none detected 
-												ones are fairly small and the goal of our tool is to detect bigger ones such as cargo ships.">Port of Singapore</button></li>
+												data-caption="Ship Count: 249; Date: January 7, 2020. 
+												These iamges of the port of Singapore are overall brighter because there are more metallic buildings inland
+												causing the SAR signal to be reflected in a manner similar to ships. Our tool is unable to detect ships
+												under a certain size, which is a limitation of our tool.">Port of Singapore</button></li>
 										</ul>
 									</div>
 								</section>
@@ -137,20 +139,19 @@
 								<section>
 									<ul>
 										<li style="display:inline"><button class='sub_button' id="place2_1" data-image="images/before_suez.jpg" 
-											data-caption="Ship Count: 44; Date: March 20, 2021. Most of the ships in the open sea are being 
-											detected while the ships in the canal seem to be undetected. This might be due to the fact that 
-											the ships are near land and the model thinks it is some other metallic object.">Before Suez Blockage by Ever Given Ship</button></li>
+											data-caption="Ship Count: 44; Date: March 20, 2021. We can see that the tool has no issues detecting ships
+											in the open sea, but struggles with detecting ships near land as evident in the top right 
+											corner of the image.">Before Suez Blockage by Ever Given Ship</button></li>
 
 										<li style="display:inline"><button class='sub_button' id="place2_2" data-image="images/during_suez.jpg" 
-											data-caption="Ship Count: 95; Date: March 25, 2021. There are a lot more ships here because the Ever 
-											Given ship was stuck (the company that makes the ship is called Evergreen). The ship itself can be 
-											found at the right top corner of the canal; the white shiny object blocking the canal. 
-											There are a few more incorrect detections inland.">During Suez Blockage by Ever Given Ship</button></li>
+											data-caption="Ship Count: 95; Date: March 25, 2021. Though our tool does not detect it,
+											 the Ever Given ship can be found in the top right corner of the 
+											image blocking the canal. Due to the blockage, the number of ships increases significantly.">During Suez Blockage by Ever Given Ship</button></li>
 
 										<li style="display:inline"><button class='sub_button' id="place2_3" data-image="images/after_suez.jpg" 
-											data-caption="Ship Count: 54; Date: April 11, 2021. Much fewer ships seen in this picture, with 
-											some being detected in the canal and others not being detected on the open sea. We are not sure 
-											if the other small specs on the water are ships or noise, as we do not have the ground truth.">After Suez Blockage by Ever Given Ship</button></li>
+											data-caption="Ship Count: 54; Date: April 11, 2021. 
+											Ships are able to pass through the canal once again, and some are even detected inside the canal. The 
+											ship traffic is reduced as well. ">After Suez Blockage by Ever Given Ship</button></li>
 										</ul>
 
 									<p><img src="images/before_suez.jpg" alt="Image 1" class="suez_canal_pic"></p>
@@ -161,18 +162,19 @@
 									<div class = 'button-container'>
 										<ul class="places">
 											<li><button id='button1' onclick="showContent(1)" data-image="images/feb2020_portla.jpg" 
-												data-caption="Ship Count: 52; Date: February 04, 2020. Most of the ships on the sea 
-												are counted correctly and that there are only a few misclassifications inland.">Port of Los Angeles</button></li>
+												data-caption="Ship Count: 52; Date: February 04, 2020. Majority of the offshore ships are detected 
+												and that there are only a few incorrect detections inshore.">Port of Los Angeles</button></li>
 
 											<li><button id='button2' class = "active-button" onclick="showContent(2)" data-image="images/before_suez.jpg" 
-												data-caption="Ship Count: 44; Date: March 20, 2021. Most of the ships in the open sea are being detected 
-												while the ships in the canal seem to be undetected. This might be due to the fact that the ships are near 
-												land and the model thinks it is some other metallic object.">Suez Canal</button></li>
+												data-caption="Ship Count: 44; Date: March 20, 2021. We can see that the tool has no issues detecting ships
+												in the open sea, but struggles with detecting ships near land as evident in the top right 
+												corner of the image.">Suez Canal</button></li>
 
 											<li><button id='button3' onclick="showContent(3)" data-image="images/sg_start.jpg" 
-												data-caption="Ship Count: 249; Date: January 7, 2020. Before the COVID-19 outbreak, 
-												there are lots of ships seen in the image, with some not being detected. The none 
-												detected ones are fairly small and the goal of our tool is to detect bigger ones such as cargo ships.">Port of Singapore</button></li>
+												data-caption="Ship Count: 249; Date: January 7, 2020. 
+												These iamges of the port of Singapore are overall brighter because there are more metallic buildings inland
+												causing the SAR signal to be reflected in a manner similar to ships. Our tool is unable to detect ships
+												under a certain size, which is a limitation of our tool.">Port of Singapore</button></li>
 										</ul>
 									</div>
 								</section>
@@ -189,14 +191,15 @@
 									<ul>
 										<!--sub-buttons to switch between time frames within a place-->
 										<li style="display:inline"><button class='sub_button' id="sg_before_covid" data-image="images/sg_start.jpg" 
-											data-caption="Ship Count: 249; Date: January 7, 2020. Before the COVID-19 outbreak, there are lots of 
-											ships seen in the image, with some not being detected. The none detected ones are fairly small and the goal 
-											of our tool is to detect bigger ones such as cargo ships.">Before COVID Lockdown</button></li>
+											data-caption="Ship Count: 249; Date: January 7, 2020. 
+											These iamges of the port of Singapore are overall brighter because there are more metallic buildings inland
+											causing the SAR signal to be reflected in a manner similar to ships. Our tool is unable to detect ships
+											under a certain size, which is a limitation of our tool.">Before COVID Lockdown</button></li>
 
 										<li style="display:inline"><button class='sub_button' id="sg_during_covid" data-image="images/sg_end.jpg" 
-											data-caption="Ship Count: 288; Date: April 13, 2020. Surprinsigly after lockdowns there was a slight increase in the 
-											number of ships in this area. Most of the buildings on the land are made of metal so they reflect a 
-											lot of the signal back and look similar to ships on the ocean.">During COVID Lockdown</button></li>
+											data-caption="Ship Count: 288; Date: April 13, 2020. 
+											Surprinsigly international lockdowns did not decrease the number of ships within the port. The tool also
+											made less incorrect inland detections compared to previous applications.">During COVID Lockdown</button></li>
 										
 										</ul>
 									<p><img src="images/sg_start.jpg" alt="Image 1" class='sg_pic'></p>
@@ -207,19 +210,19 @@
 									<div class = 'button-container'>
 										<ul class="places">
 											<li><button id='button1' onclick="showContent(1)" data-image="images/feb2020_portla.jpg" 
-												data-caption="Ship Count: 52; Date: February 04, 2020. Most of the ships on the sea 
-												are counted correctly and that there are only a few misclassifications inland.">Port of Los Angeles</button></li>
+												data-caption="Ship Count: 52; Date: February 04, 2020. Majority of the offshore ships are detected 
+												and that there are only a few incorrect detections inshore.">Port of Los Angeles</button></li>
 
 											<li><button id='button2' onclick="showContent(2)" data-image="images/before_suez.jpg" 
-												data-caption="Ship Count: 44; Date: March 20, 2021. Most of the ships in the open 
-												sea are being detected while the ships in the canal seem to be undetected. This 
-												might be due to the fact that the ships are near land and the model thinks it is 
-												some other metallic object.">Suez Canal</button></li>
+												data-caption="Ship Count: 44; Date: March 20, 2021. We can see that the tool has no issues detecting ships
+												in the open sea, but struggles with detecting ships near land as evident in the top right 
+												corner of the image.">Suez Canal</button></li>
 
 											<li><button id='button3' class = "active-button" onclick="showContent(3)" data-image="images/sg_start.jpg" 
-												data-caption="Ship Count: 249; Date: January 7, 2020. Before the COVID-19 outbreak, there are lots of 
-												ships seen in the image, with some not being detected. The none detected ones are fairly small and the 
-												goal of our tool is to detect bigger ones such as cargo ships.">Port of Singapore</button></li>
+												data-caption="Ship Count: 249; Date: January 7, 2020. 
+												These iamges of the port of Singapore are overall brighter because there are more metallic buildings inland
+												causing the SAR signal to be reflected in a manner similar to ships. Our tool is unable to detect ships
+												under a certain size, which is a limitation of our tool.">Port of Singapore</button></li>
 										</ul>
 									</div>
 								</section>
