@@ -1,4 +1,4 @@
-# SAR-satelite-image-ship-detection
+# Maritime Ship Detection Using Synthetic Aperture Radar Satellite Imagery
 Satellites are being launched into space at an exponential rate and are able to produce high quality images in relatively short intervals of time on any part of Earth. The amount of data and types of it are also increasing significantly and in this paper we specifically use Synthetic Aperture Radar (SAR) satellite imagery in order to detect ships traveling through bodies of water. We created a ship counting tool that intakes a start date, end date, and an area of interest and returns the number of ships for each day between the two dates. The images are first classified into offshore or inshore and a separate object detection algorithm counts the number of ships per image. The classifier and object detection networks are trained using the Large-Scale SAR Ship Detection Dataset-v1.0 (LS-SSDD-v1.0) and deployed on Google Earth Engine.
 
 ## Testing:
@@ -6,6 +6,11 @@ When running on DSMLP, be sure to use use the launch script
 `launch-scipy-ml.sh -g 1 -i snng/sar_ship_detection` to launch a pod with a GPU. Otherwise the script will fail to run. 
 
 To run the test, simply run python run.py test
+
+## run.py file
+Using the "data" target, it downaloads and formats the dataset locally. This also downloads the models as well. 
+The "train_ret" target will start the training of the RetinaNet model, which requires the data to be loaded. Similarly, the "train_faster" will begin to train the Faster R-CNN model. The hyperparameters can be configured in the src/models/ folder for each of the models.
+The "predict" target uses the model to predict on all of the test data and returns the key metrics for both models. The "viz" target causes the models to predict the bounding boxes on the tif files saved in the src/visualization folder. It then saves the resulting image with bounding boxes in the same folder as a jpg.
 
 ## HOW TO RUN THE SHIP COUNTING SCRIPT:
 [//]: <> (Have to figure out what to do about json key)
